@@ -1,0 +1,310 @@
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="No Biggie, I'm Fine, home"><span>No biggie,</span><span>I'm fine.</span></a>
+    <nav aria-label="Main">
+      <ul class="nav">
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#book">Story mode</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+    <a class="cart-btn top-book" href="#book">Open the book {{ARROW}}</a>
+  </div>
+</header>
+
+<div id="homeView">
+<main>
+<section class="hero band" aria-labelledby="hero-title">
+  <div class="wrap">
+    <p class="note note--l">Real people.<br> Real things.<br> A brighter way<br> through.{{SCRIB}}</p>
+    <div class="hero-copy">
+      <h1 class="hand" id="hero-title"><span>No biggie,</span><span>I'm fine.</span></h1>
+      <p class="hero-sub">Real stories from people who push it down and power through, and the specific thing that helped each of them.</p>
+      <div class="fp-row hero-cta"><a class="btn btn--ink" href="#book">Open the book {{ARROW}}</a><a class="textlink" href="#stories">Browse the stories {{ARROW}}</a></div>
+    </div>
+    <figure class="hero-art">
+      {{ART:hero}}
+      <p class="note" aria-hidden="true">Still here.{{SCRIB}}</p>
+    </figure>
+  </div>
+</section>
+
+<section class="featured band dark" id="featured" aria-labelledby="feat-title">
+  {{TEAR:11:top:var(--paper-hi):var(--night)}}
+  <div class="wrap">
+    <div class="feat-copy">
+      <p class="eyebrow"><b>Featured story</b>{{RULE}}</p>
+      <h2 class="hand" id="feat-title"><span>The weight</span><span>I carry.</span></h2>
+      <div class="feat-body">
+        <p>Sometimes it feels heavy.<br>Sometimes it doesn't.<br>Both are real.</p>
+        <div class="fp-row"><a class="btn btn--paper" href="#story-weight">Read the story {{ARROW}}</a><a class="textlink" href="#book-weight">Read it in the book {{ARROW}}</a></div>
+      </div>
+    </div>
+    <div class="feat-art">
+      {{ART:featured}}
+      <p class="note" aria-hidden="true">Same thoughts.<br>Different day.{{SCRIB}}</p>
+    </div>
+  </div>
+</section>
+
+<section class="stories band dark" id="more" aria-labelledby="more-title">
+  {{TEAR:23:top:#252524:var(--night-2)}}
+  {{TEAR:31:bottom:var(--paper-hi):var(--night-2)}}
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="hand" id="more-title">More stories</h2>
+      {{RULE}}
+      <a class="more more--deck" href="#book">Story mode {{ARROW}}</a>
+      <a class="more more--all" href="#stories">All stories {{ARROW}}</a>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="card-art">{{ART:card1}}</div>
+        <h3>Small wins</h3>
+        <p>It's not about fixing it.<br>It's about noticing it.</p>
+        <a class="textlink stretch" href="#story-wins">Read {{ARROW}}</a>
+      </article>
+      <article class="card">
+        <div class="card-art">{{ART:card2}}</div>
+        <h3>A little lighter today</h3>
+        <p>Some days just feel a little brighter.</p>
+        <a class="textlink stretch" href="#story-lighter">Read {{ARROW}}</a>
+      </article>
+      <article class="card">
+        <div class="card-art">{{ART:card3}}</div>
+        <h3>Stuck and<br>still here</h3>
+        <p>Progress doesn't always look loud.</p>
+        <a class="textlink stretch" href="#story-stuck">Read {{ARROW}}</a>
+      </article>
+      <article class="card">
+        <div class="card-art">{{ART:card4}}</div>
+        <h3>It gets weirder (and better)</h3>
+        <p>A note to myself on the days that feel like too much.</p>
+        <a class="textlink stretch" href="#story-weirder">Read {{ARROW}}</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="book-band band" aria-labelledby="bookband-title">
+  <div class="wrap bb-in">
+    <div class="bb-copy">
+      <p class="eyebrow"><b>Story mode</b>{{RULE}}</p>
+      <h2 class="bb-h" id="bookband-title"><span>Read it like</span><span>a book.</span></h2>
+      <p>One page at a time. Every story is printed on black, and the thing that helped is on the white page after it. Turn with the arrows, a tap, or a swipe.</p>
+      <div class="fp-row"><a class="btn btn--ink" href="#book">Open the book {{ARROW}}</a></div>
+    </div>
+    <a class="bb-mock" href="#book" aria-label="Open the book">
+      <span class="bb-page bb-dark"><span class="bb-num">Story 04</span>{{LIB:stuck_hero}}<b>Stuck and still here.</b></span>
+      <span class="bb-page bb-light"><span class="bb-num">What helped</span><span class="bb-ic">{{LIB:i_boots}}</span><b>Move my body.</b><i>A short walk, a stretch, or just standing outside helps reset my mind.</i></span>
+    </a>
+  </div>
+</section>
+
+<section class="about band dark" id="about-teaser" aria-labelledby="about-title">
+  {{TEAR:47:top:var(--paper-hi):var(--night)}}
+  {{TEAR:53:bottom:var(--paper-hi):var(--night)}}
+  <div class="wrap">
+    <div class="about-copy">
+      <div class="sec-head"><h2 class="hand" id="about-title">About</h2>{{RULE}}</div>
+      <p>No Biggie, I'm Fine is for people who push it down and power through. It's a collection of real stories from people who found their own ways to carry hard things.</p>
+      <a class="btn btn--paper" href="#about">More about the project {{ARROW}}</a>
+    </div>
+    <div class="about-art">{{ART:about}}</div>
+  </div>
+</section>
+</main>
+</div><!-- /homeView -->
+
+<div id="storiesView" class="pv" hidden>
+  <section class="pg-hero" aria-labelledby="stTitle">
+    <div class="wrap pg-hero-in">
+      <div class="pg-copy">
+        <p class="eyebrow"><b>The stories</b>{{RULE}}</p>
+        <h1 class="pg-h1" id="stTitle"><span>Real people.</span><span>Real things.</span></h1>
+        <p class="pg-lede">Each entry pairs one person's story with the specific thing that helped them carry it. Read them one at a time, or open the book and turn the pages.</p>
+        <div class="fp-row"><a class="btn btn--ink" href="#book">Open the book {{ARROW}}</a></div>
+      </div>
+      <figure class="pg-art">{{LIB:walker}}<p class="note" aria-hidden="true">One page<br>at a time.{{SCRIB}}</p></figure>
+    </div>
+  </section>
+  <section class="pg-list" aria-label="All stories">
+    <div class="wrap">
+      <div class="legend" aria-hidden="true"><span class="lg-dark">The story</span><span class="lg-light">What helped</span></div>
+      <div class="slist" id="storyList"></div>
+    </div>
+  </section>
+</div>
+
+<div id="aboutView" class="pv" hidden>
+  <section class="ab-hero" aria-labelledby="abTitle">
+    <div class="wrap ab-hero-in">
+      <div class="ab-copy">
+        <p class="eyebrow"><b>About the project</b>{{RULE}}</p>
+        <h1 class="ab-h1" id="abTitle">No Biggie, I’m Fine is for people who <em>push it down and power through.</em></h1>
+        <p class="ab-lead">It’s a collection of real stories from people who found their own ways to carry hard things. Each entry pairs one person’s story with the specific thing that helped them. Some of those practices are ancient. Some were invented on a Tuesday afternoon out of desperation. None of them are the advice you’ve already ignored.</p>
+      </div>
+      <figure class="ab-art">{{ART:practices}}<p class="note" aria-hidden="true">Still<br>here.{{SCRIB}}</p></figure>
+    </div>
+  </section>
+
+  <section class="ab-how" aria-labelledby="howTitle">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="hand" id="howTitle">How every entry works</h2>{{RULE}}</div>
+      <div class="pair-cards">
+        <article class="pc-story"><span class="pc-n">01</span><h3>The story</h3><p>One person, one hard thing, told the way they’d tell a friend. Always printed on black.</p></article>
+        <span class="pc-plus" aria-hidden="true">+</span>
+        <article class="pc-prac"><span class="pc-n">02</span><h3>What helped</h3><p>The specific thing that got them through, written so you could try it tomorrow. Always on white.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ab-cta band dark" aria-labelledby="ctaTitle">
+    {{TEAR:151:top:var(--paper-hi):var(--night)}}
+    <div class="wrap ab-cta-in">
+      <div>
+        <h2 class="ab-cta-h" id="ctaTitle"><span>Start</span><span>anywhere.</span></h2>
+        <div class="fp-row"><a class="btn btn--paper" href="#book">Open the book {{ARROW}}</a><a class="btn btn--ghost" href="#stories">Browse the stories</a></div>
+        <p class="care">If you’re in crisis or thinking about hurting yourself, reach out now. In the US, call or text 988. Elsewhere, contact your local emergency number.</p>
+      </div>
+      <figure class="ab-cta-art">{{ART:about dup}}</figure>
+    </div>
+  </section>
+</div>
+
+<footer class="foot" id="siteFoot">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Back to the home page"><span>No biggie,</span><span>I'm fine.</span></a>
+    <nav aria-label="Footer">
+      <ul class="nav">
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#book">Story mode</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+    <div class="socials">
+      <button type="button" data-soon="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></button>
+      <button type="button" data-soon="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3h3c.3 2.2 1.6 3.6 3.8 3.9v3c-1.5 0-2.8-.4-3.9-1.1v6.4c0 3.3-2.6 5.8-5.8 5.8S4.8 18.5 4.8 15.3s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.1-.9-.1-1.5 0-2.7 1.2-2.7 2.7S9.1 18 10.6 18s2.9-1.2 2.9-2.7V3z" fill="currentColor"/></svg></button>
+      <button type="button" data-soon="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor"/><path d="M10 8.6v6.8l5.8-3.4z" fill="var(--paper)"/></svg></button>
+    </div>
+    <p class="copy">© <span class="yr">2026</span> No Biggie, I'm Fine. &nbsp;All rights reserved.</p>
+    <div class="legal">
+      <button type="button" data-soon="Privacy">Privacy</button>
+      <button type="button" data-soon="Terms">Terms</button>
+      <button type="button" data-soon="Contact">Contact</button>
+    </div>
+  </div>
+</footer>
+
+<div id="storyView" class="sv" hidden>
+  <aside class="side" aria-label="Stories">
+    <a class="logo" href="#top" aria-label="No Biggie, I'm Fine, home"><span>No biggie,</span><span>I'm fine.</span></a>
+    <nav aria-label="Site">
+      <ul class="side-nav">
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#book">Story mode</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+    <hr class="side-rule">
+    <a class="side-back" href="#stories"><svg class="arr" viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All stories</a>
+    <ul class="s-list" id="sList"></ul>
+    <hr class="side-rule">
+    <div class="side-foot">
+      <p class="note">Good things<br>ahead.{{SCRIB}}</p>
+      <div class="side-social">
+        <button type="button" data-soon="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></button>
+        <button type="button" data-soon="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3h3c.3 2.2 1.6 3.6 3.8 3.9v3c-1.5 0-2.8-.4-3.9-1.1v6.4c0 3.3-2.6 5.8-5.8 5.8S4.8 18.5 4.8 15.3s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.1-.9-.1-1.5 0-2.7 1.2-2.7 2.7S9.1 18 10.6 18s2.9-1.2 2.9-2.7V3z" fill="currentColor"/></svg></button>
+        <button type="button" data-soon="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor"/><path d="M10 8.6v6.8l5.8-3.4z" fill="var(--night)"/></svg></button>
+      </div>
+      <hr class="side-rule">
+      <div class="side-legal"><button type="button" data-soon="Privacy">Privacy</button><button type="button" data-soon="Terms">Terms</button><button type="button" data-soon="Contact">Contact</button></div>
+      <p class="side-copy">© <span class="yr">2026</span> No Biggie,<br>I'm Fine.<br>All rights reserved.</p>
+    </div>
+  </aside>
+
+  <div class="smain">
+    <section class="s-top dark" aria-labelledby="sTitle">
+      <div class="sw s-hero">
+        <div class="s-head">
+          <p class="eyebrow"><b id="sNum">Story 03</b>{{RULE}}</p>
+          <h1 class="hand" id="sTitle">Story</h1>
+          <div id="sMeta"></div>
+          <p class="s-deck" id="sDeck"></p>
+          <div class="fp-row"><a class="btn btn--ghost" id="sBook" href="#book">Read it in the book {{ARROW}}</a></div>
+        </div>
+        <figure class="s-art" id="sArt"></figure>
+      </div>
+      <div class="sw s-story">
+        <div class="sec-head"><h2 class="hand">My story</h2>{{RULE}}</div>
+        <div class="s-grid" id="sGrid">
+          <div class="s-text" id="sText"></div>
+          <div class="s-side" id="sSide"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="s-prac band paperband" aria-labelledby="pTitle">
+      {{TEAR:71:top:var(--paper-hi):var(--paper)}}
+      <div class="sw">
+        <div class="sec-head"><h2 class="hand">My practices</h2>{{RULE}}</div>
+        <div class="sp-hero">
+          <div class="sp-copy">
+            <h2 class="hand" id="pTitle">Practices</h2>
+            <p id="pIntro"></p>
+          </div>
+          <figure class="sp-art" id="pArt"></figure>
+        </div>
+        <ol class="p-grid" id="pGrid"></ol>
+        <div class="s-pager" id="sPager"></div>
+      </div>
+    </section>
+
+    <footer class="foot s-foot paperband band">
+      {{TEAR:89:top:var(--paper-hi):var(--paper)}}
+      <div class="sw foot-in">
+        <a class="logo" href="#top" aria-label="Back to the home page"><span>No biggie,</span><span>I'm fine.</span></a>
+        <nav aria-label="Footer">
+          <ul class="nav">
+            <li><a href="#stories">Stories</a></li>
+            <li><a href="#book">Story mode</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </nav>
+        <p class="copy">© <span class="yr">2026</span> No Biggie, I'm Fine. &nbsp;All rights reserved.</p>
+        <div class="legal"><button type="button" data-soon="Privacy">Privacy</button><button type="button" data-soon="Terms">Terms</button><button type="button" data-soon="Contact">Contact</button></div>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<div id="bookView" class="bk" hidden>
+  <header class="bk-top">
+    <a class="bk-close" id="bkClose" href="#top"><svg class="arr" viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Close the book</a>
+    <p class="bk-where" id="bkWhere">No Biggie, I'm Fine</p>
+    <button class="bk-toc" type="button" id="bkToc">Contents</button>
+  </header>
+  <div class="bk-stage" id="bkStage">
+    <div class="book" id="book" role="region" aria-roledescription="book" aria-label="No Biggie, I'm Fine. Use the arrow keys to turn pages." tabindex="0">
+      <div class="bk-slot bk-l" id="bkL"></div>
+      <div class="bk-slot bk-r" id="bkR"></div>
+    </div>
+    <button class="bk-arrow bk-prev" type="button" id="bkPrevSide" aria-label="Previous page"><svg viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="bk-arrow bk-next" type="button" id="bkNextSide" aria-label="Next page"><svg viewBox="0 0 20 10" aria-hidden="true"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+  <footer class="bk-bar">
+    <button class="bk-btn" type="button" id="bkPrev" aria-label="Previous page"><svg viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="bk-prog">
+      <label class="sr" for="bkScrub">Jump to page</label>
+      <input type="range" id="bkScrub" min="0" max="1" value="0" step="1">
+      <span class="bk-count" id="bkCount" aria-live="polite"></span>
+    </div>
+    <button class="bk-btn" type="button" id="bkNext" aria-label="Next page"><svg viewBox="0 0 20 10" aria-hidden="true"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </footer>
+  <div class="bk-measure" id="bkMeasure" aria-hidden="true"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>/*ARTLIB*/</script>
+<script>/*APP*/</script>

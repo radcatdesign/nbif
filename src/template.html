@@ -409,81 +409,6 @@ a:hover .arr,button:hover .arr{transform:translateX(4px)}
 .s-foot nav{grid-area:nav;justify-self:center}
 .s-foot .copy{grid-area:copy;justify-self:center}
 
-/* ================= deck view ================= */
-.dv{min-height:100vh;color:var(--ink)}
-.dv[hidden]{display:none!important}
-.dv-top{padding-block:20px 0}
-.dv-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
-.dv-bar .logo{font-size:24px}
-.dv-back{justify-self:start}
-.dv-savedlink{justify-self:end;font-size:var(--fs-0);font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;font-variant-numeric:tabular-nums;padding:6px 0}
-.dv-savedlink:hover{text-decoration:underline;text-underline-offset:5px}
-.dv-main{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,80px);align-items:start;padding-block:clamp(26px,4vw,56px) clamp(40px,5vw,72px)}
-.dv-copy h1{font-size:clamp(54px,6.4vw,96px);transform:rotate(-5deg);transform-origin:left center;margin-top:clamp(10px,1.6vw,20px)}
-.dv-copy h1 span{display:block}
-.dv-copy h1 span + span{padding-left:.2em}
-.dv-lede{margin-top:clamp(22px,3vw,36px);text-transform:uppercase;max-width:40ch}
-.keys{list-style:none;margin:20px 0 0;padding:0;display:flex;gap:18px;flex-wrap:wrap;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke)}
-.keys li{display:flex;align-items:center;gap:8px}
-kbd{font-family:var(--mono);font-size:11px;border:1.5px solid currentColor;padding:2px 7px 1px;border-bottom-width:3px;letter-spacing:.04em;color:var(--ink)}
-.saved{margin-top:clamp(28px,4vw,48px)}
-.saved-h{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid rgba(15,15,14,.3)}
-.saved-list{list-style:none;margin:0;padding:0;outline:none}
-.saved-list li{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:14px;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(15,15,14,.35)}
-.saved-list .mini{background:var(--night);height:48px;display:grid;place-items:center;padding:4px}
-.saved-list .mini svg{max-height:100%;max-width:100%;width:auto;height:100%}
-.saved-list a{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;line-height:1.4}
-.saved-list a:hover{text-decoration:underline;text-underline-offset:4px}
-.saved-list small{display:block;font-size:10.5px;font-weight:400;color:var(--smoke);letter-spacing:.1em;margin-top:2px}
-.saved-list button{background:none;border:0;cursor:pointer;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:6px 0;color:var(--smoke)}
-.saved-list button:hover{color:var(--ink);text-decoration:underline}
-.saved-empty{padding:14px 0;font-size:12px;letter-spacing:.08em;color:var(--smoke);line-height:1.7}
-
-.dv-stage{display:grid;justify-items:center;gap:18px;min-width:0}
-.stack{position:relative;width:min(380px,100%);aspect-ratio:5/7;outline:none;margin-top:10px}
-.stack:focus-visible{outline:2px dashed var(--ink);outline-offset:14px}
-.dcard{position:absolute;inset:0;perspective:1400px;touch-action:pan-y;user-select:none;-webkit-user-select:none;transition:transform .35s cubic-bezier(.2,.9,.3,1.1);will-change:transform}
-.dcard.top{cursor:grab}
-.dcard.dragging{cursor:grabbing;transition:none}
-.dc-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.3,1.3,.5,1)}
-.dcard.flipped .dc-inner{transform:rotateY(180deg)}
-.dc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;padding:clamp(18px,5vw,26px);overflow:hidden;box-shadow:0 1px 0 rgba(15,15,14,.12),6px 8px 0 rgba(15,15,14,.16)}
-.dc-front{background:var(--night);background-image:var(--grain-night);background-size:160px 160px;color:var(--paper);border:1.5px solid var(--night)}
-.dc-back{background:var(--paper-hi);color:var(--ink);border:1.5px solid var(--ink);transform:rotateY(180deg)}
-.dc-row{display:flex;justify-content:space-between;gap:12px;font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
-.dc-front .dc-row span:last-child{color:var(--fog)}
-.dc-back .dc-row span:last-child{color:var(--smoke)}
-.dc-art{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;padding:14px 4px}
-.dc-art svg{width:100%;height:100%;display:block}
-.dc-title{font-family:var(--hand);text-transform:uppercase;font-size:clamp(32px,9vw,44px);line-height:.92;transform:rotate(-3deg);transform-origin:left;-webkit-text-stroke:.02em currentColor;text-wrap:balance}
-.dc-by{margin-top:8px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fog)}
-.dc-deck{margin-top:12px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;line-height:1.65;color:var(--fog)}
-.dc-hint{margin-top:16px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(241,236,224,.5)}
-.dc-icon{height:24%;min-height:70px;display:flex;align-items:flex-end;justify-content:flex-start;margin:18px 0 14px}
-.dc-icon svg{height:100%;width:auto;max-width:100%}
-.dc-back .dc-title{font-size:clamp(30px,8.4vw,40px)}
-.dc-text{margin-top:14px;font-size:13px;line-height:1.7;letter-spacing:.03em}
-.dc-steps{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:6px;counter-reset:d}
-.dc-steps li{counter-increment:d;display:grid;grid-template-columns:22px 1fr;font-size:12px;line-height:1.55;letter-spacing:.03em}
-.dc-steps li::before{content:counter(d);font-family:var(--hand);font-size:19px;line-height:1}
-.dc-more{margin-top:auto;padding-top:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px dashed rgba(15,15,14,.35);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke)}
-.dc-more a{color:var(--ink);font-weight:500;display:inline-flex;align-items:center;gap:8px;text-decoration:underline;text-underline-offset:5px;padding:6px 0}
-.stamp{position:absolute;top:30px;z-index:5;font-family:var(--hand);text-transform:uppercase;font-size:34px;line-height:1;padding:8px 14px 4px;border:3px solid var(--ink);background:var(--paper-hi);color:var(--ink);opacity:0;pointer-events:none}
-.stamp--save{left:22px;transform:rotate(-14deg)}
-.stamp--pass{right:22px;transform:rotate(12deg)}
-.dend{position:absolute;inset:0;border:1.5px dashed rgba(15,15,14,.5);display:grid;place-content:center;justify-items:center;gap:16px;text-align:center;padding:26px}
-.dend h3{font-family:var(--hand);text-transform:uppercase;font-size:42px;line-height:.95;font-weight:400;transform:rotate(-4deg)}
-.dend p{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--smoke);max-width:26ch}
-.dv-ctrl{display:flex;gap:14px;justify-content:center}
-.dbtn{display:grid;justify-items:center;gap:6px;background:none;border:0;cursor:pointer;padding:0;font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
-.dbtn svg{width:58px;height:58px;padding:16px;border-radius:50%;border:1.5px solid var(--ink);transition:background-color .15s ease,color .15s ease,transform .15s ease}
-.dbtn:hover svg{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
-.dbtn--save svg{background:var(--ink);color:var(--paper)}
-.dbtn--save:hover svg{background:transparent;color:var(--ink)}
-.dbtn:disabled{opacity:.35;cursor:default}
-.dbtn:disabled:hover svg{background:none;color:inherit;transform:none}
-.dv-count{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke);font-variant-numeric:tabular-nums;min-height:1.4em}
-
 /* ================= dark sheet (stories) ================= */
 .sheet.is-dark{color:var(--paper)}
 .sheet.is-dark .sheet-in{background:var(--night);background-image:var(--grain-night);background-size:160px 160px;border-color:rgba(241,236,224,.6);box-shadow:8px 8px 0 rgba(241,236,224,.22)}
@@ -562,247 +487,281 @@ kbd{font-family:var(--mono);font-size:11px;border:1.5px solid currentColor;paddi
   .dcard,.dc-inner{transition:none}
 }
 
-/* ================= submission page ================= */
-.shv[hidden]{display:none!important}
-.sh-top{padding-bottom:18px}
-.sh-hero{padding-block:clamp(36px,5vw,70px) clamp(52px,6vw,92px)}
-.sh-hero .wrap{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(20px,4vw,64px);align-items:center}
-.sh-hero h1{font-size:clamp(58px,7.6vw,116px);transform:rotate(-5deg);transform-origin:left center}
-.sh-hero h1 span{display:block}
-.sh-hero h1 span + span{padding-left:.42em}
-.sh-lede{margin-top:clamp(24px,3vw,40px);text-transform:uppercase;max-width:46ch;font-size:var(--fs-1)}
-.sh-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:26px;max-width:560px}
-.sh-tile{padding:16px 18px 18px;display:grid;gap:6px;align-content:start}
-.sh-tile--story{background:var(--abyss);border:1.5px solid rgba(241,236,224,.7);color:var(--paper)}
-.sh-tile--prac{background:var(--paper-hi);border:1.5px solid var(--paper-hi);color:var(--ink)}
-.sh-tile b{font-family:var(--hand);font-weight:400;font-size:32px;line-height:1}
-.sh-tile h2{font-family:var(--mono);font-weight:500;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase}
-.sh-tile p{font-size:11.5px;letter-spacing:.06em;line-height:1.6;text-transform:uppercase;opacity:.82}
-.sh-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+/* ================= line-art creatures on dark ================= */
+.p-body{display:none}
+
+/* ================= shared bits ================= */
+.fp-row{display:flex;gap:14px 22px;flex-wrap:wrap;align-items:center;margin-top:20px}
 .btn--ghost{background:transparent;color:var(--paper);border-color:rgba(241,236,224,.75)}
 .btn--ghost:hover{background:var(--paper);color:var(--ink)}
-.sh-hero-art{margin:0;position:relative;min-width:0}
-.sh-hero-art .art{max-width:520px;margin-inline:auto}
-.sh-hero-art .note{position:absolute;right:0;top:-34%;transform:rotate(-9deg);font-size:clamp(22px,2.2vw,30px);width:5.4em}
-.sh-sub{margin-top:14px;text-transform:uppercase;font-size:var(--fs-1);color:var(--fog)}
+.top-book{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.top-book:hover{text-decoration:underline;text-underline-offset:5px}
+.nav a[aria-current="page"]::after{transform:scaleX(1)}
+.hero-cta{margin-top:clamp(18px,2vw,26px)}
+.hero-copy .hero-cta .btn,.feat-body .fp-row .btn{margin-top:0}
+.feat-body .fp-row{margin-top:clamp(20px,2.4vw,30px)}
+.dark .textlink{color:var(--paper)}
+.stories .sec-head .more--all{margin-left:clamp(14px,2vw,28px)}
+.s-head .fp-row{margin-top:24px}
+.pv[hidden]{display:none!important}
+.top[hidden],.foot[hidden]{display:none!important}
 
-.sh-think{background-color:var(--night-2);padding-block:clamp(48px,5.6vw,80px) clamp(56px,6vw,88px)}
-.think-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(30px,3.4vw,48px) clamp(24px,3.4vw,52px);margin-top:clamp(30px,4vw,52px)}
-.think{border-top:1px solid rgba(241,236,224,.28);padding-top:20px;min-width:0}
-.think h3{font-family:var(--hand);font-weight:400;text-transform:uppercase;font-size:clamp(28px,2.6vw,38px);line-height:.95;transform:rotate(-3deg);transform-origin:left;-webkit-text-stroke:.02em currentColor;text-wrap:balance}
-.think p{margin-top:16px;font-size:13px;line-height:1.8;letter-spacing:.03em;color:var(--fog);max-width:42ch}
+/* ================= home: book band ================= */
+.book-band{padding-block:clamp(60px,7vw,110px)}
+.bb-in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,80px);align-items:center}
+.bb-h{font-family:var(--serif);font-weight:400;font-size:clamp(52px,6vw,92px);line-height:.94;letter-spacing:-.015em}
+.bb-h span{display:block}
+.bb-h span + span{font-style:italic}
+.bb-copy > p{margin-top:24px;text-transform:uppercase;max-width:42ch}
+.bb-copy .fp-row{margin-top:26px}
+.bb-mock{display:grid;grid-template-columns:1fr 1fr;width:min(580px,100%);justify-self:center;aspect-ratio:1.4;box-shadow:0 26px 44px -18px rgba(30,25,15,.55);transform:rotate(-2deg);text-decoration:none;color:inherit;transition:transform .35s ease}
+.bb-mock:hover{transform:rotate(-.6deg) translateY(-5px)}
+.bb-page{position:relative;display:flex;flex-direction:column;padding:9% 8% 8%;min-width:0;overflow:hidden}
+.bb-dark{background:var(--night);background-image:var(--grain-night);background-size:160px 160px;color:var(--paper)}
+.bb-light{background:var(--paper-hi);color:var(--ink)}
+.bb-dark::after,.bb-light::after{content:"";position:absolute;top:0;bottom:0;width:16%;pointer-events:none}
+.bb-dark::after{right:0;background:linear-gradient(to left,rgba(0,0,0,.5),transparent)}
+.bb-light::after{left:0;background:linear-gradient(to right,rgba(60,50,30,.2),transparent)}
+.bb-num{font-size:clamp(7.5px,.7vw,9.5px);letter-spacing:.16em;text-transform:uppercase;opacity:.7}
+.bb-dark > .art{flex:1 1 auto;min-height:0;width:100%;height:auto;margin:auto 0}
+.bb-page b{font-family:var(--serif);font-weight:400;font-size:clamp(17px,2vw,27px);line-height:1}
+.bb-page i{font-style:normal;margin-top:8px;font-size:clamp(8.5px,.82vw,11px);line-height:1.6;letter-spacing:.02em}
+.bb-ic{flex:1 1 auto;display:flex;align-items:center;min-height:0}
+.bb-ic .art{width:72%;height:auto}
 
-.sh-write{padding-block:clamp(48px,5.6vw,80px) clamp(56px,6vw,90px)}
-.write-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4.4vw,72px);align-items:start;margin-top:clamp(30px,4vw,50px)}
-.beats{list-style:none;margin:0;padding:0;display:grid;gap:30px}
-.beat{display:grid;grid-template-columns:48px minmax(0,1fr);gap:18px;align-items:start}
-.beat-n{width:46px;height:46px;border:1.5px solid var(--paper);border-radius:50%;display:grid;place-items:center;font-family:var(--hand);font-size:27px;line-height:1;padding-top:4px}
-.beat h3{font-family:var(--mono);font-weight:500;font-size:var(--fs-2);letter-spacing:.12em;text-transform:uppercase;padding-top:10px}
-.beat p{margin-top:8px;font-size:13px;line-height:1.8;letter-spacing:.03em;color:var(--fog);max-width:52ch}
-.starts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px}
-.start{text-align:left;background:none;border:0;border-bottom:1px dashed rgba(241,236,224,.6);color:var(--paper);font-size:12px;letter-spacing:.04em;padding:5px 0 3px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-.start::after{content:"+ use";font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--fog)}
-.start:hover{border-bottom-style:solid}
-.annot{margin:0;background:var(--slate);padding:clamp(20px,2.6vw,34px);min-width:0}
-.annot-h{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--fog);margin-bottom:6px}
-.an-row{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:18px;align-items:center;padding:16px 0;border-bottom:1px dashed rgba(241,236,224,.25)}
-.an-text{font-size:13px;line-height:1.75;letter-spacing:.03em}
-.an-note{font-family:var(--hand);text-transform:uppercase;font-size:clamp(18px,1.6vw,22px);line-height:1;transform:rotate(-4deg);display:flex;gap:10px;align-items:center;-webkit-text-stroke:.01em currentColor}
-.an-note b{font-weight:400;border:1.3px solid currentColor;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:18px;flex:none;padding-top:3px}
-.annot .textlink{margin-top:18px}
-.sh-tips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px clamp(18px,3vw,40px);margin-top:clamp(40px,5vw,64px);border-top:1px solid rgba(241,236,224,.28);padding-top:24px}
-.sh-tip h4{margin:0;font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-.sh-tip p{margin-top:8px;font-size:12.5px;line-height:1.7;letter-spacing:.03em;color:var(--fog)}
+/* ================= stories page ================= */
+.pg-hero{padding-block:clamp(30px,4.4vw,64px) clamp(30px,4vw,56px)}
+.pg-hero-in{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,60px);align-items:center}
+.pg-h1{font-family:var(--serif);font-weight:400;font-size:clamp(60px,7.6vw,120px);line-height:.94;letter-spacing:-.02em;margin-top:clamp(12px,1.6vw,20px)}
+.pg-h1 span{display:block}
+.pg-h1 span + span{font-style:italic}
+.pg-lede{margin-top:clamp(22px,3vw,36px);text-transform:uppercase;max-width:46ch}
+.pg-art{margin:0;position:relative;min-width:0}
+.pg-art .art{max-width:440px;margin-left:auto}
+.pg-art .note{position:absolute;left:0;top:2%;transform:rotate(-8deg);width:6em;font-size:clamp(20px,2vw,27px)}
+.pg-list{padding-block:clamp(10px,2vw,24px) clamp(70px,8vw,110px)}
+.legend{display:flex;gap:22px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border-top:1px solid rgba(15,15,14,.3);padding-top:14px;margin-bottom:24px}
+.legend span{display:inline-flex;align-items:center;gap:9px}
+.legend span::before{content:"";width:14px;height:14px;border:1.5px solid var(--ink)}
+.lg-dark::before{background:var(--night)}
+.lg-light::before{background:var(--paper-hi)}
+.slist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(26px,3vw,40px) clamp(16px,2vw,28px)}
+.sitem{display:flex;flex-direction:column;min-width:0}
+.si-link{display:flex;flex-direction:column;flex:1 1 auto;text-decoration:none;color:inherit;transition:transform .25s ease,box-shadow .25s ease}
+.si-link:hover,.si-link:focus-visible{transform:translateY(-4px);box-shadow:6px 8px 0 rgba(15,15,14,.18)}
+.si-story{background:var(--night);background-image:var(--grain-night);background-size:160px 160px;color:var(--paper);padding:clamp(18px,2vw,24px);display:flex;flex-direction:column;flex:1 1 auto}
+.si-top{display:flex;justify-content:space-between;font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--fog)}
+.si-art{height:clamp(140px,14vw,190px);display:flex;align-items:center;justify-content:center;margin:16px 0 20px}
+.si-art .art{width:88%;height:100%}
+.si-title{font-family:var(--serif);font-weight:400;font-size:clamp(30px,2.7vw,42px);line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+.si-by{margin-top:8px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fog)}
+.si-deck{margin-top:12px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;line-height:1.65;color:var(--fog)}
+.si-prac{background:var(--paper-hi);color:var(--ink);border:1.5px solid var(--night);border-top:0;padding:14px clamp(18px,2vw,24px) 15px;display:grid;gap:4px}
+.si-prac small{font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke)}
+.si-prac b{font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.05}
+.si-book{margin-top:12px;align-self:flex-start}
+.sitem.feat{grid-column:span 2}
+.sitem.feat .si-story{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);grid-template-rows:auto 1fr auto auto auto;column-gap:clamp(18px,2.4vw,34px)}
+.sitem.feat .si-top{grid-column:1 / -1}
+.sitem.feat .si-art{grid-column:1;grid-row:2 / span 4;height:auto;min-height:220px;margin:18px 0 0}
+.sitem.feat .si-title{grid-column:2;grid-row:3;font-size:clamp(40px,3.8vw,60px);align-self:end}
+.sitem.feat .si-by{grid-column:2;grid-row:4}
+.sitem.feat .si-deck{grid-column:2;grid-row:5}
+.send{border:1.5px dashed rgba(15,15,14,.5);display:flex;flex-direction:column;justify-content:center;gap:16px;padding:clamp(22px,2.6vw,34px);min-height:260px}
+.send h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3vw,46px);line-height:.98}
+.send h2 em{font-style:italic}
+.send p{font-size:12px;letter-spacing:.08em;text-transform:uppercase;line-height:1.65;color:var(--smoke);max-width:30ch}
+.send .btn{align-self:flex-start}
 
-.sh-prac{padding-block:clamp(48px,5.4vw,76px) clamp(48px,5vw,72px)}
-.sh-prac-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(18px,3vw,44px);align-items:center;margin-top:clamp(10px,1.5vw,18px)}
-.sh-prac-hero h2{font-size:clamp(44px,5vw,76px);transform:rotate(-5deg);transform-origin:left center;margin-top:clamp(14px,2vw,26px)}
-.sh-prac-hero h2 span{display:block}
-.sh-prac-hero h2 span:nth-child(2){padding-left:.12em}
-.sh-prac-hero h2 span:nth-child(3){padding-left:.3em}
-.sh-prac-lede{margin-top:clamp(22px,3vw,36px);text-transform:uppercase;max-width:42ch;font-size:var(--fs-1)}
-.sh-prac-art{margin:0;min-width:0}
-.sh-prac-art .art{max-width:460px;margin-left:auto}
-.ptips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(30px,4vw,50px)}
-.ptip{padding:4px clamp(14px,2.2vw,34px);background-image:linear-gradient(var(--ink) 55%,transparent 0);background-size:1.2px 7px;background-repeat:repeat-y;min-width:0}
-.ptip:first-child{background:none;padding-left:0}
-.ptip h3{font-family:var(--mono);font-weight:500;font-size:var(--fs-2);letter-spacing:.12em;text-transform:uppercase}
-.ptip p{margin-top:10px;font-size:12.5px;line-height:1.7;letter-spacing:.03em;color:var(--smoke)}
-.pairs{margin-top:clamp(34px,4vw,52px);max-width:860px}
-.pair{display:grid;grid-template-columns:minmax(0,.55fr) minmax(0,1.45fr);gap:20px;padding:15px 0;border-bottom:1px dashed rgba(15,15,14,.35);align-items:baseline;font-size:13px;letter-spacing:.04em}
-.pair--head{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke);border-bottom:1px solid rgba(15,15,14,.4);padding-bottom:10px}
-.pair .no{color:var(--smoke);text-decoration:line-through;text-decoration-thickness:1.5px;text-transform:uppercase;font-size:12px;letter-spacing:.1em}
-.pair .yes{font-weight:500}
+/* ================= about page ================= */
+.ab-hero{padding-block:clamp(36px,5vw,80px) clamp(44px,5vw,80px)}
+.ab-hero-in{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(24px,4vw,64px);align-items:center}
+.ab-h1{font-family:var(--serif);font-weight:400;font-size:clamp(42px,5vw,80px);line-height:1;letter-spacing:-.015em;text-wrap:balance;margin-top:clamp(14px,2vw,24px)}
+.ab-h1 em{font-style:italic}
+.ab-lead{margin-top:clamp(26px,3vw,40px);font-size:clamp(15px,1.2vw,17px);line-height:1.85;letter-spacing:.02em;max-width:60ch}
+.ab-art{margin:0;position:relative;min-width:0}
+.ab-art .note{position:absolute;left:0;top:-14%;transform:rotate(-8deg);font-size:clamp(22px,2.2vw,30px)}
+.ab-how{padding-block:clamp(36px,4.6vw,64px) clamp(64px,7vw,104px);border-top:1px dashed rgba(15,15,14,.35)}
+.pair-cards{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:clamp(14px,2vw,28px);align-items:stretch;margin-top:clamp(26px,3vw,42px);max-width:1000px}
+.pc-story,.pc-prac{padding:clamp(22px,3vw,40px);min-height:240px;display:flex;flex-direction:column;min-width:0}
+.pc-story{background:var(--night);background-image:var(--grain-night);background-size:160px 160px;color:var(--paper)}
+.pc-prac{background:var(--paper-hi);color:var(--ink);border:1.5px solid var(--ink)}
+.pc-n{font-size:11px;font-weight:500;letter-spacing:.16em;opacity:.7}
+.pair-cards h3{font-family:var(--serif);font-weight:400;font-size:clamp(36px,3.6vw,56px);line-height:1;margin-top:auto;padding-top:32px}
+.pair-cards p{margin-top:12px;font-size:13px;line-height:1.75;letter-spacing:.03em;max-width:40ch;opacity:.86}
+.pc-plus{align-self:center;font-family:var(--serif);font-size:52px;line-height:1}
+.ab-cta{padding-block:clamp(56px,6vw,96px) clamp(30px,4vw,60px)}
+.ab-cta-in{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(20px,4vw,60px);align-items:center}
+.ab-cta-h{font-family:var(--serif);font-weight:400;font-size:clamp(56px,6.6vw,104px);line-height:.94;letter-spacing:-.015em}
+.ab-cta-h span{display:block}
+.ab-cta-h span + span{font-style:italic}
+.ab-cta .fp-row{margin-top:28px}
+.care{margin-top:26px;font-size:12px;letter-spacing:.06em;line-height:1.7;color:var(--fog);max-width:46ch}
+.ab-cta-art{margin:0 calc(-1 * var(--gutter)) 0 0;min-width:0}
 
-.sh-form{padding-block:clamp(40px,5vw,70px) clamp(60px,7vw,100px);border-top:1px dashed rgba(15,15,14,.4)}
-.sh-form-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(250px,.6fr);gap:clamp(24px,4vw,64px);align-items:start;margin-top:clamp(24px,3vw,40px)}
-.sh-form-main{min-width:0;scroll-margin-top:20px}
-.fpanel{padding:clamp(20px,3.2vw,42px);position:relative}
-.fpanel.is-dark{background:var(--night);background-image:var(--grain-night);background-size:160px 160px;color:var(--paper)}
-.fp-paper{background:var(--paper-hi);border:1.5px solid var(--ink);color:var(--ink)}
-.fp-kicker{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;opacity:.75}
-.fp-h{font-family:var(--hand);font-weight:400;font-size:clamp(36px,4.2vw,56px);line-height:.92;text-transform:uppercase;transform:rotate(-3deg);transform-origin:left;margin-top:10px;-webkit-text-stroke:.02em currentColor}
-.fp-lede{margin-top:16px;font-size:13px;line-height:1.75;letter-spacing:.03em;max-width:56ch;opacity:.85}
-.fpanel .steps{margin:18px 0 6px}
-.fpanel #fStory{min-height:340px}
-.fmeta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-variant-numeric:tabular-nums;opacity:.8}
-.starters{margin-top:16px}
-.starters .flabel{display:block;margin-bottom:8px}
-.fp-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:20px}
-.fp-fine{margin-top:16px;font-size:11.5px;letter-spacing:.06em;line-height:1.7;opacity:.7}
-.is-dark .chip{border-color:rgba(241,236,224,.8);color:var(--paper)}
-.is-dark .chip:hover{background:rgba(241,236,224,.1)}
-.is-dark .chip[aria-pressed="true"]{background:var(--paper);color:var(--ink)}
-.is-dark .btn--paper:hover{box-shadow:4px 4px 0 rgba(241,236,224,.25)}
-.sh-prev{position:sticky;top:24px;display:grid;justify-items:center;gap:12px}
-.sh-prev .flabel{justify-self:center}
-.sh-prev .mycard{margin-top:0;width:min(300px,100%)}
-.pv-note{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--smoke);text-align:center;max-width:28ch;line-height:1.6}
-.sh-prev .dcard{cursor:pointer}
-.sh-prev .dc-hint{display:none}
+/* ================= story mode: the book ================= */
+.bk[hidden]{display:none!important}
+body.bk-open{overflow:hidden}
+.bk{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;background-color:#E3DCCD;background-image:var(--grain-paper);background-size:160px 160px;color:var(--ink);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--pw:400px;--ph:570px;--bf:14px;--px:44px;--pt:48px;--pb:48px}
+.bk-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:14px var(--gutter) 6px}
+.bk-close{justify-self:start;display:inline-flex;align-items:center;gap:10px;font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:8px 0}
+.bk-close:hover{text-decoration:underline;text-underline-offset:5px}
+.bk-where{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--smoke);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:44vw}
+.bk-toc{justify-self:end;background:none;border:1.5px solid var(--ink);padding:8px 12px 7px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.bk-toc:hover{background:var(--ink);color:var(--paper)}
+.bk-stage{flex:1 1 auto;min-height:0;position:relative;display:grid;place-items:center;overflow:hidden;touch-action:pan-y}
+.book{position:relative;width:calc(var(--pw) * 2);height:var(--ph);perspective:calc(var(--pw) * 3.4);outline:none;cursor:pointer;-webkit-user-select:none;user-select:none}
+.book.single{width:var(--pw)}
+.book:focus-visible{outline:2px dashed var(--ink);outline-offset:12px}
+.bk-slot{position:absolute;top:0;width:var(--pw);height:var(--ph)}
+.bk-l{left:0}
+.bk-r{left:var(--pw)}
+.book.single .bk-l{display:none}
+.book.single .bk-r{left:0}
+.bk-l:not(:empty){box-shadow:0 22px 40px -18px rgba(30,25,15,.6),-2px 1px 0 #d4ccbc,-4px 2px 0 #c7beac,-5px 3px 0 #b9af9b}
+.bk-r:not(:empty){box-shadow:0 22px 40px -18px rgba(30,25,15,.6),2px 1px 0 #d4ccbc,4px 2px 0 #c7beac,5px 3px 0 #b9af9b}
+.bk-arrow{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;display:grid;place-items:center;cursor:pointer;transition:background-color .15s ease,color .15s ease}
+.bk-arrow svg,.bk-btn svg{width:20px;height:10px}
+.bk-arrow:hover{background:var(--ink);color:var(--paper)}
+.bk-arrow:disabled,.bk-btn:disabled{opacity:.25;cursor:default}
+.bk-arrow:disabled:hover{background:transparent;color:inherit}
+.bk-prev{left:clamp(12px,2vw,30px)}
+.bk-next{right:clamp(12px,2vw,30px)}
+.bk-bar{display:flex;align-items:center;justify-content:center;gap:16px;padding:8px var(--gutter) 16px}
+.bk-btn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;display:grid;place-items:center;cursor:pointer;flex:none}
+.bk-prog{display:flex;align-items:center;gap:14px;min-width:0;width:min(460px,100%)}
+.bk-prog input{flex:1 1 auto;min-width:0;accent-color:var(--ink)}
+.bk-count{font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;font-variant-numeric:tabular-nums;min-width:12ch;text-align:right}
+.bk-measure{position:absolute;left:-10000px;top:0;width:var(--pw);height:var(--ph);visibility:hidden;pointer-events:none}
+
+/* pages */
+.bpage{position:absolute;inset:0;overflow:hidden;display:flex;flex-direction:column;padding:var(--pt) var(--px) var(--pb);font-size:var(--bf);line-height:1.72;letter-spacing:.02em;text-align:left}
+.bpage.bdark{background-color:var(--night);background-image:var(--grain-night);background-size:160px 160px;color:var(--paper)}
+.bpage.bwhite{background-color:var(--paper-hi);color:var(--ink)}
+.bpage.pback{background-color:#E8E1D2;background-image:var(--grain-paper);background-size:160px 160px}
+.bpage::after{content:"";position:absolute;top:0;bottom:0;width:14%;pointer-events:none}
+.bpage.side-l::after{right:0;background:linear-gradient(to left,rgba(60,50,30,.22),rgba(60,50,30,0))}
+.bpage.side-r::after{left:0;background:linear-gradient(to right,rgba(60,50,30,.22),rgba(60,50,30,0))}
+.bpage.side-s::after{left:0;width:5%;background:linear-gradient(to right,rgba(60,50,30,.2),rgba(60,50,30,0))}
+.bpage.bdark.side-l::after{background:linear-gradient(to left,rgba(0,0,0,.55),rgba(0,0,0,0))}
+.bpage.bdark.side-r::after,.bpage.bdark.side-s::after{background:linear-gradient(to right,rgba(0,0,0,.55),rgba(0,0,0,0))}
+.bp-body{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+.bpage.btext .bp-body,.bpage.bprac .bp-body,.bpage.front .bp-body{display:block}
+.bp-body p{margin:0 0 .95em}
+.bp-head{position:absolute;top:calc(var(--pt) * .4);left:var(--px);right:var(--px);font-size:calc(var(--bf) * .6);letter-spacing:.16em;text-transform:uppercase;opacity:.55;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side-l .bp-head{text-align:left}
+.side-r .bp-head,.side-s .bp-head{text-align:right}
+.bp-num{position:absolute;bottom:calc(var(--pb) * .4);left:0;right:0;text-align:center;font-size:calc(var(--bf) * .64);letter-spacing:.12em;opacity:.55;font-variant-numeric:tabular-nums;line-height:1}
+.bpage a{color:inherit;text-decoration:underline;text-underline-offset:4px}
+.bpage .arr{width:1.2em;height:.6em;vertical-align:middle}
+
+/* cover + back cover */
+.cv,.bc{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;text-align:center;min-height:0}
+.cv-top{font-size:calc(var(--bf) * .64);letter-spacing:.22em;text-transform:uppercase;opacity:.7}
+.cv-art{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;padding:4% 0}
+.cv-art .art{width:92%;height:100%}
+.cv-title{font-family:var(--serif);font-weight:400;font-size:calc(var(--bf) * 3.5);line-height:.92;letter-spacing:-.02em}
+.cv-title em{font-style:italic}
+.cv-sub{margin-top:1.1em;font-size:calc(var(--bf) * .66);letter-spacing:.16em;text-transform:uppercase;opacity:.75}
+.bc{justify-content:center;gap:1.2em}
+.bc-art{width:46%;height:32%;display:flex;align-items:center;justify-content:center}
+.bc-art .art{width:100%;height:100%}
+.bc-logo{font-family:var(--hand);text-transform:uppercase;font-size:calc(var(--bf) * 2.1);line-height:.9;transform:rotate(-6deg)}
+.bc-sub{font-size:calc(var(--bf) * .66);letter-spacing:.16em;text-transform:uppercase;opacity:.7;line-height:1.7}
+
+/* front matter */
+.tp-logo{font-family:var(--hand);text-transform:uppercase;font-size:calc(var(--bf) * 2.7);line-height:.88;transform:rotate(-6deg);transform-origin:left;margin:.4em 0 1.4em !important}
+.tp-label{font-size:calc(var(--bf) * .64);letter-spacing:.18em;text-transform:uppercase;opacity:.6;border-top:1px solid currentColor;padding-top:.9em}
+.tp-p{font-size:calc(var(--bf) * .95)}
+.tp-p:nth-of-type(3){font-family:var(--serif);font-size:calc(var(--bf) * 1.7);line-height:1.05;letter-spacing:-.01em}
+.ct-h{font-family:var(--serif);font-weight:400;font-size:calc(var(--bf) * 2.6);line-height:1;margin:0 0 .9em}
+.ct-row{display:flex;align-items:baseline;gap:.7em;width:100%;background:none;border:0;padding:.62em 0;border-top:1px dashed rgba(15,15,14,.35);cursor:pointer;font-size:calc(var(--bf) * .86);letter-spacing:.06em;text-align:left;color:inherit}
+.ct-row:hover .ct-t{text-decoration:underline;text-underline-offset:4px}
+.ct-num{font-size:.8em;opacity:.6;font-variant-numeric:tabular-nums}
+.ct-t{text-transform:uppercase;font-weight:500;min-width:0}
+.ct-dots{flex:1 1 auto;border-bottom:1.5px dotted rgba(15,15,14,.35);transform:translateY(-.25em);min-width:1em}
+.ct-pg{font-variant-numeric:tabular-nums}
+.bblank .bp-body{align-items:center;justify-content:center}
+.blank-note{font-family:var(--serif);font-style:italic;font-size:calc(var(--bf) * 1.1);text-align:center;opacity:.45;line-height:1.3}
+.endc{display:flex;flex-direction:column;justify-content:center;height:100%}
+.end-h{font-family:var(--serif);font-weight:400;font-size:calc(var(--bf) * 3);line-height:.95;margin:0 0 .6em}
+.end-h em{font-style:italic}
+.end-links{display:grid;gap:.6em;margin-top:.6em;font-size:calc(var(--bf) * .82);letter-spacing:.12em;text-transform:uppercase;font-weight:500}
+
+/* story opener */
+.bo{flex:1 1 auto;display:flex;flex-direction:column;min-height:0}
+.bo-kicker{font-size:calc(var(--bf) * .66);letter-spacing:.18em;text-transform:uppercase;opacity:.72}
+.bo-art{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;padding:5% 0}
+.bo-art .art{width:100%;height:100%}
+.bo-title{font-family:var(--serif);font-weight:400;font-size:calc(var(--bf) * 2.9);line-height:.95;letter-spacing:-.015em;text-wrap:balance}
+.bo-by{margin:.6em 0 0 !important;font-size:calc(var(--bf) * .66);letter-spacing:.16em;text-transform:uppercase;opacity:.72}
+.bo-deck{margin:.9em 0 0 !important;font-size:calc(var(--bf) * .74);letter-spacing:.08em;text-transform:uppercase;line-height:1.6;opacity:.85}
+.bo-cw{margin:.9em 0 0 !important;align-self:flex-start;font-size:calc(var(--bf) * .6);letter-spacing:.1em;text-transform:uppercase;border:1px solid currentColor;padding:.5em .7em .4em;opacity:.7}
+
+/* comic panels page */
+.bpanels{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;gap:3%;min-height:0}
+.bpanels .panel{margin:0;padding:4px;display:flex;justify-content:center}
+.bpanels .panel svg{width:auto;max-width:100%;height:auto;max-height:calc((var(--ph) - var(--pt) - var(--pb)) / 3.45)}
+.bpanels .pnote{font-size:calc(var(--bf) * .95)}
+
+/* practice pages */
+.pp-head{margin-bottom:.4em}
+.pp-label{font-size:calc(var(--bf) * .64);letter-spacing:.18em;text-transform:uppercase;opacity:.6;margin:0 !important}
+.pp-title{font-family:var(--serif);font-weight:400;font-size:calc(var(--bf) * 2.05);line-height:.98;letter-spacing:-.01em;margin:.3em 0 .5em;text-wrap:balance}
+.pp-intro{font-size:calc(var(--bf) * .82);line-height:1.6;opacity:.8}
+.pp-item{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.15em 1em;align-items:start;padding:.75em 0;border-top:1px dashed rgba(15,15,14,.3)}
+.pp-item.noic{grid-template-columns:minmax(0,1fr)}
+.pi-ic{grid-row:span 2;width:calc(var(--bf) * 3.4);height:calc(var(--bf) * 2.6);display:flex;align-items:flex-end}
+.pi-ic .art{width:100%;height:100%}
+.pi-n{grid-row:span 2;font-family:var(--hand);font-size:calc(var(--bf) * 1.9);line-height:.9;min-width:1.1em}
+.pp-item h4{margin:0;font-family:var(--mono);font-weight:500;font-size:calc(var(--bf) * .8);letter-spacing:.12em;text-transform:uppercase;line-height:1.35}
+.pp-item p{margin:0 !important;font-size:calc(var(--bf) * .84);line-height:1.6}
+.pp-care{font-size:calc(var(--bf) * .74);line-height:1.6;opacity:.8;border-top:1px dashed rgba(15,15,14,.3);padding-top:.75em}
+.pp-link{font-size:calc(var(--bf) * .72);letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-top:.4em !important}
+
+/* the turning leaf */
+.bk-leaf{position:absolute;top:0;width:var(--pw);height:var(--ph);transform-style:preserve-3d;z-index:6;will-change:transform;pointer-events:none}
+.bk-leaf.at-r{left:var(--pw);transform-origin:0 50%}
+.bk-leaf.at-l{left:0;transform-origin:100% 50%}
+.bk-leaf.at-s{left:0;transform-origin:0 50%}
+.bk-leaf.go{transition:transform .78s cubic-bezier(.42,.08,.22,1)}
+.bk-leaf .lf{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.bk-leaf .lf-b{transform:rotateY(180deg)}
+.bk-leaf .shade{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.4))}
+.bk-leaf.go .shade{animation:leafShade .78s ease-in-out}
+.bk-leaf.at-l .shade{background:linear-gradient(270deg,rgba(0,0,0,.05),rgba(0,0,0,.4))}
+@keyframes leafShade{50%{opacity:1}}
+.bk-leaf.at-s.go{transition-duration:.65s}
 
 @media (max-width:1080px){
-  .think-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .sh-tips{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .slist{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .send{grid-column:1 / -1;min-height:0}
 }
 @media (max-width:900px){
-  .sh-hero .wrap,.write-grid,.sh-prac-hero,.sh-form-grid{grid-template-columns:minmax(0,1fr)}
-  .sh-hero-art{max-width:460px;justify-self:center;width:100%}
-  .ptips{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:28px}
-  .ptip:nth-child(3){background:none;padding-left:0}
-  .sh-prev{position:static}
-  .sh-prac-art .art{margin-inline:auto}
-}
-@media (max-width:600px){
-  .think-grid,.sh-tips,.ptips{grid-template-columns:minmax(0,1fr)}
-  .ptip{background:none;padding-inline:0;border-top:1px dashed rgba(15,15,14,.35);padding-top:18px}
-  .ptip:first-child{border-top:0;padding-top:0}
-  .an-row{grid-template-columns:minmax(0,1fr);gap:10px}
-  .pair{grid-template-columns:minmax(0,1fr);gap:4px}
-  .pair--head{display:none}
-  .sh-two{grid-template-columns:minmax(0,1fr)}
-  .sh-hero h1 span + span{padding-left:.2em}
-  .fpanel{padding:20px 16px}
-}
-
-
-/* ================= shop page ================= */
-.stv[hidden]{display:none!important}
-.st-cart{justify-self:end}
-.st-hero{padding-block:clamp(30px,4.4vw,64px) clamp(30px,4vw,56px)}
-.st-hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(20px,4vw,60px);align-items:center}
-.st-h1{font-size:clamp(62px,8vw,128px)}
-.st-h1 span{display:block}
-.st-lede{margin-top:clamp(22px,3vw,36px);text-transform:uppercase;max-width:46ch;font-size:var(--fs-1)}
-.st-hero-art{margin:0;position:relative;display:flex;align-items:flex-end;justify-content:center;min-width:0;padding-top:30px}
-.st-still{display:block}
-.st-still .art{width:100%;height:auto}
-.st-still--book{width:40%;transform:rotate(-5deg);margin-right:-8%}
-.st-still--mug{width:48%;position:relative;z-index:1}
-.st-hero-art .note{position:absolute;top:-4%;right:0;transform:rotate(-8deg);font-size:clamp(20px,2vw,27px);width:6.4em}
-
-.st-shop{padding-block:clamp(10px,2vw,24px) clamp(60px,7vw,100px)}
-.st-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(15,15,14,.3);border-bottom:1px dashed rgba(15,15,14,.35);padding-block:14px}
-.st-filters .chip{display:inline-flex;gap:8px;align-items:center}
-.st-filters .chip span{font-weight:400;opacity:.65;font-variant-numeric:tabular-nums}
-.st-sort{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
-.st-sort select{font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:transparent;border:1.5px solid var(--ink);border-radius:0;padding:9px 30px 8px 10px;appearance:none;-webkit-appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;background-size:5px 5px;background-repeat:no-repeat}
-.st-sort select:focus-visible{outline:2px dashed var(--ink);outline-offset:3px}
-.st-count{margin-top:16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke);font-variant-numeric:tabular-nums}
-.st-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(28px,3vw,44px) clamp(16px,2vw,28px);margin-top:18px}
-.pcard{display:flex;flex-direction:column;min-width:0}
-.pcard[hidden]{display:none!important}
-.pc-frame{position:relative;display:grid;place-items:center;aspect-ratio:4/5;width:100%;max-width:100%;background:var(--paper-hi);border:1px solid rgba(15,15,14,.12);padding:0;cursor:pointer;overflow:hidden}
-.pc-frame:hover .pa,.pc-frame:focus-visible .pa{transform:translateY(-6px) rotate(-1.5deg)}
-.pc-tag{position:absolute;top:10px;left:10px;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:4px 7px 3px}
-.pc-view{position:absolute;bottom:10px;right:10px;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid currentColor;opacity:0;transition:opacity .18s ease}
-.pc-frame:hover .pc-view,.pc-frame:focus-visible .pc-view{opacity:1}
-@media (hover:none){.pc-view{opacity:1}}
-.pc-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:14px}
-.pc-meta h3{font-family:var(--mono);font-weight:500;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;line-height:1.35;min-width:0}
-.pc-price{font-size:12.5px;letter-spacing:.08em;font-variant-numeric:tabular-nums;white-space:nowrap}
-.pc-desc{margin-top:6px;font-size:12px;line-height:1.65;letter-spacing:.03em;color:var(--smoke)}
-.pc-add{margin-top:auto;align-self:flex-start;padding-top:12px;background:none;border:0;cursor:pointer;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:underline;text-underline-offset:6px;color:var(--ink)}
-.pc-add:hover{text-decoration-thickness:2px}
-.pc-add.added{text-decoration:none}
-
-/* product art compositions */
-.pa{width:100%;height:100%;display:grid;place-items:center;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
-.pa > .art{width:72%;height:auto;max-height:78%}
-.pa--print > .art{width:62%}
-.pa-zine,.pa-stk{width:60%;aspect-ratio:84/107;max-width:100%}
-.pa-zine .zine,.pa-stk .stickers{width:100%;height:100%}
-.pa-zine .zine .zt{font-size:clamp(17px,1.9vw,26px)}
-.pa-tote{width:70%;height:auto;overflow:visible}
-.pa-tote .t-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.pa-tote .t-bag{fill:var(--paper);stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round}
-.pa-pin{width:58%;aspect-ratio:1;max-width:100%;border-radius:50%;background:var(--night);display:grid;place-items:center;box-shadow:inset 0 0 0 5px var(--night),inset 0 0 0 7px rgba(241,236,224,.6),4px 5px 0 rgba(15,15,14,.18)}
-.pa-pin .art{width:70%;height:auto}
-.pa-cards{position:relative;width:74%;aspect-ratio:1}
-.pa-cards .pc{position:absolute;left:8%;width:84%;aspect-ratio:3/2;background:var(--night);border:4px solid var(--paper-hi);outline:1px solid rgba(15,15,14,.25);display:grid;place-items:center;box-shadow:3px 4px 0 rgba(15,15,14,.15)}
-.pa-cards .pc .art{width:66%;height:auto}
-.pa-cards .pc:nth-child(1){top:6%;transform:rotate(-9deg)}
-.pa-cards .pc:nth-child(2){top:24%;transform:rotate(5deg)}
-.pa-cards .pc:nth-child(3){top:42%;transform:rotate(-2deg)}
-.pa-frame{width:66%;aspect-ratio:4/5;max-width:100%;border:5px solid var(--ink);background:var(--paper-hi);padding:9%;box-shadow:4px 5px 0 rgba(15,15,14,.18)}
-.pa-frame .fin{width:100%;height:100%;background:var(--night);display:grid;place-items:center;padding:7%;overflow:hidden}
-.pa-frame .fin .art{width:100%;height:100%}
-.pa-deck{position:relative;width:52%;aspect-ratio:5/7;max-width:100%}
-.pa-deck i{position:absolute;inset:0;background:var(--night);border:1.5px solid var(--night)}
-.pa-deck i:nth-child(1){transform:rotate(-9deg) translate(-6%,2%)}
-.pa-deck i:nth-child(2){transform:rotate(5deg) translate(5%,1%)}
-.pa-deck .top{position:absolute;inset:0;background:var(--paper-hi);border:1.5px solid var(--ink);padding:10% 9%;display:flex;flex-direction:column;box-shadow:3px 4px 0 rgba(15,15,14,.15)}
-.pa-deck .top small{font-size:clamp(6px,.62vw,8.5px);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--smoke)}
-.pa-deck .top .ic{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:flex-start}
-.pa-deck .top .ic .art{width:78%;height:auto}
-.pa-deck .top b{font-family:var(--serif);font-weight:400;font-size:clamp(14px,1.55vw,22px);line-height:1}
-
-/* quick view */
-.sheet.is-wide{max-width:min(940px,calc(100vw - 28px))}
-.qv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3.4vw,40px);align-items:start}
-.qv-art{background:var(--paper);aspect-ratio:4/5;display:grid;place-items:center;border:1px solid rgba(15,15,14,.12);min-width:0}
-.qv-info{min-width:0;padding-top:6px}
-.qv-info .kicker{margin-bottom:2px}
-.qv-price{margin-top:14px;font-size:15px;letter-spacing:.08em;font-variant-numeric:tabular-nums}
-.qv-desc{margin-top:16px;font-size:13.5px;line-height:1.75;letter-spacing:.03em}
-.qv-list{list-style:none;margin:16px 0 0;padding:0;border-top:1px dashed rgba(15,15,14,.35)}
-.qv-list li{padding:8px 0;border-bottom:1px dashed rgba(15,15,14,.35);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
-.qv-opt{margin-top:18px}
-.qv-opt .chips{margin-top:8px}
-.qv-buy{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px}
-.qv-buy .qty button{width:34px;height:34px}
-.qv .fine{margin-top:16px}
-.qv .row{margin-top:14px}
-
-/* story band */
-.st-story{padding-block:clamp(54px,6vw,90px) clamp(54px,6vw,90px)}
-.st-story .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,60px);align-items:center}
-.st-story-h{font-family:var(--serif);font-weight:400;font-size:clamp(48px,5.4vw,84px);line-height:.94;letter-spacing:-.015em}
-.st-story-h span{display:block}
-.st-story-h span + span{font-style:italic}
-.st-story p{margin-top:20px;text-transform:uppercase;max-width:44ch;color:var(--fog)}
-.st-story .fp-row{margin-top:24px}
-.st-story-art{margin:0;position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px}
-.st-story-art .note{transform:rotate(-12deg);width:5.4em;margin-top:-18%}
-.stv .s-foot{padding-top:clamp(50px,5vw,70px)}
-
-@media (max-width:1080px){
-  .st-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-}
-@media (max-width:900px){
-  .st-hero .wrap,.st-story .wrap{grid-template-columns:minmax(0,1fr)}
-  .st-hero-art{max-width:440px;justify-self:center;width:100%}
-  .qv{grid-template-columns:minmax(0,1fr)}
-  .qv-art{max-width:360px;width:100%}
+  .bb-in,.pg-hero-in,.ab-hero-in,.ab-cta-in{grid-template-columns:minmax(0,1fr)}
+  .bb-mock{width:min(520px,100%)}
+  .pg-art{max-width:420px;justify-self:center;width:100%}
+  .ab-art{max-width:460px;justify-self:center;width:100%}
+  .ab-cta-art{margin:0 calc(-1 * var(--gutter))}
+  .bk-arrow{display:none}
 }
 @media (max-width:640px){
-  .st-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 14px}
-  .pc-desc{display:none}
-  .pc-meta{flex-direction:column;gap:2px}
-  .st-bar{flex-direction:column;align-items:stretch}
-  .st-sort{justify-content:space-between}
-  .pa-deck .top small{display:none}
-  .st-story-art .note{font-size:17px}
+  .slist{grid-template-columns:minmax(0,1fr)}
+  .sitem.feat{grid-column:auto}
+  .sitem.feat .si-story{display:flex}
+  .sitem.feat .si-art{min-height:0;height:clamp(140px,40vw,190px);margin:16px 0 20px}
+  .sitem.feat .si-title{font-size:clamp(30px,8vw,42px);align-self:auto}
+  .pair-cards{grid-template-columns:minmax(0,1fr)}
+  .pc-plus{justify-self:center}
+  .pc-story,.pc-prac{min-height:0}
+  .stories .sec-head .more--all{margin-left:0}
+  .bk-top{grid-template-columns:auto 1fr auto}
+  .bk-where{max-width:none}
+  .bk-count{min-width:0;font-size:10px}
+  .top-book{font-size:10.5px}
+}
+@media (prefers-reduced-motion:reduce){
+  .bb-mock,.si-link{transition:none}
 }
 
 /* ================= editorial serif titles ================= */
@@ -891,569 +850,4 @@ kbd{font-family:var(--mono);font-size:11px;border:1.5px solid currentColor;paddi
   .feat-art .note,.share-art .note{font-size:17px}
 }
 </style>
-<div id="homeView">
-
-<header class="top" id="top">
-  <div class="wrap">
-    <a class="logo" href="#top" aria-label="No Biggie, I'm Fine, home"><span>No biggie,</span><span>I'm fine.</span></a>
-    <nav aria-label="Main">
-      <ul class="nav">
-        <li><a href="#featured">Stories</a></li>
-        <li><a href="#deck">Deck</a></li>
-        <li><a href="#practices">Practices</a></li>
-        <li><a href="#store">Shop</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
-    <button class="cart-btn" id="cartBtn" type="button" data-cart aria-label="Open cart">Cart (<span class="cart-count">0</span>)</button>
-  </div>
-</header>
-
-<main>
-<section class="hero band" aria-labelledby="hero-title">
-  <div class="wrap">
-    <p class="note note--l">Real people.<br> Real things.<br> A brighter way<br> through.{{SCRIB}}</p>
-    <div class="hero-copy">
-      <h1 class="hand" id="hero-title"><span>No biggie,</span><span>I'm fine.</span></h1>
-      <p class="hero-sub">A collection of stories, things, and creatures for whatever you're carrying.</p>
-      <a class="btn btn--ink" href="#featured">Read the stories {{ARROW}}</a>
-    </div>
-    <figure class="hero-art">
-      {{ART:hero}}
-      <p class="note" aria-hidden="true">Still here.{{SCRIB}}</p>
-    </figure>
-  </div>
-</section>
-
-<section class="featured band dark" id="featured" aria-labelledby="feat-title">
-  {{TEAR:11:top:var(--paper-hi):var(--night)}}
-  <div class="wrap">
-    <div class="feat-copy">
-      <p class="eyebrow"><b>Featured story</b>{{RULE}}</p>
-      <h2 class="hand" id="feat-title"><span>The weight</span><span>I carry.</span></h2>
-      <div class="feat-body">
-        <p>Sometimes it feels heavy.<br>Sometimes it doesn't.<br>Both are real.</p>
-        <a class="btn btn--paper" href="#story-weight">Read the story {{ARROW}}</a>
-      </div>
-    </div>
-    <div class="feat-art">
-      {{ART:featured}}
-      <p class="note" aria-hidden="true">Same thoughts.<br>Different day.{{SCRIB}}</p>
-    </div>
-  </div>
-</section>
-
-<section class="stories band dark" id="stories" aria-labelledby="more-title">
-  {{TEAR:23:top:#252524:var(--night-2)}}
-  {{TEAR:31:bottom:var(--paper-hi):var(--night-2)}}
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="hand" id="more-title">More stories</h2>
-      {{RULE}}
-      <a class="more more--deck" href="#deck">Swipe the deck {{ARROW}}</a>
-      <button class="more" type="button" data-index="stories" style="background:none;border:0;color:inherit;cursor:pointer;margin-left:clamp(14px,2vw,28px)">All stories {{ARROW}}</button>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <div class="card-art">{{ART:card1}}</div>
-        <h3>Small wins</h3>
-        <p>It's not about fixing it.<br>It's about noticing it.</p>
-        <a class="textlink stretch" href="#story-wins">Read {{ARROW}}</a>
-      </article>
-      <article class="card">
-        <div class="card-art">{{ART:card2}}</div>
-        <h3>A little lighter today</h3>
-        <p>Some days just feel a little brighter.</p>
-        <a class="textlink stretch" href="#story-lighter">Read {{ARROW}}</a>
-      </article>
-      <article class="card">
-        <div class="card-art">{{ART:card3}}</div>
-        <h3>Stuck and<br>still here</h3>
-        <p>Progress doesn't always look loud.</p>
-        <a class="textlink stretch" href="#story-stuck">Read {{ARROW}}</a>
-      </article>
-      <article class="card">
-        <div class="card-art">{{ART:card4}}</div>
-        <h3>It gets weirder (and better)</h3>
-        <p>A note to myself on the days that feel like too much.</p>
-        <a class="textlink stretch" href="#story-weirder">Read {{ARROW}}</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="practices band" id="practices" aria-labelledby="prac-title">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="hand">Practices</h2>
-      {{RULE}}
-      <button class="more" type="button" data-index="practices" style="background:none;border:0;color:inherit;cursor:pointer">All practices {{ARROW}}</button>
-    </div>
-    <div class="prac-hero">
-      <div class="prac-copy">
-        <h2 class="hand" id="prac-title"><span>A lighter</span><span>way forward.</span></h2>
-        <p>Simple practices to breathe, reset, and keep going. They don't fix everything, but they help.</p>
-        <a class="btn btn--line" href="#practice-list">Explore practices {{ARROW}}</a>
-      </div>
-      <div class="prac-art">{{ART:practices}}</div>
-    </div>
-    <div class="prac-list" id="practice-list">
-      <article class="prac">
-        <div class="prac-icon">{{ART:ico_mtn}}</div>
-        <h3>Get outside</h3>
-        <p>A change of scene helps me see things a little clearer.</p>
-        <button class="textlink" type="button" data-practice="outside">Try it {{ARROW}}</button>
-      </article>
-      <article class="prac">
-        <div class="prac-icon">{{ART:ico_sun}}</div>
-        <h3>Fresh air</h3>
-        <p>It's a simple reminder that there's still good here.</p>
-        <button class="textlink" type="button" data-practice="air">Try it {{ARROW}}</button>
-      </article>
-      <article class="prac">
-        <div class="prac-icon">{{ART:ico_flw}}</div>
-        <h3>Small steps</h3>
-        <p>I don't have to solve everything today. I just have to take the next step.</p>
-        <button class="textlink" type="button" data-practice="steps">Try it {{ARROW}}</button>
-      </article>
-      <article class="prac">
-        <div class="prac-icon">{{ART:ico_book}}</div>
-        <h3>Write it out</h3>
-        <p>Getting thoughts on paper helps me stop carrying them around in my head.</p>
-        <button class="textlink" type="button" data-practice="write">Try it {{ARROW}}</button>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="about band dark" id="about" aria-labelledby="about-title">
-  {{TEAR:47:top:var(--paper-hi):var(--night)}}
-  {{TEAR:53:bottom:var(--paper-hi):var(--night)}}
-  <div class="wrap">
-    <div class="about-copy">
-      <div class="sec-head"><h2 class="hand" id="about-title">About</h2>{{RULE}}</div>
-      <p>No Biggie, I'm Fine is a creative project exploring the real stuff. Through stories, illustrations, and everyday objects, we're building a brighter, more honest way through.</p>
-      <button class="btn btn--paper" type="button" id="aboutBtn">Learn more {{ARROW}}</button>
-    </div>
-    <div class="about-art">{{ART:about}}</div>
-  </div>
-</section>
-
-<section class="shop band" id="shop" aria-labelledby="shop-title">
-  <div class="wrap">
-    <div class="shop-copy">
-      <div class="sec-head"><h2 class="hand" id="shop-title">Shop</h2>{{RULE}}</div>
-      <p>Zines, prints, and everyday things for real days.</p>
-      <a class="btn btn--line" href="#store">Shop all {{ARROW}}</a>
-    </div>
-    <div class="shelf" id="shelf">
-      <div class="rail" id="rail" aria-label="Products">
-        <button class="product" type="button" data-id="tee"><span class="p-frame">{{ART:tee}}</span><span class="p-name">Tee</span><span class="p-price">$32</span><span class="p-add" aria-hidden="true">View</span></button>
-        <button class="product" type="button" data-id="mug"><span class="p-frame">{{ART:mug}}</span><span class="p-name">Mug</span><span class="p-price">$18</span><span class="p-add" aria-hidden="true">View</span></button>
-        <button class="product" type="button" data-id="notebook"><span class="p-frame">{{ART:nbook}}</span><span class="p-name">Notebook</span><span class="p-price">$16</span><span class="p-add" aria-hidden="true">View</span></button>
-        <button class="product" type="button" data-id="print"><span class="p-frame">{{ART:print}}</span><span class="p-name">Print</span><span class="p-price">$28</span><span class="p-add" aria-hidden="true">View</span></button>
-        <button class="product" type="button" data-id="zine"><span class="p-frame"><span class="zine" role="img" aria-label="Zine number one, black cover with the round creature"><span class="zt">Zine<br>No. 1</span>{{ART:card1 mini}}</span></span><span class="p-name">Zine No. 1</span><span class="p-price">$12</span><span class="p-add" aria-hidden="true">View</span></button>
-        <button class="product" type="button" data-id="stickers"><span class="p-frame"><span class="stickers" role="img" aria-label="Sticker sheet with four creature stickers"><span class="dot">{{ART:card1 mini}}</span><span class="dot">{{ART:card4 mini}}</span><span class="dot">{{ART:card3 mini}}</span><span class="dot">{{ART:card2 mini}}</span></span></span><span class="p-name">Sticker sheet</span><span class="p-price">$6</span><span class="p-add" aria-hidden="true">View</span></button>
-      </div>
-      <button class="rail-next" type="button" id="railNext" aria-label="Show more products">{{ARROW}}</button>
-    </div>
-  </div>
-</section>
-
-<section class="share band dark" id="share" aria-labelledby="share-title">
-  {{TEAR:61:top:var(--paper-hi):var(--night)}}
-  {{TEAR:67:bottom:var(--paper-hi):var(--night)}}
-  <div class="wrap">
-    <h2 class="hand" id="share-title"><span>Share</span><span>your story.</span>{{SCRIB}}</h2>
-    <div class="share-copy">
-      <p>We all carry something.<br>Your story might help someone else feel a little more normal.</p>
-      <button class="btn btn--paper" type="button" id="submitBtn" data-submit>Submit a story {{ARROW}}</button>
-      <p class="share-steps" aria-label="Two steps: your story, then the practice that helped"><span>1</span>Your story<i></i><span>2</span>What helped</p>
-    </div>
-    <div class="share-art">
-      {{ART:peek}}
-      <p class="note" aria-hidden="true">Same human.<br>Different days.{{SCRIB}}</p>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer class="foot">
-  <div class="wrap">
-    <a class="logo" href="#top" aria-label="Back to top"><span>No biggie,</span><span>I'm fine.</span></a>
-    <nav aria-label="Footer">
-      <ul class="nav">
-        <li><a href="#featured">Stories</a></li>
-        <li><a href="#deck">Deck</a></li>
-        <li><a href="#practices">Practices</a></li>
-        <li><a href="#store">Shop</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
-    <div class="socials">
-      <button type="button" data-soon="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></button>
-      <button type="button" data-soon="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3h3c.3 2.2 1.6 3.6 3.8 3.9v3c-1.5 0-2.8-.4-3.9-1.1v6.4c0 3.3-2.6 5.8-5.8 5.8S4.8 18.5 4.8 15.3s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.1-.9-.1-1.5 0-2.7 1.2-2.7 2.7S9.1 18 10.6 18s2.9-1.2 2.9-2.7V3z" fill="currentColor"/></svg></button>
-      <button type="button" data-soon="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor"/><path d="M10 8.6v6.8l5.8-3.4z" fill="var(--paper)"/></svg></button>
-    </div>
-    <p class="copy">© <span class="yr">2026</span> No Biggie, I'm Fine. &nbsp;All rights reserved.</p>
-    <div class="legal">
-      <button type="button" data-soon="Privacy">Privacy</button>
-      <button type="button" data-soon="Terms">Terms</button>
-      <button type="button" data-soon="Contact">Contact</button>
-    </div>
-  </div>
-</footer>
-</div><!-- /homeView -->
-
-<div id="storyView" class="sv" hidden>
-  <aside class="side" aria-label="Stories">
-    <a class="logo" href="#top" aria-label="No Biggie, I'm Fine, home"><span>No biggie,</span><span>I'm fine.</span></a>
-    <nav aria-label="Site">
-      <ul class="side-nav">
-        <li><a href="#featured">Stories</a></li>
-        <li><a href="#deck">Deck</a></li>
-        <li><a href="#practices">Practices</a></li>
-        <li><a href="#store">Shop</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
-    <hr class="side-rule">
-    <a class="side-back" href="#stories"><svg class="arr" viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All stories</a>
-    <ul class="s-list" id="sList"></ul>
-    <hr class="side-rule">
-    <div class="side-foot">
-      <p class="note">Good things<br>ahead.{{SCRIB}}</p>
-      <div class="side-social">
-        <button type="button" data-soon="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></button>
-        <button type="button" data-soon="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3h3c.3 2.2 1.6 3.6 3.8 3.9v3c-1.5 0-2.8-.4-3.9-1.1v6.4c0 3.3-2.6 5.8-5.8 5.8S4.8 18.5 4.8 15.3s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.1-.9-.1-1.5 0-2.7 1.2-2.7 2.7S9.1 18 10.6 18s2.9-1.2 2.9-2.7V3z" fill="currentColor"/></svg></button>
-        <button type="button" data-soon="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor"/><path d="M10 8.6v6.8l5.8-3.4z" fill="var(--night)"/></svg></button>
-      </div>
-      <hr class="side-rule">
-      <div class="side-legal"><button type="button" data-soon="Privacy">Privacy</button><button type="button" data-soon="Terms">Terms</button><button type="button" data-soon="Contact">Contact</button></div>
-      <p class="side-copy">© <span class="yr">2026</span> No Biggie,<br>I'm Fine.<br>All rights reserved.</p>
-    </div>
-  </aside>
-
-  <div class="smain">
-    <section class="s-top dark" aria-labelledby="sTitle">
-      <div class="sw s-hero">
-        <div class="s-head">
-          <p class="eyebrow"><b id="sNum">Story 03</b>{{RULE}}</p>
-          <h1 class="hand" id="sTitle">Story</h1>
-          <div id="sMeta"></div>
-          <p class="s-deck" id="sDeck"></p>
-        </div>
-        <figure class="s-art" id="sArt"></figure>
-      </div>
-      <div class="sw s-story">
-        <div class="sec-head"><h2 class="hand">My story</h2>{{RULE}}</div>
-        <div class="s-grid" id="sGrid">
-          <div class="s-text" id="sText"></div>
-          <div class="s-side" id="sSide"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="s-prac band paperband" aria-labelledby="pTitle">
-      {{TEAR:71:top:var(--paper-hi):var(--paper)}}
-      <div class="sw">
-        <div class="sec-head"><h2 class="hand">My practices</h2>{{RULE}}</div>
-        <div class="sp-hero">
-          <div class="sp-copy">
-            <h2 class="hand" id="pTitle">Practices</h2>
-            <p id="pIntro"></p>
-          </div>
-          <figure class="sp-art" id="pArt"></figure>
-        </div>
-        <ol class="p-grid" id="pGrid"></ol>
-        <div class="s-pager" id="sPager"></div>
-      </div>
-    </section>
-
-    <section class="share band dark" aria-label="Share your story">
-      {{TEAR:83:top:var(--paper-hi):var(--night)}}
-      {{TEAR:89:bottom:var(--paper-hi):var(--night)}}
-      <div class="sw share-in">
-        <h2 class="hand"><span>Share</span><span>your story.</span>{{SCRIB}}</h2>
-        <div class="share-copy">
-          <p>We all carry something.<br>Your story might help someone else feel a little more normal.</p>
-          <button class="btn btn--paper" type="button" data-submit>Submit a story {{ARROW}}</button>
-          <p class="share-steps" aria-label="Two steps: your story, then the practice that helped"><span>1</span>Your story<i></i><span>2</span>What helped</p>
-        </div>
-        <div class="share-art">
-          {{ART:peek dup}}
-          <p class="note" aria-hidden="true">Same human.<br>Different days.{{SCRIB}}</p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="foot s-foot paperband band">
-      <div class="sw foot-in">
-        <a class="logo" href="#top" aria-label="Back to the home page"><span>No biggie,</span><span>I'm fine.</span></a>
-        <nav aria-label="Footer">
-          <ul class="nav">
-            <li><a href="#featured">Stories</a></li>
-            <li><a href="#deck">Deck</a></li>
-            <li><a href="#practices">Practices</a></li>
-            <li><a href="#store">Shop</a></li>
-            <li><a href="#about">About</a></li>
-          </ul>
-        </nav>
-        <p class="copy">© <span class="yr">2026</span> No Biggie, I'm Fine. &nbsp;All rights reserved.</p>
-        <div class="legal"><button type="button" data-soon="Privacy">Privacy</button><button type="button" data-soon="Terms">Terms</button><button type="button" data-soon="Contact">Contact</button></div>
-      </div>
-    </footer>
-  </div>
-</div>
-
-<div id="deckView" class="dv" hidden>
-  <header class="dv-top">
-    <div class="wrap dv-bar">
-      <a class="side-back dv-back" href="#top"><svg class="arr" viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to the site</a>
-      <a class="logo" href="#top" aria-label="No Biggie, I'm Fine, home"><span>No biggie,</span><span>I'm fine.</span></a>
-      <a class="dv-savedlink" href="#savedList">Saved (<span id="savedCount">0</span>)</a>
-    </div>
-  </header>
-  <main class="wrap dv-main">
-    <div class="dv-copy">
-      <p class="eyebrow"><b>The deck</b>{{RULE}}</p>
-      <h1 class="hand"><span>Swipe the</span><span>stories.</span></h1>
-      <p class="dv-lede">Swipe right to save a story. Swipe left to pass. Tap a card to flip it and see the practice that helped.</p>
-      <ul class="keys" aria-label="Keyboard shortcuts">
-        <li><kbd>←</kbd> Pass</li><li><kbd>→</kbd> Save</li><li><kbd>Space</kbd> Flip</li>
-      </ul>
-      <div class="saved" id="savedBox">
-        <h2 class="saved-h">Saved stories</h2>
-        <ul class="saved-list" id="savedList" tabindex="-1"></ul>
-      </div>
-    </div>
-    <div class="dv-stage">
-      <div class="stack" id="stack" tabindex="0" role="region" aria-roledescription="card deck" aria-label="Story deck. Left arrow passes, right arrow saves, space flips the card."></div>
-      <div class="dv-ctrl">
-        <button class="dbtn" type="button" id="dPass" aria-label="Pass"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Pass</span></button>
-        <button class="dbtn dbtn--flip" type="button" id="dFlip" aria-label="Flip card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 4v4.6h-4.6M20 12a8 8 0 0 1-13.7 5.6M4 20v-4.6h4.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Flip</span></button>
-        <button class="dbtn dbtn--save" type="button" id="dSave" aria-label="Save"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11v17l-5.5-4-5.5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Save</span></button>
-      </div>
-      <p class="dv-count" id="dCount" aria-live="polite"></p>
-    </div>
-  </main>
-</div>
-
-<div id="shareView" class="shv" hidden>
-  <header class="dv-top sh-top">
-    <div class="wrap dv-bar">
-      <a class="side-back dv-back" href="#top"><svg class="arr" viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to the site</a>
-      <a class="logo" href="#top" aria-label="No Biggie, I'm Fine, home"><span>No biggie,</span><span>I'm fine.</span></a>
-      <a class="dv-savedlink" href="#deck">Read the stories</a>
-    </div>
-  </header>
-
-  <section class="sh-hero dark" aria-labelledby="shTitle">
-    <div class="wrap">
-      <div class="sh-hero-copy">
-        <p class="eyebrow"><b>Share your story</b>{{RULE}}</p>
-        <h1 class="hand" id="shTitle"><span>Share your</span><span>story.</span></h1>
-        <p class="sh-lede">We all carry something. Your story might help someone else feel a little more normal. Here's how to think about it, how to write it, and where to put it.</p>
-        <div class="sh-two">
-          <div class="sh-tile sh-tile--story"><b>1</b><h2>Your story</h2><p>What you carried, how it felt, where you are now.</p></div>
-          <div class="sh-tile sh-tile--prac"><b>2</b><h2>What helped</h2><p>One practice someone else could try tomorrow.</p></div>
-        </div>
-        <div class="sh-cta">
-          <button class="btn btn--paper" type="button" data-jump="shForm">Start writing {{ARROW}}</button>
-          <button class="btn btn--ghost" type="button" data-jump="shThink">Read the guide first</button>
-        </div>
-      </div>
-      <figure class="sh-hero-art">
-        {{ART:card3 dup}}
-        <p class="note" aria-hidden="true">Take your<br>time.{{SCRIB}}</p>
-      </figure>
-    </div>
-  </section>
-
-  <section class="sh-think band dark" id="shThink" aria-labelledby="thinkH">
-    {{TEAR:101:top:#252524:var(--night-2)}}
-    <div class="wrap">
-      <div class="sec-head"><h2 class="hand" id="thinkH">How to think about it</h2>{{RULE}}</div>
-      <p class="sh-sub">Before you write a word.</p>
-      <div class="think-grid">
-        <article class="think"><h3>Small is enough.</h3><p>It doesn't have to be the worst thing that ever happened to you. A hard month, a weird Tuesday, a loop you couldn't get out of. If it was heavy for you, it counts.</p></article>
-        <article class="think"><h3>You can still be in it.</h3><p>No bow on top required. "I'm still figuring this out" is an honest ending, and it's often the one people most need to hear.</p></article>
-        <article class="think"><h3>Write to one person.</h3><p>Picture someone a few steps behind you. What would you want them to know? Write to them, not to the internet.</p></article>
-        <article class="think"><h3>Tell the truth, not everything.</h3><p>You decide what goes in. Skip the parts that aren't yours to tell. Leave out last names, workplaces, and anything that could point to someone else.</p></article>
-        <article class="think"><h3>Messy is fine.</h3><p>Don't polish it into something you'd say in a job interview. Write it the way you'd tell a friend. We edit for length, never for meaning.</p></article>
-        <article class="think"><h3>Look after yourself.</h3><p>Writing about hard stuff can stir it back up. Take breaks, and stop whenever you need to. If you're in crisis, call or text 988 in the US, or your local emergency number.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sh-write band dark" aria-labelledby="writeH">
-    {{TEAR:107:top:#2A2A29:var(--night)}}
-    <div class="wrap">
-      <div class="sec-head"><h2 class="hand" id="writeH">How to write it</h2>{{RULE}}</div>
-      <p class="sh-sub">Four parts. Not a formula, just a place to start.</p>
-      <div class="write-grid">
-        <ol class="beats">
-          <li class="beat"><span class="beat-n" aria-hidden="true">1</span><div><h3>Where you were</h3><p>Set the scene in a sentence or two. When was it? What did a normal day look like back then?</p><div class="starts"><button type="button" class="start" data-start="It started when">"It started when…"</button><button type="button" class="start" data-start="Back then, a normal day was">"Back then, a normal day was…"</button></div></div></li>
-          <li class="beat"><span class="beat-n" aria-hidden="true">2</span><div><h3>What it felt like</h3><p>Be specific. Specific is what makes a stranger say "same." Instead of "I was sad," say what sad looked like in your kitchen at 7am.</p><div class="starts"><button type="button" class="start" data-start="The hardest part was">"The hardest part was…"</button><button type="button" class="start" data-start="What nobody saw was">"What nobody saw was…"</button></div></div></li>
-          <li class="beat"><span class="beat-n" aria-hidden="true">3</span><div><h3>What you did</h3><p>Not what fixed it. What you actually did, even if it was small or didn't work at first.</p><div class="starts"><button type="button" class="start" data-start="The first thing that helped was">"The first thing that helped was…"</button><button type="button" class="start" data-start="So I started">"So I started…"</button></div></div></li>
-          <li class="beat"><span class="beat-n" aria-hidden="true">4</span><div><h3>Where you are now</h3><p>Not where you think you should be. Still in it is fine. Better is fine. Somewhere in between is most people.</p><div class="starts"><button type="button" class="start" data-start="These days">"These days…"</button><button type="button" class="start" data-start="I'm still">"I'm still…"</button></div></div></li>
-        </ol>
-        <figure class="annot">
-          <figcaption class="annot-h">How "Stuck and still here" does it</figcaption>
-          <div class="an-row"><p class="an-text">"Some days I wake up already tired. Not physically, but mentally."</p><p class="an-note"><b>1</b>Where they were</p></div>
-          <div class="an-row"><p class="an-text">"It's like everything feels just a little too heavy, so I avoid it. Then I feel worse for avoiding it."</p><p class="an-note"><b>2</b>What it felt like</p></div>
-          <div class="an-row"><p class="an-text">"I still show up. I still do the things I have to do."</p><p class="an-note"><b>3</b>What they did</p></div>
-          <div class="an-row"><p class="an-text">"Even in the stuck moments, there are glimmers. A good song. A text from a friend."</p><p class="an-note"><b>4</b>Where they are now</p></div>
-          <a class="textlink" href="#story-stuck">Read the full story {{ARROW}}</a>
-        </figure>
-      </div>
-      <div class="sh-tips">
-        <div class="sh-tip"><h4>150 to 600 words</h4><p>Long enough to feel real, short enough to read on a bus.</p></div>
-        <div class="sh-tip"><h4>Write like you talk</h4><p>If you wouldn't say it out loud, you don't have to write it.</p></div>
-        <div class="sh-tip"><h4>Use "I"</h4><p>Your story, your view. You don't have to speak for anyone else.</p></div>
-        <div class="sh-tip"><h4>Steal your title</h4><p>The best titles are usually a line already in your story.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sh-prac band paperband" aria-labelledby="pracH">
-    {{TEAR:113:top:var(--paper-hi):var(--paper)}}
-    <div class="wrap">
-      <div class="sec-head"><h2 class="hand">Then, what helped</h2>{{RULE}}</div>
-      <div class="sh-prac-hero">
-        <div>
-          <h2 class="hand" id="pracH"><span>A practice</span><span>someone could</span><span>try tomorrow.</span></h2>
-          <p class="sh-prac-lede">Your practice is the part people take with them. Make it something a stranger could do without having to ask you a question.</p>
-        </div>
-        <figure class="sh-prac-art">{{LIB:walker}}</figure>
-      </div>
-      <div class="ptips">
-        <div class="ptip"><h3>Name it like an action</h3><p>"Brain dump" beats "journaling more." Start with a verb if you can.</p></div>
-        <div class="ptip"><h3>Make it small</h3><p>If it takes more than twenty minutes, cut it down until it doesn't.</p></div>
-        <div class="ptip"><h3>Say how</h3><p>When, where, how long. The details are the practice.</p></div>
-        <div class="ptip"><h3>Say what it changed</h3><p>Even if it only took the edge off. That's worth knowing.</p></div>
-      </div>
-      <div class="pairs">
-        <div class="pair pair--head" aria-hidden="true"><span>Instead of</span><span>Try</span></div>
-        <div class="pair"><span class="no">Self care</span><span class="yes">Ten quiet minutes before I look at my phone.</span></div>
-        <div class="pair"><span class="no">Exercise more</span><span class="yes">A lap around the block when I catch myself in a loop.</span></div>
-        <div class="pair"><span class="no">Talk to people</span><span class="yes">Text one friend one sentence about my day, every night.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sh-form paperband" id="shForm" aria-labelledby="formH">
-    <div class="wrap">
-      <div class="sec-head"><h2 class="hand" id="formH">Write yours</h2>{{RULE}}</div>
-      <div class="sh-form-grid">
-        <div class="sh-form-main" id="shMain"></div>
-        <aside class="sh-prev" aria-label="Card preview">
-          <p class="flabel">Your card</p>
-          <div class="mycard" id="pvCard"></div>
-          <p class="pv-note">Tap to flip. This is how your story shows up in the deck.</p>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <footer class="foot s-foot paperband band">
-    <div class="wrap foot-in">
-      <a class="logo" href="#top" aria-label="Back to the home page"><span>No biggie,</span><span>I'm fine.</span></a>
-      <nav aria-label="Footer">
-        <ul class="nav">
-          <li><a href="#featured">Stories</a></li>
-          <li><a href="#deck">Deck</a></li>
-          <li><a href="#practices">Practices</a></li>
-          <li><a href="#store">Shop</a></li>
-          <li><a href="#about">About</a></li>
-        </ul>
-      </nav>
-      <p class="copy">© <span class="yr">2026</span> No Biggie, I'm Fine. &nbsp;All rights reserved.</p>
-      <div class="legal"><button type="button" data-soon="Privacy">Privacy</button><button type="button" data-soon="Terms">Terms</button><button type="button" data-soon="Contact">Contact</button></div>
-    </div>
-  </footer>
-</div>
-
-<div id="storeView" class="stv" hidden>
-  <header class="dv-top st-top">
-    <div class="wrap dv-bar">
-      <a class="side-back dv-back" href="#top"><svg class="arr" viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to the site</a>
-      <a class="logo" href="#top" aria-label="No Biggie, I'm Fine, home"><span>No biggie,</span><span>I'm fine.</span></a>
-      <button class="cart-btn st-cart" type="button" data-cart aria-label="Open cart">Cart (<span class="cart-count">0</span>)</button>
-    </div>
-  </header>
-
-  <section class="st-hero" aria-labelledby="stTitle">
-    <div class="wrap">
-      <div class="st-hero-copy">
-        <p class="eyebrow"><b>The shop</b>{{RULE}}</p>
-        <h1 class="hand st-h1" id="stTitle"><span>Things for</span><span>real days.</span></h1>
-        <p class="st-lede">Zines, prints, and everyday objects with the creatures on them. Small reminders that you're not the only one carrying something.</p>
-      </div>
-      <figure class="st-hero-art" aria-hidden="true">
-        <span class="st-still st-still--book">{{ART:nbook dup}}</span>
-        <span class="st-still st-still--mug">{{ART:mug dup}}</span>
-        <p class="note">Something to<br>hold onto.{{SCRIB}}</p>
-      </figure>
-    </div>
-  </section>
-
-  <section class="st-shop" aria-label="Products">
-    <div class="wrap">
-      <div class="st-bar">
-        <div class="chips st-filters" role="group" aria-label="Filter products" id="stFilters"></div>
-        <div class="st-sort">
-          <label for="stSort">Sort</label>
-          <select id="stSort">
-            <option value="featured">Featured</option>
-            <option value="low">Price, low to high</option>
-            <option value="high">Price, high to low</option>
-          </select>
-        </div>
-      </div>
-      <p class="st-count" id="stCount" aria-live="polite"></p>
-      <div class="st-grid" id="stGrid"></div>
-    </div>
-  </section>
-
-  <section class="st-story band dark" aria-labelledby="stStoryH">
-    {{TEAR:131:top:var(--paper-hi):var(--night)}}
-    <div class="wrap">
-      <div>
-        <h2 class="st-story-h" id="stStoryH"><span>Every creature</span><span>has a story.</span></h2>
-        <p>The one on your mug started as someone's hard Tuesday. Read the stories behind them, and the practices that helped.</p>
-        <div class="fp-row"><a class="btn btn--paper" href="#deck">Swipe the deck {{ARROW}}</a><a class="btn btn--ghost" href="#story-stuck">Read a story</a></div>
-      </div>
-      <figure class="st-story-art">{{ART:peek dup}}<p class="note" aria-hidden="true">Same human.<br>Different days.{{SCRIB}}</p></figure>
-    </div>
-  </section>
-
-  <footer class="foot s-foot paperband band">
-    {{TEAR:137:top:var(--paper-hi):var(--paper)}}
-    <div class="wrap foot-in">
-      <a class="logo" href="#top" aria-label="Back to the home page"><span>No biggie,</span><span>I'm fine.</span></a>
-      <nav aria-label="Footer">
-        <ul class="nav">
-          <li><a href="#featured">Stories</a></li>
-          <li><a href="#deck">Deck</a></li>
-          <li><a href="#practices">Practices</a></li>
-          <li><a href="#store">Shop</a></li>
-          <li><a href="#about">About</a></li>
-        </ul>
-      </nav>
-      <p class="copy">© <span class="yr">2026</span> No Biggie, I'm Fine. &nbsp;All rights reserved.</p>
-      <div class="legal"><button type="button" data-soon="Privacy">Privacy</button><button type="button" data-soon="Terms">Terms</button><button type="button" data-soon="Contact">Contact</button></div>
-    </div>
-  </footer>
-</div>
-
-<dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
-  <div class="sheet-in">
-    <button class="sheet-x" type="button" id="sheetClose">Close ✕</button>
-    <div id="sheetBody"></div>
-  </div>
-</dialog>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script>/*ARTLIB*/</script>
-<script>/*APP*/</script>
+/*MARKUP*/

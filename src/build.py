@@ -15,7 +15,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 A = json.load(open(SRC / 'art' / 'home.json'))
 A.update(json.load(open(SRC / 'art' / 'story.json')))
-LIB = ['stuck_hero','panel1','panel2','panel3','walker','i_boots','i_nbook','i_mug','i_mtnsun','i_phones','i_cat','thumb1','thumb5']
+LIB = ['stuck_hero','panel1','panel2','panel3','walker','i_boots','i_nbook','i_mug','i_mtnsun','i_phones','i_cat','thumb1','thumb5','peek','ico_mtn','ico_sun','ico_flw','ico_book']
 FD = SRC / 'fonts'
 
 def b64(path):
@@ -132,7 +132,7 @@ RULE = ('<svg class="rule" viewBox="0 0 400 8" preserveAspectRatio="none" aria-h
 SCRIBBLE = ('<svg class="scrib" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
             '<path d="M3 8.5C30 6.4 64 4.8 117 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>')
 
-src = open(SRC / 'template.html').read()
+src = open(SRC / 'template.html').read().replace('/*MARKUP*/', open(SRC / 'markup.html').read())
 import numpy as np, io
 from PIL import Image
 def grain(rgb, base, speck, seed):
