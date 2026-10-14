@@ -29,9 +29,15 @@ design/          original mockups
    python3 src/build.py
    ```
 
-3. Commit `src/` and `public/` together and push. Vercel deploys every push to `main`.
+3. Commit `src/` and `public/` together and push to `main`.
 
 Stories live in the `STORIES` list in `src/app.js`. Each story carries its own `practices`, so every story ships with what helped.
+
+## Hosting
+
+**Staging:** GitHub Pages at https://radcatdesign.github.io/nbif/. Every push to `main` runs `.github/workflows/pages.yml`, which publishes the `public/` folder.
+
+**Going live:** `vercel.json` is already set up. Import this repo into Vercel (output directory `public`, no build step), then point nobiggieimfine.com at the Vercel project.
 
 ## Design rules
 

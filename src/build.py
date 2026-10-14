@@ -180,7 +180,7 @@ left = re.findall(r'\{\{[^}]+\}\}', src)
 if left:
     print('UNRESOLVED', left[:5]); sys.exit(1)
 # ---------- outputs ----------
-SITE_URL = 'https://no-biggie-im-fine.vercel.app'
+SITE_URL = 'https://radcatdesign.github.io/nbif'
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E"
            "%3Cpath d='M8 60C8 30 18 8 32 8s24 22 24 52z' fill='%23131312'/%3E"
            "%3Ccircle cx='24' cy='32' r='9' fill='%23F1ECE0'/%3E%3Ccircle cx='41' cy='30' r='9' fill='%23F1ECE0'/%3E"
