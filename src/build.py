@@ -95,7 +95,6 @@ def art(name, cls='', back='', front='', label=None):
         s.append(
             f'<g class="eye" data-cx="{x}" data-cy="{y}" data-r="{r}"><g class="lid">'
             f'<circle class="ew" cx="{x}" cy="{y}" r="{r}"/>'
-            f'<circle class="es" cx="{x}" cy="{y}" r="{r*.76:.2f}" stroke-width="{max(r*.07,.35):.2f}" stroke-dasharray="{r*.13:.2f} {r*.11:.2f}"/>'
             f'<circle class="pp" cx="{x}" cy="{y}" r="{r*.31:.2f}"/>'
             f'</g></g>')
     s.append(front)
