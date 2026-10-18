@@ -118,7 +118,11 @@ function renderStory(id){
     side = '<div class="s-aside">'+(s.note ? '<p class="note">'+esc(s.note)+'</p>' : '')+
       (s.care ? '<p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '')+'</div>';
   }
+  if(!s.panels){ text += side; side = ''; }
+  $('#sText').innerHTML = text;
   $('#sSide').innerHTML = side;
+  $('#sSide').hidden = !side;
+  $('#sGrid').classList.toggle('solo', !side);
   $('#pTitle').textContent = s.pTitle || 'What helped.';
   $('#pIntro').textContent = s.pIntro || '';
   $('#pArt').innerHTML = artHTML(s.pArt);

@@ -649,6 +649,10 @@ a:hover .arr,button:hover .arr{transform:translateX(4px)}
 .p-grid.steps-only p{text-transform:none;font-size:13.5px;line-height:1.75;letter-spacing:.02em;color:var(--ink)}
 .p-grid.steps-only li{padding-top:clamp(58px,5vw,66px)}
 
+.s-grid.solo{grid-template-columns:minmax(0,1fr)}
+.s-text .s-aside{justify-items:start;padding-top:1.2em;margin-top:.6em;border-top:1px dashed rgba(241,236,224,.3)}
+.s-text .s-aside .care{border:0;padding:0;max-width:62ch}
+
 /* ================= story mode: the book ================= */
 .bk[hidden]{display:none!important}
 body.bk-open{overflow:hidden}
@@ -1305,7 +1309,11 @@ function renderStory(id){
     side = '<div class="s-aside">'+(s.note ? '<p class="note">'+esc(s.note)+'</p>' : '')+
       (s.care ? '<p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '')+'</div>';
   }
+  if(!s.panels){ text += side; side = ''; }
+  $('#sText').innerHTML = text;
   $('#sSide').innerHTML = side;
+  $('#sSide').hidden = !side;
+  $('#sGrid').classList.toggle('solo', !side);
   $('#pTitle').textContent = s.pTitle || 'What helped.';
   $('#pIntro').textContent = s.pIntro || '';
   $('#pArt').innerHTML = artHTML(s.pArt);
