@@ -15,7 +15,7 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 A = json.load(open(SRC / 'art' / 'home.json'))
 A.update(json.load(open(SRC / 'art' / 'story.json')))
-LIB = ['stuck_hero','panel1','panel2','panel3','walker','i_boots','i_nbook','i_mug','i_mtnsun','i_phones','i_cat','thumb1','thumb5','peek','ico_mtn','ico_sun','ico_flw','ico_book']
+LIB = ['stuck_hero','panel1','panel2','panel3','walker','i_boots','i_nbook','i_mug','i_mtnsun','i_phones','i_cat','thumb1','thumb5','peek','ico_mtn','ico_sun','ico_flw','ico_book','card4']
 FD = SRC / 'fonts'
 
 def b64(path):
@@ -184,7 +184,7 @@ FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox
            "%3Cpath d='M8 60C8 30 18 8 32 8s24 22 24 52z' fill='%23131312'/%3E"
            "%3Ccircle cx='24' cy='32' r='9' fill='%23F1ECE0'/%3E%3Ccircle cx='41' cy='30' r='9' fill='%23F1ECE0'/%3E"
            "%3Ccircle cx='25' cy='33' r='3.4' fill='%23131312'/%3E%3Ccircle cx='42' cy='31' r='3.4' fill='%23131312'/%3E%3C/svg%3E")
-DESC = "A collection of stories, things, and creatures for whatever you're carrying."
+DESC = "A field guide for people who push it down and power through."
 
 (ROOT / 'build').mkdir(exist_ok=True)
 (ROOT / 'build' / 'artifact.html').write_text(src)

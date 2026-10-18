@@ -9,118 +9,37 @@ var ARTLIB = window.__ARTLIB || {};
 /* ================= content ================= */
 var STORIES = [
   {id:'plates', num:'01', title:'The plates', by:'Brandon Kaufer',
-   blurb:'October 2016. Rage instead of sadness, and a stack of cheap plates.',
-   deck:'October 2016. Rage instead of sadness, and a stack of cheap plates.',
-   cw:'Content note: this story mentions a suicide attempt.',
-   art:'peek', thumb:'peek', pArt:'practices', note:'One sentence per plate.', care:true,
-   pending:'https://nobiggieimfine.com/',
-   pTitle:'The rage plate ritual.', pIntro:'For when the feeling is stuck and too loud to say out loud. Give it somewhere to go.',
+   blurb:'October 2016. My grandma called. She couldn’t find my dad.',
+   deck:'October 2016. My grandma called. She couldn’t find my dad.',
+   cw:'This story talks about a suicide attempt.',
+   art:'peek', thumb:'peek', pArt:'walker', care:true,
+   paras:[
+    'October 2016. My grandma called. She couldn’t find my dad.',
+    'He’d vanished before, so I wasn’t that worried. But something about this time felt different. I started calling hospitals and police stations, mostly going through the motions, sure I’d come up empty. Until a receptionist said the words I didn’t even know I’d been dreading: “He’s here.”',
+    'At the hospital a doctor pulled me aside and said “your father attempted suicide” with the warmth of a meter maid. Dad survived, my brother flew in on the red eye, my mom (his ex) ran logistics like she’d spent years in training for it, and I was back at work within a week, telling everyone it was honestly kind of a blessing. A wake-up call. “No biggie, I’m fine” became my go-to response when people asked me how I was doing.',
+    'What I couldn’t tell anyone was that I wasn’t sad. I looked everywhere for sad. What I found was rage. At him, at my grandma for whatever role I’d decided she played in getting him to that day, at every person that told me to go and cry in the fucking shower.',
+    'The rage, the grief, needed somewhere to live but I didn’t even think about that. One night I saw an ad for a rage room on Instagram and I got an idea. I drove to a dollar store and bought a stack of ugly plates for six bucks and a Sharpie. On the first plate I wrote HE WAS CHOOSING TO ABANDON US, then I threw it as hard as I could against the wall in the alley behind my house. And fuck did it feel good, so I kept going. I wrote and I smashed until the stack was gone. And then I started using my real dishes (don’t recommend that part). By the time I was out of dishes and things to write on them, I laughed, I cried, and finally some of those stuck feelings moved, just a little.',
+    'My dad is still alive. We still mostly don’t talk about that October. But the dollar store knows me now, and I always have a few extra plates on hand.'
+   ],
+   pTitle:'The practice, if you want to try it',
    steps:true,
-   primary:{title:'Rage plates', text:'Write the sentence you can’t say on a cheap plate. Read it out loud once, then throw it somewhere safe. Sweep up after.'},
+   primary:{title:'Smash the plates', text:'Write the sentence you’re not allowed to say out loud. Read it out loud. Once. Then throw.'},
    practices:[
-     {title:'Get cheap plates', text:'Thrift-store plates or glasses. Never your good dishes.'},
-     {title:'Write the sentence', text:'On each plate, write the whole sentence you can’t say out loud.'},
-     {title:'Set up safely', text:'Pick a spot where breaking things is safe. Safety glasses and closed-toe shoes on.'},
-     {title:'Say it, then throw', text:'Read the sentence out loud once. Then throw the plate.'},
-     {title:'One plate, one sentence', text:'Keep going until the stack is gone or you feel calmer.'},
-     {title:'Sweep it up', text:'Clean up and toss the pieces. The cleanup is part of it.'}],
-   after:'If the rage feels bigger than a stack of plates, pay attention to that, and tell someone you trust.'},
-  {id:'weight', num:'02', title:'The weight I carry',
-   blurb:'Sometimes it feels heavy. Sometimes it doesn’t. Both are real.',
-   deck:'Sometimes it feels heavy. Sometimes it doesn’t. Both are real.',
-   art:'featured', thumb:'thumb5', pArt:'practices', note:'Still carrying on.',
-   paras:[
-    'Some mornings the weight is the first thing I notice. Before coffee, before my phone, it’s already sitting on my chest like it pays rent there.',
-    'I used to think the goal was to put it down for good. Fix it, file it, move on. That never really happened.',
-    'What happened instead was smaller. I learned which days it gets heavier. Sundays, mostly, and anything involving a dentist. I learned that telling one person makes it lighter by about a third. I learned that “I’m fine” can mean “I’m here,” and that’s allowed.',
-    'Sometimes it feels heavy. Sometimes it doesn’t. Both are real, and I’m still carrying on.'],
-   pTitle:'Small ways I set it down.', pIntro:'None of these make the weight disappear. They give my shoulders a break for a minute.',
-   practices:[
-     {icon:'i_mug', title:'Tell one person', text:'Saying it out loud to one person makes it lighter by about a third. Every time.'},
-     {icon:'i_nbook', title:'Name the heavy days', text:'Sundays and dentist days get extra care. Knowing they’re coming lets me plan softer.'},
-     {icon:'ico_sun', title:'Fresh air', text:'Three slow breaths by an open window before I decide the day is ruined.'}]},
-  {id:'wins', num:'03', title:'Small wins',
-   blurb:'It’s not about fixing it. It’s about noticing it.',
-   deck:'It’s not about fixing it. It’s about noticing it.',
-   art:'card1', thumb:'card1', pArt:'walker', note:'One corner counts.',
-   paras:[
-    'Today I made the bed. Not well. One corner is still doing its own thing. But I made it, and then I stood there for a second and let that count.',
-    'For a long time I only counted the big stuff, which meant most days added up to zero. Now I keep a tally on a sticky note by the door. Took a walk. Answered one email. Ate something green on purpose.',
-    'None of it fixes anything. It just reminds me that I’m moving, even when it doesn’t feel like it.'],
-   pTitle:'Tiny things I count on purpose.', pIntro:'When the big stuff won’t move, I keep score on the small stuff.',
-   practices:[
-     {icon:'ico_book', title:'The sticky note tally', text:'One sticky note by the door. Every small thing I did today gets a mark.'},
-     {icon:'ico_flw', title:'Messy counts', text:'Making the bed badly still counts. The point is one thing done before the day starts.'},
-     {icon:'i_boots', title:'One short walk', text:'Around the block or to the mailbox. It goes on the tally either way.'}]},
-  {id:'stuck', num:'04', title:'Stuck and still here',
-   blurb:'Progress doesn’t always look loud.',
-   deck:'It’s not always a dark place. Sometimes it’s just a loop I can’t get out of.',
-   art:'stuck_hero', thumb:'thumb1', pArt:'walker',
-   paras:[
-    'Some days I wake up already tired. Not physically, but mentally. My mind feels like a browser with 50 tabs open, none of them finishing.',
-    'I tell myself I’ll get started, but then I’m scrolling. Or overthinking. Or stuck in the same loop. It’s not laziness. It’s like everything feels just a little too heavy, so I avoid it. Then I feel worse for avoiding it.',
-    'I still show up. I still do the things I have to do. But there’s this part of me that feels stuck. Like I’m watching myself from a little distance, waiting for the moment I feel like me again.',
-    'Even in the stuck moments, there are glimmers. A good song. A text from a friend. The sunlight through the window. Those little things remind me I’m still here, and that matters.'],
-   panels:[
-     {art:'panel1', note:'Same thoughts. Different day.', x:73, y:6},
-     {art:'panel2', note:'So many tabs open. None of them finish.', x:74, y:8},
-     {art:'panel3', note:'Still here. That counts for something.', x:63, y:10}],
-   pTitle:'Small things that help me get unstuck.', pIntro:'These are a few things that help me when my mind feels heavy or I’m caught in a loop. They don’t fix everything, but they give me a little movement.',
-   practices:[
-     {icon:'i_boots', title:'Move my body', text:'A short walk, a stretch, or just standing outside helps reset my mind.'},
-     {icon:'i_nbook', title:'Brain dump', text:'I write everything that’s in my head. Getting it out helps me breathe a little easier.'},
-     {icon:'i_mug', title:'A slower start', text:'Instead of rushing, I give myself 10 quiet minutes. No phone, no pressure, just a slower start.'},
-     {icon:'i_mtnsun', title:'Change the scene', text:'Even a new room or a little time outside can help me break the loop.'},
-     {icon:'i_phones', title:'Good noise', text:'A playlist, a podcast, or just music that feels good can shift my mood.'},
-     {icon:'i_cat', title:'Be kind to myself', text:'I remind myself that feeling stuck doesn’t mean I’m failing. I’m still here, and that’s enough.'}]},
-  {id:'lighter', num:'05', title:'A little lighter today',
-   blurb:'Some days just feel a little brighter.',
-   deck:'Some days just feel a little brighter.',
-   art:'card2', thumb:'card2', pArt:'practices', note:'Proof.',
-   paras:[
-    'Nothing happened today. That’s the whole story.',
-    'No breakthrough, no good news, no reason I can point to. I woke up and the air felt thinner in a good way. I sang in the car. I texted my brother back within the hour, which is a personal record.',
-    'I’ve stopped interrogating days like this. They don’t need a reason and they don’t need to last. I’m writing this one down so that next time I’m stuck, I have proof that lighter days show up without asking.'],
-   pTitle:'How I hold on to the lighter days.', pIntro:'Lighter days don’t need a reason. These help me remember they happen.',
-   practices:[
-     {icon:'ico_book', title:'Write it down', text:'On a good day I write two lines about it, so future me has proof.'},
-     {icon:'i_phones', title:'Save the song', text:'Whatever I sang in the car goes on a playlist called proof.'},
-     {icon:'ico_mtn', title:'Take it outside', text:'If the day feels light, I take it for a walk. Even ten minutes.'}]},
-  {id:'same', num:'06', title:'Same place. Different me',
-   blurb:'Nothing around me changed. Something in me did.',
-   deck:'Nothing around me changed. Something in me did.',
-   art:'about', thumb:'card4', pArt:'walker', note:'Steadier.',
-   paras:[
-    'I went back to my old neighborhood last week. Same corner store, same cracked sidewalk, same bench where I used to sit and wonder why everything felt so loud.',
-    'I sat on the bench again. It was quieter this time. Not the street. Me.',
-    'I don’t know exactly when it changed. There wasn’t one day. It was a lot of small, boring days of doing the next thing, and somewhere in there I got a little steadier.',
-    'Same place. Different me. I’ll take it.'],
-   pTitle:'What got me a little steadier.', pIntro:'Nothing dramatic. Just things I kept doing until they added up.',
-   practices:[
-     {icon:'i_mug', title:'A slower start', text:'Ten quiet minutes before I check anything. Coffee, window, nothing else.'},
-     {icon:'i_mtnsun', title:'Go back on purpose', text:'When a place holds an old feeling, I visit it and notice what’s different now.'},
-     {icon:'i_cat', title:'Be kind to myself', text:'I talk to myself the way I’d talk to a friend sitting on that bench.'}]},
-  {id:'weirder', num:'07', title:'It gets weirder (and better)',
-   blurb:'A note to myself on the days that feel like too much.',
-   deck:'A note to myself on the days that feel like too much.',
-   art:'card4', thumb:'card4', pArt:'practices', note:'Your record is perfect.',
-   paras:[
-    'Dear me, on a bad day.',
-    'You’ve had this exact feeling before and you got through it every single time. Your record is perfect.',
-    'Things are going to keep getting weirder. You’ll like people you didn’t expect to like. You’ll stop caring about things that used to keep you up at night. You’ll end up wearing a paper crown at a friend’s kitchen table, laughing so hard you can’t breathe.',
-    'So drink some water. Step outside for five minutes. Text someone. Then wait for the weird good part. It’s coming.'],
-   pTitle:'My bad-day checklist.', pIntro:'The note ends with a short list. It’s short on purpose.',
-   practices:[
-     {icon:'i_mug', title:'Drink some water', text:'A full glass, all of it. It isn’t a cure. It’s a start.'},
-     {icon:'ico_sun', title:'Step outside', text:'Five minutes. The porch counts.'},
-     {icon:'ico_flw', title:'Text someone', text:'Not to explain anything. Just “hey.” Let someone know you’re around.'}]}
+     {text:'Buy cheap plates or glasses. Dollar store, thrift store, the uglier the better. Never your own good ones — the point is to lose things you don’t love.'},
+     {text:'Take a Sharpie and write the sentence you’re not allowed to say out loud. Full sentences, not single words. “He was choosing to abandon us” breaks better than “abandonment.”'},
+     {text:'Pick your smash zone. A metal trash can, a garage floor, a wall with a tarp. And find some safety glasses and closed-toe shoes. I was fine, but I was also probably being an idiot.'},
+     {text:'Read the sentence out loud. Once. Then throw.'},
+     {text:'One sentence per plate. Keep going until the stack is gone or something in you goes quiet.'},
+     {text:'Sweep up. Don’t skip this part. The sweeping is the second half of the ritual. And throw that shit away.'}
+   ],
+   after:'If the rage feels bigger than a stack of plates, that’s information too.'}
 ];
 var BY = {}; STORIES.forEach(function(s){ BY[s.id] = s; });
 
 var FOREWORD = [
   'No Biggie, I’m Fine is for people who push it down and power through.',
-  'It’s a collection of real stories from people who found their own ways to carry hard things. Each entry pairs one person’s story with the specific thing that helped them.',
-  'Some of those practices are ancient. Some were invented on a Tuesday afternoon out of desperation. None of them are the advice you’ve already ignored.'
+  'It’s a collection of real stories from people who found their own ways to carry hard things. Each entry pairs one person’s story with the specific thing that helped them. Some of those practices are ancient. Some were invented on a Tuesday afternoon out of desperation. None of them are the advice you’ve already ignored.',
+  'I spent most of my life saying no biggie, I’m fine. This is my attempt to build the thing I wish I’d had. Proof I wasn’t the only one, and a few tricks to help me move through it.'
 ];
 
 /* ================= helpers ================= */
@@ -169,7 +88,7 @@ function renderStoriesPage(){
       '</a>'+
       '<a class="textlink si-book" href="#book-'+s.id+'">Read it in the book '+ARROW+'</a>'+
     '</article>';
-  }).join('') + '<aside class="send"><h2>Rather turn<br><em>the pages?</em></h2><p>Every story above, in order, one page at a time.</p><a class="btn btn--ink" href="#book">Open the book '+ARROW+'</a></aside>';
+  }).join('') + '<aside class="send"><h2>More stories<br><em>are coming.</em></h2><p>Stories will start getting published once I have enough.</p><a class="btn btn--ink" href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Tell me what got you through '+ARROW+'</a></aside>';
   bindEyes(storiesV);
 }
 
@@ -197,7 +116,7 @@ function renderStory(id){
     }).join('');
   } else {
     side = '<div class="s-aside">'+(s.note ? '<p class="note">'+esc(s.note)+'</p>' : '')+
-      (s.care ? '<p class="care">If you’re thinking about suicide, or you’re worried about someone, you can call or text 988 in the US any time. Elsewhere, contact your local emergency number.</p>' : '')+'</div>';
+      (s.care ? '<p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '')+'</div>';
   }
   $('#sSide').innerHTML = side;
   $('#pTitle').textContent = s.pTitle || 'What helped.';
@@ -206,10 +125,10 @@ function renderStory(id){
   var grid = $('#pGrid');
   grid.classList.toggle('steps-only', !!s.steps || !s.practices.some(function(p){ return p.icon; }));
   grid.innerHTML = s.practices.map(function(p, i){
-    return '<li><span class="p-num">'+(i<9?'0':'')+(i+1)+'</span>'+(p.icon ? '<div class="p-icon">'+artHTML(p.icon)+'</div>' : '')+'<h3>'+esc(p.title)+'</h3><p>'+esc(p.text)+'</p></li>';
+    return '<li><span class="p-num">'+(i<9?'0':'')+(i+1)+'</span>'+(p.icon ? '<div class="p-icon">'+artHTML(p.icon)+'</div>' : '')+(p.title ? '<h3>'+esc(p.title)+'</h3>' : '')+'<p>'+esc(p.text)+'</p></li>';
   }).join('');
   var idx = STORIES.indexOf(s), prev = STORIES[idx-1], next = STORIES[idx+1];
-  $('#sPager').innerHTML = (s.after ? '<p class="p-after" style="flex-basis:100%">'+esc(s.after)+' In the US, you can call or text 988 any time.</p>' : '')+
+  $('#sPager').innerHTML = (s.after ? '<p class="p-after" style="flex-basis:100%">'+esc(s.after)+'</p>' : '')+
     (prev ? '<a class="prev" href="#story-'+prev.id+'">'+ARROW+' '+esc(prev.title)+'</a>' : '<span></span>')+
     (next ? '<a href="#story-'+next.id+'">'+esc(next.title)+' '+ARROW+'</a>' : '<a href="#book">Open the book '+ARROW+'</a>');
   bindEyes(storyV);
@@ -288,10 +207,10 @@ function contentsBlocks(nums){
 function practiceBlocks(s){
   var b = ['<div class="pp-head"><p class="pp-label">What helped</p><h3 class="pp-title">'+esc(s.pTitle || 'What helped.')+'</h3>'+(s.pIntro ? '<p class="pp-intro">'+esc(s.pIntro)+'</p>' : '')+'</div>'];
   s.practices.forEach(function(p, i){
-    if(s.steps) b.push('<div class="pp-item pp-step"><span class="pi-n">'+(i+1)+'</span><h4>'+esc(p.title)+'</h4><p>'+esc(p.text)+'</p></div>');
+    if(s.steps) b.push('<div class="pp-item pp-step"><span class="pi-n">'+(i+1)+'</span>'+(p.title ? '<h4>'+esc(p.title)+'</h4>' : '')+'<p>'+esc(p.text)+'</p></div>');
     else b.push('<div class="pp-item'+(p.icon ? '' : ' noic')+'">'+(p.icon ? '<span class="pi-ic">'+artHTML(p.icon, {fit:true})+'</span>' : '')+'<h4>'+esc(p.title)+'</h4><p>'+esc(p.text)+'</p></div>');
   });
-  if(s.after) b.push('<p class="pp-care">'+esc(s.after)+' In the US, you can call or text 988 any time.</p>');
+  if(s.after) b.push('<p class="pp-care">'+esc(s.after)+'</p>');
   b.push('<p class="pp-link"><a href="#story-'+s.id+'">Open this story’s page '+ARROW+'</a></p>');
   return b;
 }
@@ -302,7 +221,7 @@ function buildBook(L){
 
   add({kind:'cover', cls:'bdark cover', key:'cover', html:
     '<div class="cv"><p class="cv-top">Volume one</p><div class="cv-art">'+artHTML('peek', {fit:true})+'</div>'+
-    '<h2 class="cv-title">No Biggie,<br><em>I’m Fine.</em></h2><p class="cv-sub">Real stories, and the things that helped.</p></div>'});
+    '<h2 class="cv-title">No Biggie,<br><em>I’m Fine.</em></h2><p class="cv-sub">A field guide for people who push it down and power through.</p></div>'});
 
   var fw = paginateBlocks(['<p class="tp-logo">No biggie,<br>I’m fine.</p>', '<p class="tp-label">A note before you start</p>'].concat(FOREWORD.map(function(t){ return '<p class="tp-p">'+esc(t)+'</p>'; })), 'bwhite front');
   fw.forEach(function(h, i){ add({kind:'title', cls:'bwhite front', key:'title'+i, html:h}); });
@@ -331,11 +250,12 @@ function buildBook(L){
   });
 
   add({kind:'end', cls:'bwhite front endp', key:'end', html:
-    '<div class="endc"><h3 class="end-h">That’s the book,<br><em>for now.</em></h3><p>More stories are on the way. If one of these stayed with you, send it to someone who pushes it down too.</p>'+
-    '<p class="end-links"><a href="#stories">Browse the stories '+ARROW+'</a><a href="#top">Back to home '+ARROW+'</a></p></div>'});
+    '<div class="endc"><h3 class="end-h">Your turn.</h3><p>Got through something? Tell me about the hard thing and the thing you did to get through it.</p><p>Stories will start getting published once I have enough.</p>'+
+    '<p class="end-links"><a href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Leave it here '+ARROW+'</a><a href="#top">Back to home '+ARROW+'</a></p>'+
+    '<p class="end-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US).</p></div>'});
   if(spread && pages.length % 2 === 0) blank();
   add({kind:'back', cls:'bdark backc', key:'back', html:
-    '<div class="bc"><div class="bc-art">'+artHTML('card4', {fit:true})+'</div><p class="bc-logo">No biggie,<br>I’m fine.</p><p class="bc-sub">Real people. Real things.<br>A brighter way through.</p></div>'});
+    '<div class="bc"><div class="bc-art">'+artHTML('card4', {fit:true})+'</div><p class="bc-logo">No biggie,<br>I’m fine.</p><p class="bc-sub">A project by Brandon Kaufer<br>Popsy Wolf Studios © 2026</p></div>'});
 
   // real page numbers in the contents
   var real = paginateBlocks(contentsBlocks(openers), 'bwhite front');

@@ -18,69 +18,30 @@
   <div class="wrap">
     <div class="hero-copy">
       <h1 class="hand" id="hero-title"><span>No biggie,</span><span>I'm fine.</span></h1>
-      <p class="hero-sub">Real stories from people who push it down and power through, and the specific thing that helped each of them.</p>
-      <div class="fp-row hero-cta"><a class="btn btn--ink" href="#book">Open the book {{ARROW}}</a><a class="textlink" href="#stories">Browse the stories {{ARROW}}</a></div>
+      <p class="hero-sub">A field guide for people who push it down and power through.</p>
+      <div class="fp-row hero-cta"><a class="btn btn--ink" href="#book">Open the book {{ARROW}}</a><a class="textlink" href="#story-plates">Read a story first {{ARROW}}</a></div>
     </div>
     <figure class="hero-art">
       {{ART:hero}}
-      <p class="note" aria-hidden="true">Still here.{{SCRIB}}</p>
     </figure>
   </div>
 </section>
 
 <section class="featured band dark" id="featured" aria-labelledby="feat-title">
   {{TEAR:11:top:var(--paper-hi):var(--night)}}
+  {{TEAR:31:bottom:var(--paper-hi):var(--night)}}
   <div class="wrap">
     <div class="feat-copy">
-      <p class="eyebrow"><b>Featured story</b>{{RULE}}</p>
-      <h2 class="hand" id="feat-title"><span>The weight</span><span>I carry.</span></h2>
+      <p class="eyebrow"><b>A story from me</b>{{RULE}}</p>
+      <h2 class="hand" id="feat-title"><span>The</span><span>plates.</span></h2>
       <div class="feat-body">
-        <p>Sometimes it feels heavy.<br>Sometimes it doesn't.<br>Both are real.</p>
-        <div class="fp-row"><a class="btn btn--paper" href="#story-weight">Read the story {{ARROW}}</a><a class="textlink" href="#book-weight">Read it in the book {{ARROW}}</a></div>
+        <p class="feat-by">By Brandon Kaufer</p>
+        <p>October 2016. My grandma called.<br>She couldn’t find my dad.</p>
+        <div class="fp-row"><a class="btn btn--paper" href="#story-plates">Read the story {{ARROW}}</a><a class="textlink" href="#book-plates">Read it in the book {{ARROW}}</a></div>
       </div>
     </div>
     <div class="feat-art">
-      {{ART:featured}}
-      <p class="note" aria-hidden="true">Same thoughts.<br>Different day.{{SCRIB}}</p>
-    </div>
-  </div>
-</section>
-
-<section class="stories band dark" id="more" aria-labelledby="more-title">
-  {{TEAR:23:top:#252524:var(--night-2)}}
-  {{TEAR:31:bottom:var(--paper-hi):var(--night-2)}}
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 class="hand" id="more-title">More stories</h2>
-      {{RULE}}
-      <a class="more more--deck" href="#book">Story mode {{ARROW}}</a>
-      <a class="more more--all" href="#stories">All stories {{ARROW}}</a>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <div class="card-art">{{ART:card1}}</div>
-        <h3>Small wins</h3>
-        <p>It's not about fixing it.<br>It's about noticing it.</p>
-        <a class="textlink stretch" href="#story-wins">Read {{ARROW}}</a>
-      </article>
-      <article class="card">
-        <div class="card-art">{{ART:card2}}</div>
-        <h3>A little lighter today</h3>
-        <p>Some days just feel a little brighter.</p>
-        <a class="textlink stretch" href="#story-lighter">Read {{ARROW}}</a>
-      </article>
-      <article class="card">
-        <div class="card-art">{{ART:card3}}</div>
-        <h3>Stuck and<br>still here</h3>
-        <p>Progress doesn't always look loud.</p>
-        <a class="textlink stretch" href="#story-stuck">Read {{ARROW}}</a>
-      </article>
-      <article class="card">
-        <div class="card-art">{{ART:card4}}</div>
-        <h3>It gets weirder (and better)</h3>
-        <p>A note to myself on the days that feel like too much.</p>
-        <a class="textlink stretch" href="#story-weirder">Read {{ARROW}}</a>
-      </article>
+      {{LIB:peek}}
     </div>
   </div>
 </section>
@@ -90,26 +51,50 @@
     <div class="bb-copy">
       <p class="eyebrow"><b>Story mode</b>{{RULE}}</p>
       <h2 class="bb-h" id="bookband-title"><span>Read it like</span><span>a book.</span></h2>
-      <p>One page at a time. Every story is printed on black, and the thing that helped is on the white page after it. Turn with the arrows, a tap, or a swipe.</p>
+      <p>One page at a time. The story on black, the practice on the white page after it.</p>
       <div class="fp-row"><a class="btn btn--ink" href="#book">Open the book {{ARROW}}</a></div>
     </div>
     <a class="bb-mock" href="#book" aria-label="Open the book">
-      <span class="bb-page bb-dark"><span class="bb-num">Story 04</span>{{LIB:stuck_hero}}<b>Stuck and still here.</b></span>
-      <span class="bb-page bb-light"><span class="bb-num">What helped</span><span class="bb-ic">{{LIB:i_boots}}</span><b>Move my body.</b><i>A short walk, a stretch, or just standing outside helps reset my mind.</i></span>
+      <span class="bb-page bb-dark"><span class="bb-num">Story 01</span><span class="bb-art">{{LIB:peek}}</span><b>The plates.</b></span>
+      <span class="bb-page bb-light"><span class="bb-num">The practice</span><b class="bb-n">1</b><i>Buy cheap plates or glasses. Dollar store, thrift store, the uglier the better.</i></span>
     </a>
   </div>
 </section>
 
-<section class="about band dark" id="about-teaser" aria-labelledby="about-title">
-  {{TEAR:47:top:var(--paper-hi):var(--night)}}
-  {{TEAR:53:bottom:var(--paper-hi):var(--night)}}
+<section class="about band" id="about-teaser" aria-labelledby="about-title">
   <div class="wrap">
     <div class="about-copy">
-      <div class="sec-head"><h2 class="hand" id="about-title">About</h2>{{RULE}}</div>
-      <p>No Biggie, I'm Fine is for people who push it down and power through. It's a collection of real stories from people who found their own ways to carry hard things.</p>
-      <a class="btn btn--paper" href="#about">More about the project {{ARROW}}</a>
+      <div class="sec-head"><h2 class="hand" id="about-title">What is this?</h2>{{RULE}}</div>
+      <p>No Biggie, I’m Fine is for people who push it down and power through. It’s a collection of real stories from people who found their own ways to carry hard things.</p>
+      <a class="btn btn--line" href="#about">Read more {{ARROW}}</a>
     </div>
-    <div class="about-art">{{ART:about}}</div>
+    <div class="about-art">{{ART:practices}}</div>
+  </div>
+</section>
+
+<section class="yt band dark" aria-labelledby="ytTitleH">
+  {{TEAR:61:top:var(--paper-hi):var(--night)}}
+  <div class="wrap">
+    <div class="sec-head"><h2 class="hand" id="ytTitleH">Your turn</h2>{{RULE}}</div>
+    <div class="yt-grid">
+      <article class="yt-card">
+        <h3>Got through something?</h3>
+        <p>Tell me about the hard thing and the thing you did to get through it. Voice memo or text, 60 seconds is plenty, no name needed. A human reads everything. Some will get published, only ever with your say-so.</p>
+        <a class="btn btn--paper" href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Leave it here {{ARROW}}</a>
+      </article>
+      <article class="yt-card">
+        <h3>In it right now?</h3>
+        <p>Tell me what you’re carrying. I’ll write back with one story or practice that might fit. Not a bot, not a diagnosis, not a subscription. Just me, reading.</p>
+        <a class="btn btn--ghost" href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Ask for a story {{ARROW}}</a>
+      </article>
+    </div>
+    <div class="yt-mail">
+      <p>The form is coming. Until it's here, email works the way email always has.</p>
+      <a class="textlink" href="mailto:brandonmkaufer@gmail.com?subject=No%20biggie%2C%20here%27s%20my%20story">Email me your story {{ARROW}}</a>
+      <p class="yt-small">Button not opening anything? Write to <span class="sel">brandonmkaufer@gmail.com</span></p>
+      <p class="yt-small">Everything lands with one person. Nothing gets published, quoted, or shared without your explicit yes.</p>
+    </div>
+    <p class="yt-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>
   </div>
 </section>
 </main>
@@ -120,16 +105,16 @@
     <div class="wrap pg-hero-in">
       <div class="pg-copy">
         <p class="eyebrow"><b>The stories</b>{{RULE}}</p>
-        <h1 class="pg-h1" id="stTitle"><span>Real people.</span><span>Real things.</span></h1>
-        <p class="pg-lede">Each entry pairs one person's story with the specific thing that helped them carry it. Read them one at a time, or open the book and turn the pages.</p>
+        <h1 class="pg-h1" id="stTitle"><span>The</span><span>stories.</span></h1>
+        <p class="pg-lede">Each entry pairs one person’s story with the specific thing that helped them.</p>
         <div class="fp-row"><a class="btn btn--ink" href="#book">Open the book {{ARROW}}</a></div>
       </div>
-      <figure class="pg-art">{{LIB:walker}}<p class="note" aria-hidden="true">One page<br>at a time.{{SCRIB}}</p></figure>
+      <figure class="pg-art">{{LIB:walker}}</figure>
     </div>
   </section>
   <section class="pg-list" aria-label="All stories">
     <div class="wrap">
-      <div class="legend" aria-hidden="true"><span class="lg-dark">The story</span><span class="lg-light">What helped</span></div>
+      <div class="legend" aria-hidden="true"><span class="lg-dark">The story</span><span class="lg-light">The practice</span></div>
       <div class="slist" id="storyList"></div>
     </div>
   </section>
@@ -139,34 +124,20 @@
   <section class="ab-hero" aria-labelledby="abTitle">
     <div class="wrap ab-hero-in">
       <div class="ab-copy">
-        <p class="eyebrow"><b>About the project</b>{{RULE}}</p>
+        <p class="eyebrow"><b>What is this?</b>{{RULE}}</p>
         <h1 class="ab-h1" id="abTitle">No Biggie, I’m Fine is for people who <em>push it down and power through.</em></h1>
         <p class="ab-lead">It’s a collection of real stories from people who found their own ways to carry hard things. Each entry pairs one person’s story with the specific thing that helped them. Some of those practices are ancient. Some were invented on a Tuesday afternoon out of desperation. None of them are the advice you’ve already ignored.</p>
       </div>
-      <figure class="ab-art">{{ART:practices}}<p class="note" aria-hidden="true">Still<br>here.{{SCRIB}}</p></figure>
+      <figure class="ab-art">{{ART:practices}}</figure>
     </div>
   </section>
 
-  <section class="ab-how" aria-labelledby="howTitle">
-    <div class="wrap">
-      <div class="sec-head"><h2 class="hand" id="howTitle">How every entry works</h2>{{RULE}}</div>
-      <div class="pair-cards">
-        <article class="pc-story"><span class="pc-n">01</span><h3>The story</h3><p>One person, one hard thing, told the way they’d tell a friend. Always printed on black.</p></article>
-        <span class="pc-plus" aria-hidden="true">+</span>
-        <article class="pc-prac"><span class="pc-n">02</span><h3>What helped</h3><p>The specific thing that got them through, written so you could try it tomorrow. Always on white.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="ab-cta band dark" aria-labelledby="ctaTitle">
-    {{TEAR:151:top:var(--paper-hi):var(--night)}}
-    <div class="wrap ab-cta-in">
-      <div>
-        <h2 class="ab-cta-h" id="ctaTitle"><span>Start</span><span>anywhere.</span></h2>
-        <div class="fp-row"><a class="btn btn--paper" href="#book">Open the book {{ARROW}}</a><a class="btn btn--ghost" href="#stories">Browse the stories</a></div>
-        <p class="care">If you’re in crisis or thinking about hurting yourself, reach out now. In the US, call or text 988. Elsewhere, contact your local emergency number.</p>
-      </div>
-      <figure class="ab-cta-art">{{ART:about dup}}</figure>
+  <section class="ab-body" aria-label="About the project">
+    <div class="wrap ab-body-in">
+      <p>I'm currently collecting stories and practices and I'd love to hear from you. What I’m looking for is a moment you were in the middle of something hard, and something you did that helped you carry it. It doesn’t need a name or a happy ending. The only requirement is that it has to be real. What worked for you might just work for a lot more people.</p>
+      <p class="ab-quiet">The hard thing can be anything, especially the losses the world doesn’t gather around you for. A job you loved and felt stupid for caring about. A friendship that ended without a fight. The enormous ones count too. A child, a country, a diagnosis, a version of yourself you’ll never get back.</p>
+      <p>I spent most of my life saying <em>no biggie, I’m fine</em>. This is my attempt to build the thing I wish I’d had. Proof I wasn’t the only one, and a few tricks to help me move through it. I’d be honored to hear your story.</p>
+      <p class="ab-last">Stories will start getting published once I have enough.</p>
     </div>
   </section>
 </div>
@@ -181,17 +152,7 @@
         <li><a href="#about">About</a></li>
       </ul>
     </nav>
-    <div class="socials">
-      <button type="button" data-soon="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></button>
-      <button type="button" data-soon="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3h3c.3 2.2 1.6 3.6 3.8 3.9v3c-1.5 0-2.8-.4-3.9-1.1v6.4c0 3.3-2.6 5.8-5.8 5.8S4.8 18.5 4.8 15.3s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.1-.9-.1-1.5 0-2.7 1.2-2.7 2.7S9.1 18 10.6 18s2.9-1.2 2.9-2.7V3z" fill="currentColor"/></svg></button>
-      <button type="button" data-soon="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor"/><path d="M10 8.6v6.8l5.8-3.4z" fill="var(--paper)"/></svg></button>
-    </div>
-    <p class="copy">© <span class="yr">2026</span> No Biggie, I'm Fine. &nbsp;All rights reserved.</p>
-    <div class="legal">
-      <button type="button" data-soon="Privacy">Privacy</button>
-      <button type="button" data-soon="Terms">Terms</button>
-      <button type="button" data-soon="Contact">Contact</button>
-    </div>
+    <p class="copy">A project by Brandon Kaufer · <a href="https://www.instagram.com/popsywolf/" target="_blank" rel="noopener">Popsy Wolf Studios</a> © <span class="yr">2026</span> · Every story belongs to its teller</p>
   </div>
 </footer>
 
@@ -210,15 +171,8 @@
     <ul class="s-list" id="sList"></ul>
     <hr class="side-rule">
     <div class="side-foot">
-      <p class="note">Good things<br>ahead.{{SCRIB}}</p>
-      <div class="side-social">
-        <button type="button" data-soon="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></button>
-        <button type="button" data-soon="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3h3c.3 2.2 1.6 3.6 3.8 3.9v3c-1.5 0-2.8-.4-3.9-1.1v6.4c0 3.3-2.6 5.8-5.8 5.8S4.8 18.5 4.8 15.3s2.6-5.8 5.8-5.8c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.1-.9-.1-1.5 0-2.7 1.2-2.7 2.7S9.1 18 10.6 18s2.9-1.2 2.9-2.7V3z" fill="currentColor"/></svg></button>
-        <button type="button" data-soon="YouTube" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="4.5" width="21" height="15" rx="4.5" fill="currentColor"/><path d="M10 8.6v6.8l5.8-3.4z" fill="var(--night)"/></svg></button>
-      </div>
       <hr class="side-rule">
-      <div class="side-legal"><button type="button" data-soon="Privacy">Privacy</button><button type="button" data-soon="Terms">Terms</button><button type="button" data-soon="Contact">Contact</button></div>
-      <p class="side-copy">© <span class="yr">2026</span> No Biggie,<br>I'm Fine.<br>All rights reserved.</p>
+      <p class="side-copy">A project by Brandon Kaufer ·<br><a href="https://www.instagram.com/popsywolf/" target="_blank" rel="noopener">Popsy Wolf Studios</a><br>© <span class="yr">2026</span> · Every story belongs to its teller</p>
     </div>
   </aside>
 
@@ -259,6 +213,31 @@
       </div>
     </section>
 
+<section class="yt band dark" aria-labelledby="ytTitleS">
+  {{TEAR:83:top:var(--paper-hi):var(--night)}}
+  <div class="wrap">
+    <div class="sec-head"><h2 class="hand" id="ytTitleS">Your turn</h2>{{RULE}}</div>
+    <div class="yt-grid">
+      <article class="yt-card">
+        <h3>Got through something?</h3>
+        <p>Tell me about the hard thing and the thing you did to get through it. Voice memo or text, 60 seconds is plenty, no name needed. A human reads everything. Some will get published, only ever with your say-so.</p>
+        <a class="btn btn--paper" href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Leave it here {{ARROW}}</a>
+      </article>
+      <article class="yt-card">
+        <h3>In it right now?</h3>
+        <p>Tell me what you’re carrying. I’ll write back with one story or practice that might fit. Not a bot, not a diagnosis, not a subscription. Just me, reading.</p>
+        <a class="btn btn--ghost" href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Ask for a story {{ARROW}}</a>
+      </article>
+    </div>
+    <div class="yt-mail">
+      <p>The form is coming. Until it's here, email works the way email always has.</p>
+      <a class="textlink" href="mailto:brandonmkaufer@gmail.com?subject=No%20biggie%2C%20here%27s%20my%20story">Email me your story {{ARROW}}</a>
+      <p class="yt-small">Button not opening anything? Write to <span class="sel">brandonmkaufer@gmail.com</span></p>
+      <p class="yt-small">Everything lands with one person. Nothing gets published, quoted, or shared without your explicit yes.</p>
+    </div>
+    <p class="yt-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>
+  </div>
+</section>
     <footer class="foot s-foot paperband band">
       {{TEAR:89:top:var(--paper-hi):var(--paper)}}
       <div class="sw foot-in">
@@ -270,8 +249,7 @@
             <li><a href="#about">About</a></li>
           </ul>
         </nav>
-        <p class="copy">© <span class="yr">2026</span> No Biggie, I'm Fine. &nbsp;All rights reserved.</p>
-        <div class="legal"><button type="button" data-soon="Privacy">Privacy</button><button type="button" data-soon="Terms">Terms</button><button type="button" data-soon="Contact">Contact</button></div>
+        <p class="copy">A project by Brandon Kaufer · <a href="https://www.instagram.com/popsywolf/" target="_blank" rel="noopener">Popsy Wolf Studios</a> © <span class="yr">2026</span> · Every story belongs to its teller</p>
       </div>
     </footer>
   </div>
