@@ -15,7 +15,8 @@ SRC = Path(__file__).resolve().parent
 ROOT = SRC.parent
 A = json.load(open(SRC / 'art' / 'home.json'))
 A.update(json.load(open(SRC / 'art' / 'story.json')))
-LIB = ['stuck_hero','panel1','panel2','panel3','walker','i_boots','i_nbook','i_mug','i_mtnsun','i_phones','i_cat','thumb1','thumb5','peek','ico_mtn','ico_sun','ico_flw','ico_book','card4']
+A.update(json.load(open(SRC / 'art' / 'scenes.json')))
+LIB = ['stuck_hero','panel1','panel2','panel3','walker','i_boots','i_nbook','i_mug','i_mtnsun','i_phones','i_cat','thumb1','thumb5','peek','ico_mtn','ico_sun','ico_flw','ico_book','card4','scene1','scene2','scene3','scene4','scene5','scene6']
 FD = SRC / 'fonts'
 
 def b64(path):
@@ -157,7 +158,7 @@ for n in LIB:
     back = rain_group(11, 'M175 172 L415 166 L448 346 L118 346 Z', (110, 480), 'rainclip2', 44) if n == 'stuck_hero' else ''
     lib[n] = art(n, back=back)
 src = src.replace('/*ARTLIB*/', 'window.__ARTLIB=' + json.dumps(lib, separators=(',',':')).replace('</', '<\\/') + ';')
-src = src.replace('/*APP*/', open(SRC / 'app.js').read().replace('/*BOARD*/', open(SRC / 'board.js').read()))
+src = src.replace('/*APP*/', open(SRC / 'app.js').read())
 src = src.replace('{{ARROW}}', ARROW).replace('{{RULE}}', RULE).replace('{{SCRIB}}', SCRIBBLE)
 
 def art_sub(m):

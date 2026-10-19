@@ -32,7 +32,15 @@ var STORIES = [
      {text:'One sentence per plate. Keep going until the stack is gone or something in you goes quiet.'},
      {text:'Sweep up. Don’t skip this part. The sweeping is the second half of the ritual. And throw that shit away.'}
    ],
-   after:'If the rage feels bigger than a stack of plates, that’s information too.'}
+   after:'If the rage feels bigger than a stack of plates, that’s information too.',
+   scenes:[
+     {after:0, art:'scene1', cap:'My grandma called. She couldn’t find my dad.'},
+     {after:1, art:'scene2', cap:'“He’s here.”'},
+     {after:2, art:'scene3', cap:'“No biggie, I’m fine” became my go-to response.'},
+     {after:3, art:'scene4', cap:'Go and cry in the fucking shower.'},
+     {after:4, art:'scene5', cap:'On the first plate I wrote HE WAS CHOOSING TO ABANDON US.'},
+     {after:5, art:'scene6', cap:'The dollar store knows me now.'}
+   ]}
 ];
 var BY = {}; STORIES.forEach(function(s){ BY[s.id] = s; });
 
@@ -66,7 +74,7 @@ function toast(msg){
   var t = $('#toast'); t.textContent = msg; t.classList.add('on');
   clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove('on'); }, 2600);
 }
-/*BOARD*/
+function sceneFig(sc){ return '<figure class="scene">'+artHTML(sc.art, {label:false})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>'; }
 function scrollTop(){ try{ window.scrollTo({top:0, left:0, behavior:'instant'}); }catch(e){ window.scrollTo(0,0); } }
 function practiceOf(s){ return s.primary || s.practices[0]; }
 
@@ -108,15 +116,15 @@ function renderStory(id){
   $('#sBook').setAttribute('href', '#book-' + s.id);
   $('#sArt').innerHTML = artHTML(s.art, {anim:true, label:true});
   var text = '';
-  if(s.paras && s.paras.length) text = s.paras.map(function(p){ return '<p>'+esc(p)+'</p>'; }).join('');
+  if(s.paras && s.paras.length) text = s.paras.map(function(p, i){
+    var sc = (s.scenes || []).filter(function(x){ return x.after === i; })[0];
+    return '<p>'+esc(p)+'</p>' + (sc ? sceneFig(sc) : '');
+  }).join('');
   else if(s.pending) text = '<p class="pending">Brandon’s full story is being moved over from <a href="'+esc(s.pending)+'" target="_blank" rel="noopener">nobiggieimfine.com</a>. Until then, you can read it there.</p>';
   $('#sText').innerHTML = text;
   var side = '';
   var care = s.care ? '<div class="s-aside"><p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p></div>' : '';
-  if(BOARDS[s.id]){
-    if(!document.getElementById('sk1')) document.body.insertAdjacentHTML('beforeend', SKETCH_DEFS);
-    side = storyboardHTML(s.id); text += care;
-  } else if(s.panels){
+  if(s.panels){
     side = s.panels.map(function(p){
       return '<figure class="panel">'+artHTML(p.art)+'<span class="pnote" style="left:'+p.x+'%;top:'+p.y+'%">'+esc(p.note)+'</span></figure>';
     }).join('');
@@ -124,12 +132,12 @@ function renderStory(id){
     side = '<div class="s-aside">'+(s.note ? '<p class="note">'+esc(s.note)+'</p>' : '')+
       (s.care ? '<p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '')+'</div>';
   }
-  if(!s.panels && !BOARDS[s.id]){ text += side; side = ''; }
+  if(!s.panels){ text += side; side = ''; }
   $('#sText').innerHTML = text;
   $('#sSide').innerHTML = side;
   $('#sSide').hidden = !side;
   $('#sGrid').classList.toggle('solo', !side);
-  $('#sGrid').classList.toggle('has-board', !!BOARDS[s.id]);
+  $('#sGrid').classList.toggle('has-scenes', !!(s.scenes && s.scenes.length));
   $('#pTitle').textContent = s.pTitle || 'What helped.';
   $('#pIntro').textContent = s.pIntro || '';
   $('#pArt').innerHTML = artHTML(s.pArt);
@@ -249,9 +257,19 @@ function buildBook(L){
       '<div class="bo"><p class="bo-kicker">Story '+s.num+'</p><div class="bo-art">'+artHTML(s.art, {fit:true})+'</div>'+
       '<h2 class="bo-title">'+esc(titleDot(s.title))+'</h2>'+(s.by ? '<p class="bo-by">By '+esc(s.by)+'</p>' : '')+
       '<p class="bo-deck">'+esc(s.deck || s.blurb)+'</p>'+(s.cw ? '<p class="bo-cw">'+esc(s.cw)+'</p>' : '')+'</div>'});
+    if(s.scenes && s.scenes.length && s.paras){
+      var start = 0;
+      s.scenes.slice().sort(function(a, b){ return a.after - b.after; }).forEach(function(sc){
+        paginateParas(s.paras.slice(start, sc.after + 1), 'bdark btext').forEach(function(h, i){ add({kind:'text', cls:'bdark btext', story:s, key:s.id+':text'+start+'-'+i, html:h}); });
+        add({kind:'scene', cls:'bdark bscene', story:s, key:s.id+':'+sc.art, html:'<figure class="bsc">'+artHTML(sc.art, {fit:true})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>'});
+        start = sc.after + 1;
+      });
+      if(start < s.paras.length) paginateParas(s.paras.slice(start), 'bdark btext').forEach(function(h, i){ add({kind:'text', cls:'bdark btext', story:s, key:s.id+':textend'+i, html:h}); });
+    } else {
     var tp = (s.paras && s.paras.length) ? paginateParas(s.paras, 'bdark btext') :
       ['<p>Brandon’s full story is being moved over from nobiggieimfine.com. Until then, you can read it there.</p><p><a href="'+esc(s.pending || 'https://nobiggieimfine.com/')+'" target="_blank" rel="noopener">Read “'+esc(s.title)+'” on nobiggieimfine.com '+ARROW+'</a></p>'];
     tp.forEach(function(h, i){ add({kind:'text', cls:'bdark btext', story:s, key:s.id+':text'+i, html:h}); });
+    }
     if(s.panels){
       add({kind:'panels', cls:'bdark panels', story:s, key:s.id+':panels', html:'<div class="bpanels">'+s.panels.map(function(p){
         return '<figure class="panel">'+artHTML(p.art)+'<span class="pnote" style="left:'+p.x+'%;top:'+p.y+'%">'+esc(p.note)+'</span></figure>';
@@ -282,7 +300,7 @@ function buildBook(L){
 function pageHTML(i, side){
   var p = BK.pages[i]; if(!p) return '';
   var head = '', num = '';
-  if(p.kind === 'text' || p.kind === 'practice' || p.kind === 'panels'){
+  if(p.kind === 'text' || p.kind === 'practice' || p.kind === 'panels' || p.kind === 'scene'){
     var left = side === 'l';
     head = '<div class="bp-head"><span>'+(left ? 'No Biggie, I’m Fine' : esc(p.story.title))+'</span></div>';
     num = '<div class="bp-num">'+i+'</div>';
