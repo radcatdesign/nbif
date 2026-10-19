@@ -66,6 +66,7 @@ function toast(msg){
   var t = $('#toast'); t.textContent = msg; t.classList.add('on');
   clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove('on'); }, 2600);
 }
+/*BOARD*/
 function scrollTop(){ try{ window.scrollTo({top:0, left:0, behavior:'instant'}); }catch(e){ window.scrollTo(0,0); } }
 function practiceOf(s){ return s.primary || s.practices[0]; }
 
@@ -100,7 +101,8 @@ function renderStory(id){
   }).join('');
   var cur = $('#sList [aria-current]'); if(cur && window.innerWidth <= 900){ $('#sList').scrollLeft = cur.parentNode.offsetLeft - 16; }
   $('#sNum').textContent = 'Story ' + s.num;
-  $('#sTitle').textContent = titleDot(s.title);
+  var tw = titleDot(s.title).split(' '), last = tw.pop();
+  $('#sTitle').innerHTML = (tw.length ? esc(tw.join(' ')) + ' ' : '') + '<em>' + esc(last) + '</em>';
   $('#sMeta').innerHTML = (s.by ? '<p class="s-by">By '+esc(s.by)+'</p>' : '') + (s.cw ? '<p class="s-cw">'+esc(s.cw)+'</p>' : '');
   $('#sDeck').textContent = s.deck || '';
   $('#sBook').setAttribute('href', '#book-' + s.id);
@@ -110,7 +112,11 @@ function renderStory(id){
   else if(s.pending) text = '<p class="pending">Brandon’s full story is being moved over from <a href="'+esc(s.pending)+'" target="_blank" rel="noopener">nobiggieimfine.com</a>. Until then, you can read it there.</p>';
   $('#sText').innerHTML = text;
   var side = '';
-  if(s.panels){
+  var care = s.care ? '<div class="s-aside"><p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p></div>' : '';
+  if(BOARDS[s.id]){
+    if(!document.getElementById('sk1')) document.body.insertAdjacentHTML('beforeend', SKETCH_DEFS);
+    side = storyboardHTML(s.id); text += care;
+  } else if(s.panels){
     side = s.panels.map(function(p){
       return '<figure class="panel">'+artHTML(p.art)+'<span class="pnote" style="left:'+p.x+'%;top:'+p.y+'%">'+esc(p.note)+'</span></figure>';
     }).join('');
@@ -118,11 +124,12 @@ function renderStory(id){
     side = '<div class="s-aside">'+(s.note ? '<p class="note">'+esc(s.note)+'</p>' : '')+
       (s.care ? '<p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '')+'</div>';
   }
-  if(!s.panels){ text += side; side = ''; }
+  if(!s.panels && !BOARDS[s.id]){ text += side; side = ''; }
   $('#sText').innerHTML = text;
   $('#sSide').innerHTML = side;
   $('#sSide').hidden = !side;
   $('#sGrid').classList.toggle('solo', !side);
+  $('#sGrid').classList.toggle('has-board', !!BOARDS[s.id]);
   $('#pTitle').textContent = s.pTitle || 'What helped.';
   $('#pIntro').textContent = s.pIntro || '';
   $('#pArt').innerHTML = artHTML(s.pArt);
@@ -431,7 +438,7 @@ function show(view){
   homeV.hidden = view !== 'home'; storiesV.hidden = view !== 'stories'; aboutV.hidden = view !== 'about';
   storyV.hidden = view !== 'story'; bookV.hidden = view !== 'book';
   var chrome = view === 'home' || view === 'stories' || view === 'about';
-  topH.hidden = !chrome; siteFoot.hidden = !chrome;
+  topH.hidden = !(chrome || view === 'story'); siteFoot.hidden = !chrome;
   document.body.classList.toggle('bk-open', view === 'book');
   $$('.top .nav a, #siteFoot .nav a').forEach(function(a){
     var on = (a.getAttribute('href') === '#stories' && view === 'stories') || (a.getAttribute('href') === '#about' && view === 'about');

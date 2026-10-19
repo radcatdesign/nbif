@@ -653,6 +653,58 @@ a:hover .arr,button:hover .arr{transform:translateX(4px)}
 .s-text .s-aside{justify-items:start;padding-top:1.2em;margin-top:.6em;border-top:1px dashed rgba(241,236,224,.3)}
 .s-text .s-aside .care{border:0;padding:0;max-width:62ch}
 
+/* ================= story page: centrepiece ================= */
+.sv{display:block}
+.sv .side{display:none}
+.s-top{padding-block:clamp(40px,5vw,80px) clamp(60px,7vw,110px)}
+.s-hero{display:flex;flex-direction:column;align-items:center;text-align:center}
+.s-head{display:flex;flex-direction:column;align-items:center;padding-bottom:0;max-width:980px}
+.s-head .eyebrow{justify-content:center;margin-bottom:0}
+.s-head .eyebrow .rule{display:none}
+.s-head h1{font-size:clamp(84px,14vw,220px)!important;line-height:.86!important;letter-spacing:-.035em!important;margin-top:clamp(14px,2vw,26px)}
+.s-head h1 em{font-style:italic}
+#sMeta{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:clamp(18px,2.4vw,30px)}
+.s-head .s-by{margin-top:0;font-size:12.5px}
+.s-head .s-cw{margin-top:0}
+.s-art{width:min(860px,100%);margin:clamp(20px,3vw,40px) auto 0}
+.s-art svg{max-height:none}
+.s-deck{margin:clamp(18px,2.4vw,30px) auto 0;max-width:40ch;font-size:clamp(14px,1.2vw,17px)}
+.s-head .fp-row{justify-content:center}
+.s-hero .s-head{order:1}
+.s-hero .s-art{order:2}
+.s-story{margin-top:clamp(50px,6vw,96px)}
+.s-grid.has-board{grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);gap:clamp(30px,5vw,80px)}
+.s-grid.has-board .s-text{max-width:60ch}
+.s-grid.has-board .s-side{position:sticky;top:20px;align-self:start}
+.board-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid rgba(241,236,224,.35);padding-bottom:10px;margin-bottom:16px}
+.board-h{font-family:var(--hand);text-transform:uppercase;font-size:clamp(24px,2.2vw,32px);line-height:1;transform:rotate(-3deg);transform-origin:left;display:inline-block;-webkit-text-stroke:.02em currentColor}
+.board-n{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--fog)}
+.board-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px}
+.frame{min-width:0}
+.fr-box{position:relative;border:1.5px solid rgba(241,236,224,.85);aspect-ratio:3/2;max-width:100%;overflow:hidden}
+.sb-svg{display:block;width:100%;height:100%}
+.sb-svg path,.sb-svg ellipse,.sb-svg circle{fill:none;stroke:var(--paper);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sb-svg .h{stroke-width:1.2;opacity:.7}
+.sb-svg .f{fill:var(--paper)}
+.sb-ghost{opacity:.32}
+.sb-text text{fill:var(--paper);font-family:var(--mono);font-size:10px;letter-spacing:.08em}
+.sb-text .sm{font-size:7.5px}
+.sb-text .big{font-family:var(--serif);font-size:26px;letter-spacing:-.01em}
+.sb-text .dim{opacity:.5}
+.sb-text .q{font-family:var(--serif);font-style:italic;font-size:36px;letter-spacing:-.01em}
+.sb-text .q.sm{font-size:19px}
+.sb-text .hd{font-family:var(--hand);font-size:22px}
+.sb-peek .p-lite{fill:var(--paper)}
+.fr-n{position:absolute;top:6px;left:7px;font-size:9.5px;letter-spacing:.12em;font-weight:500;background:var(--night);padding:1px 4px;font-variant-numeric:tabular-nums}
+.fr-cap{margin-top:8px;font-size:11px;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:var(--fog)}
+@media (max-width:900px){
+  .s-grid.has-board{grid-template-columns:minmax(0,1fr)}
+  .s-grid.has-board .s-side{position:static}
+}
+@media (max-width:480px){
+  .board-grid{grid-template-columns:minmax(0,1fr)}
+}
+
 /* ================= story mode: the book ================= */
 .bk[hidden]{display:none!important}
 body.bk-open{overflow:hidden}
@@ -1257,6 +1309,102 @@ function toast(msg){
   var t = $('#toast'); t.textContent = msg; t.classList.add('on');
   clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove('on'); }, 2600);
 }
+/* ================= storyboards: hand-drawn scenes, white line on black ================= */
+/* each scene is drawn in a 300 x 200 box. {peek} is replaced with the peeking creature */
+var BOARDS = {
+  plates: [
+    {cap:'My grandma called.', svg:
+      '<path d="M30 22h74v58H30zM67 22v58M30 51h74"/><circle cx="88" cy="36" r="7"/>' +
+      '<path d="M206 20h66v54h-66zM206 36h66"/>' +
+      '<path d="M8 152C80 148 220 153 292 149M22 152l-6 46M280 150l6 46"/>' +
+      '<path class="h" d="M40 160l-6 10M60 160l-6 10M80 160l-6 10M200 160l-6 10M220 160l-6 10M240 160l-6 10"/>' +
+      '<path d="M112 133l64-20c6-2 10 0 12 5l8 21c2 6-1 9-6 11l-64 19c-6 2-10 0-12-5l-8-21c-2-5 0-8 6-10z"/>' +
+      '<path class="h" d="M118 138l60-18 8 21-60 17z"/>' +
+      '<path d="M96 126q-7 11 0 24M86 120q-10 16 0 34M206 108q8 11 2 24M216 102q11 16 3 34"/>' +
+      '<text class="t" x="239" y="32" text-anchor="middle">OCT</text><text class="t big" x="239" y="62" text-anchor="middle">2016</text>' +
+      '<text class="t sm" x="152" y="144" text-anchor="middle" transform="rotate(-17 152 141)">GRANDMA</text>'},
+    {cap:'Calling hospitals and police stations.', svg:
+      '<path d="M40 26l132-4 6 164-132 4z"/>' +
+      '<path d="M56 30v-10M72 30v-10M88 30v-10M104 30v-10M120 30v-10M136 30v-10M152 30v-10"/>' +
+      '<text class="t" x="58" y="62">ST. MARY’S</text><text class="t" x="58" y="88">COUNTY GEN.</text><text class="t" x="58" y="114">PRECINCT 4</text>' +
+      '<text class="t" x="58" y="140">MERCY</text><text class="t dim" x="58" y="166">5TH ST. PD</text>' +
+      '<path d="M54 58c30-2 70-1 100-3M54 84c32-1 74 1 104-2M54 110c30 0 60-2 90-1"/>' +
+      '<path d="M50 134c10-14 66-14 72 0 4 12-58 16-72 4"/>' +
+      '<g transform="rotate(12 232 104)"><path d="M206 52h52c4 0 6 2 6 6v94c0 4-2 6-6 6h-52c-4 0-6-2-6-6V58c0-4 2-6 6-6z"/><path class="h" d="M210 64h44v76h-44z"/></g>' +
+      '<path d="M270 40q12 8 8 22M280 28q18 14 10 38"/>'},
+    {cap:'“He’s here.”', svg:
+      '<path d="M150 22c70 0 128 22 128 56s-58 56-128 56c-14 0-27-1-39-3L72 158l18-38C48 110 22 96 22 78c0-34 58-56 128-56z"/>' +
+      '<text class="q" x="150" y="94" text-anchor="middle">He’s here.</text>' +
+      '<g transform="rotate(-14 70 190)"><path d="M36 150h56c4 0 7 3 7 7v70H29v-70c0-4 3-7 7-7z"/><path class="h" d="M38 162h52v40H38z"/></g>' +
+      '<path d="M18 132q-8 10-2 22M8 126q-12 16-4 34"/>'},
+    {cap:'With the warmth of a meter maid.', svg:
+      '<path d="M0 0l112 70M300 0l-112 70M0 200l112-74M300 200l-112-74"/>' +
+      '<path d="M112 70h76v56h-76z"/><path d="M138 84h24v42h-24z"/><path d="M146 76h8M150 72v8"/>' +
+      '<path d="M40 25l20 13M240 25l-20 13M78 47l12 8M222 47l-12 8"/>' +
+      '<path d="M30 70v94M66 72v70M270 70v94M234 72v70"/>' +
+      '<path class="h" d="M70 200l58-74M230 200l-58-74M150 200v-74"/>' +
+      '<g transform="rotate(8 236 152)"><path d="M204 104h64v94h-64z"/><path d="M224 98h24v12h-24z"/><path class="h" d="M214 136h44M214 150h44M214 164h30"/>' +
+      '<text class="t sm" x="236" y="126" text-anchor="middle">NOTICE</text></g>'},
+    {cap:'“No biggie, I’m fine.”', svg:
+      '{peek:46,74,180,104}' +
+      '<path d="M10 178C90 175 210 180 290 176"/>' +
+      '<path d="M206 176l10-54h66l-10 54z"/><path d="M196 176h90"/>' +
+      '<path d="M26 176v-26h22v26M48 156q10 0 10 8t-10 8"/><path class="h" d="M32 142q-4-8 2-14M42 142q-4-8 2-14"/>' +
+      '<path d="M150 14c62 0 100 12 100 30s-38 30-100 30c-10 0-20-1-29-2l-26 18 8-22C76 64 52 56 52 44c0-18 36-30 98-30z"/>' +
+      '<text class="q sm" x="152" y="52" text-anchor="middle">No biggie, I’m fine.</text>'},
+    {cap:'A stack of ugly plates for six bucks and a Sharpie.', svg:
+      '<path d="M0 30h300M0 34h300"/><path class="h" d="M20 30V8h30v22M70 30V12h22v18M220 30V6h34v24"/>' +
+      '<path d="M40 166c0 12 140 12 140 0M40 156c0 12 140 12 140 0M40 146c0 12 140 12 140 0M40 136c0 12 140 12 140 0M40 126c0 12 140 12 140 0"/>' +
+      '<ellipse cx="110" cy="116" rx="70" ry="14"/><ellipse cx="110" cy="116" rx="40" ry="7"/>' +
+      '<path d="M40 116v50M180 116v50"/>' +
+      '<circle cx="168" cy="84" r="20"/><text class="big" x="168" y="93" text-anchor="middle">$6</text>' +
+      '<g transform="rotate(-32 246 132)"><path d="M206 124h70c4 0 6 3 6 8s-2 8-6 8h-70z"/><path d="M276 124h14l6 8-6 8h-14"/><path d="M206 124v16"/>' +
+      '<text class="t sm" x="238" y="135">SHARPIE</text></g>' +
+      '<path d="M10 186C90 182 210 188 290 184"/>'},
+    {cap:'As hard as I could against the wall.', svg:
+      '<path class="h" d="M0 30h300M0 60h300M0 90h300M0 120h300M0 150h300M0 180h300"/>' +
+      '<path class="h" d="M40 0v30M110 0v30M180 0v30M250 0v30M75 30v30M145 30v30M215 30v30M285 30v30M40 60v30M110 60v30M250 60v30M75 90v30M285 90v30M40 120v30M110 120v30M250 120v30M75 150v30M145 150v30M215 150v30M285 150v30M40 180v20M110 180v20M180 180v20M250 180v20"/>' +
+      '<path d="M178 92l-18-22M178 92l26-24M178 92l30 6M178 92l20 28M178 92l-6 34M178 92l-28 14"/>' +
+      '<path class="f" d="M130 52l22 4-6 18zM214 50l16 10-18 8zM236 104l-6 20-14-12zM192 138l14 14-20 4zM132 118l-14 16-6-18zM118 74l-16-6 10-12z"/>' +
+      '<path d="M146 76l64-10 10 52-66 10z"/>' +
+      '<text class="t sm" x="152" y="96" transform="rotate(-9 182 96)">HE WAS CHOOSING</text><text class="t sm" x="156" y="112" transform="rotate(-9 182 112)">TO ABANDON US</text>' +
+      '<path d="M14 112h66M24 128h52M8 96h48"/>'},
+    {cap:'I always have a few extra plates on hand.', svg:
+      '<path d="M20 74h170M20 78h170M34 78v14M176 78v14"/>' +
+      '<ellipse cx="62" cy="50" rx="18" ry="24"/><ellipse cx="62" cy="50" rx="9" ry="12"/>' +
+      '<ellipse cx="104" cy="50" rx="18" ry="24"/><ellipse cx="104" cy="50" rx="9" ry="12"/>' +
+      '<ellipse cx="146" cy="50" rx="18" ry="24"/><ellipse cx="146" cy="50" rx="9" ry="12"/>' +
+      '<path d="M10 178C90 175 210 180 290 176"/>' +
+      '<path d="M268 16l-62 140"/><path d="M190 146l32 10-14 26-36-10z"/><path class="h" d="M184 160l-6 14M194 162l-6 14M204 166l-6 14M214 168l-5 12"/>' +
+      '<path d="M40 176l4-28h44l10 28"/>' +
+      '<path class="f" d="M118 174l6-6 4 6zM134 176l4-8 6 8zM150 174l8-4 2 6zM106 176l3-5 5 4z"/>'}
+  ]
+};
+var SKETCH_DEFS = '<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>' +
+  '<filter id="sk1" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="2.6" xChannelSelector="R" yChannelSelector="G"/></filter>' +
+  '<filter id="sk2" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="9"/><feDisplacementMap in="SourceGraphic" scale="3.4" xChannelSelector="G" yChannelSelector="R"/></filter>' +
+  '</defs></svg>';
+function sceneSVG(scene){
+  var body = scene.svg.replace(/\{peek:([\d.]+),([\d.]+),([\d.]+),([\d.]+)\}/g, function(_, x, y, w, h){
+    var t = document.createElement('template'); t.innerHTML = artHTML('peek'); var src = t.content.firstElementChild;
+    if(!src) return '';
+    return '<svg x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" viewBox="'+src.getAttribute('viewBox')+'" preserveAspectRatio="xMidYMax meet" class="sb-peek">'+src.innerHTML+'</svg>';
+  });
+  var lines = body.replace(/<text[\s\S]*?<\/text>/g, ''), texts = (body.match(/<text[\s\S]*?<\/text>/g) || []).join('');
+  var peek = '';
+  lines = lines.replace(/<svg x=[\s\S]*?<\/svg>/g, function(m){ peek = m; return ''; });
+  return '<svg class="sb-svg" viewBox="0 0 300 200" aria-hidden="true" focusable="false">' +
+    '<g class="sb-ghost" filter="url(#sk2)">'+lines+'</g><g class="sb-lines" filter="url(#sk1)">'+lines+'</g>'+peek+'<g class="sb-text">'+texts+'</g></svg>';
+}
+function storyboardHTML(id){
+  var b = BOARDS[id]; if(!b) return '';
+  return '<section class="board" aria-label="Storyboard">' +
+    '<div class="board-head"><span class="board-h">Storyboard</span><span class="board-n">'+b.length+' frames</span></div>' +
+    '<ol class="board-grid">' + b.map(function(sc, i){
+      return '<li class="frame"><div class="fr-box">'+sceneSVG(sc)+'<span class="fr-n">'+(i<9?'0':'')+(i+1)+'</span></div><p class="fr-cap">'+esc(sc.cap)+'</p></li>';
+    }).join('') + '</ol></section>';
+}
+
 function scrollTop(){ try{ window.scrollTo({top:0, left:0, behavior:'instant'}); }catch(e){ window.scrollTo(0,0); } }
 function practiceOf(s){ return s.primary || s.practices[0]; }
 
@@ -1291,7 +1439,8 @@ function renderStory(id){
   }).join('');
   var cur = $('#sList [aria-current]'); if(cur && window.innerWidth <= 900){ $('#sList').scrollLeft = cur.parentNode.offsetLeft - 16; }
   $('#sNum').textContent = 'Story ' + s.num;
-  $('#sTitle').textContent = titleDot(s.title);
+  var tw = titleDot(s.title).split(' '), last = tw.pop();
+  $('#sTitle').innerHTML = (tw.length ? esc(tw.join(' ')) + ' ' : '') + '<em>' + esc(last) + '</em>';
   $('#sMeta').innerHTML = (s.by ? '<p class="s-by">By '+esc(s.by)+'</p>' : '') + (s.cw ? '<p class="s-cw">'+esc(s.cw)+'</p>' : '');
   $('#sDeck').textContent = s.deck || '';
   $('#sBook').setAttribute('href', '#book-' + s.id);
@@ -1301,7 +1450,11 @@ function renderStory(id){
   else if(s.pending) text = '<p class="pending">Brandon’s full story is being moved over from <a href="'+esc(s.pending)+'" target="_blank" rel="noopener">nobiggieimfine.com</a>. Until then, you can read it there.</p>';
   $('#sText').innerHTML = text;
   var side = '';
-  if(s.panels){
+  var care = s.care ? '<div class="s-aside"><p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p></div>' : '';
+  if(BOARDS[s.id]){
+    if(!document.getElementById('sk1')) document.body.insertAdjacentHTML('beforeend', SKETCH_DEFS);
+    side = storyboardHTML(s.id); text += care;
+  } else if(s.panels){
     side = s.panels.map(function(p){
       return '<figure class="panel">'+artHTML(p.art)+'<span class="pnote" style="left:'+p.x+'%;top:'+p.y+'%">'+esc(p.note)+'</span></figure>';
     }).join('');
@@ -1309,11 +1462,12 @@ function renderStory(id){
     side = '<div class="s-aside">'+(s.note ? '<p class="note">'+esc(s.note)+'</p>' : '')+
       (s.care ? '<p class="care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '')+'</div>';
   }
-  if(!s.panels){ text += side; side = ''; }
+  if(!s.panels && !BOARDS[s.id]){ text += side; side = ''; }
   $('#sText').innerHTML = text;
   $('#sSide').innerHTML = side;
   $('#sSide').hidden = !side;
   $('#sGrid').classList.toggle('solo', !side);
+  $('#sGrid').classList.toggle('has-board', !!BOARDS[s.id]);
   $('#pTitle').textContent = s.pTitle || 'What helped.';
   $('#pIntro').textContent = s.pIntro || '';
   $('#pArt').innerHTML = artHTML(s.pArt);
@@ -1622,7 +1776,7 @@ function show(view){
   homeV.hidden = view !== 'home'; storiesV.hidden = view !== 'stories'; aboutV.hidden = view !== 'about';
   storyV.hidden = view !== 'story'; bookV.hidden = view !== 'book';
   var chrome = view === 'home' || view === 'stories' || view === 'about';
-  topH.hidden = !chrome; siteFoot.hidden = !chrome;
+  topH.hidden = !(chrome || view === 'story'); siteFoot.hidden = !chrome;
   document.body.classList.toggle('bk-open', view === 'book');
   $$('.top .nav a, #siteFoot .nav a').forEach(function(a){
     var on = (a.getAttribute('href') === '#stories' && view === 'stories') || (a.getAttribute('href') === '#about' && view === 'about');

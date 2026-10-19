@@ -157,7 +157,7 @@ for n in LIB:
     back = rain_group(11, 'M175 172 L415 166 L448 346 L118 346 Z', (110, 480), 'rainclip2', 44) if n == 'stuck_hero' else ''
     lib[n] = art(n, back=back)
 src = src.replace('/*ARTLIB*/', 'window.__ARTLIB=' + json.dumps(lib, separators=(',',':')).replace('</', '<\\/') + ';')
-src = src.replace('/*APP*/', open(SRC / 'app.js').read())
+src = src.replace('/*APP*/', open(SRC / 'app.js').read().replace('/*BOARD*/', open(SRC / 'board.js').read()))
 src = src.replace('{{ARROW}}', ARROW).replace('{{RULE}}', RULE).replace('{{SCRIB}}', SCRIBBLE)
 
 def art_sub(m):
