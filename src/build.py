@@ -16,7 +16,8 @@ ROOT = SRC.parent
 A = json.load(open(SRC / 'art' / 'home.json'))
 A.update(json.load(open(SRC / 'art' / 'story.json')))
 A.update(json.load(open(SRC / 'art' / 'scenes.json')))
-LIB = ['stuck_hero','panel1','panel2','panel3','walker','i_boots','i_nbook','i_mug','i_mtnsun','i_phones','i_cat','thumb1','thumb5','peek','ico_mtn','ico_sun','ico_flw','ico_book','card4','scene1','scene2','scene3','scene4','scene5','scene6']
+A.update(json.load(open(SRC / 'art' / 'practice.json')))
+LIB = ['stuck_hero','panel1','panel2','panel3','walker','i_boots','i_nbook','i_mug','i_mtnsun','i_phones','i_cat','thumb1','thumb5','peek','ico_mtn','ico_sun','ico_flw','ico_book','card4','scene1','scene2','scene3','scene4','scene5','scene6','need_plates','need_sharpie','need_glasses','need_shoes','need_zone','need_broom','step1','step2','step3','step4','step5','step6']
 FD = SRC / 'fonts'
 
 def b64(path):

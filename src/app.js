@@ -22,15 +22,23 @@ var STORIES = [
     'My dad is still alive. We still mostly don’t talk about that October. But the dollar store knows me now, and I always have a few extra plates on hand.'
    ],
    pTitle:'The practice, if you want to try it',
+   kit:[
+     {art:'need_plates', name:'Cheap plates or glasses', note:'Dollar store, thrift store, the uglier the better.'},
+     {art:'need_sharpie', name:'A Sharpie', note:'For the sentence you’re not allowed to say out loud.'},
+     {art:'need_zone', name:'A smash zone', note:'A metal trash can, a garage floor, a wall with a tarp.'},
+     {art:'need_glasses', name:'Safety glasses', note:'I was fine, but I was also probably being an idiot.'},
+     {art:'need_shoes', name:'Closed-toe shoes', note:'Shards go everywhere.'},
+     {art:'need_broom', name:'A broom', note:'The sweeping is the second half of the ritual.'}
+   ],
    steps:true,
    primary:{title:'Smash the plates', text:'Write the sentence you’re not allowed to say out loud. Read it out loud. Once. Then throw.'},
    practices:[
-     {text:'Buy cheap plates or glasses. Dollar store, thrift store, the uglier the better. Never your own good ones — the point is to lose things you don’t love.'},
-     {text:'Take a Sharpie and write the sentence you’re not allowed to say out loud. Full sentences, not single words. “He was choosing to abandon us” breaks better than “abandonment.”'},
-     {text:'Pick your smash zone. A metal trash can, a garage floor, a wall with a tarp. And find some safety glasses and closed-toe shoes. I was fine, but I was also probably being an idiot.'},
-     {text:'Read the sentence out loud. Once. Then throw.'},
-     {text:'One sentence per plate. Keep going until the stack is gone or something in you goes quiet.'},
-     {text:'Sweep up. Don’t skip this part. The sweeping is the second half of the ritual. And throw that shit away.'}
+     {title:'Buy the plates', art:'step1', text:'Buy cheap plates or glasses. Dollar store, thrift store, the uglier the better. Never your own good ones — the point is to lose things you don’t love.'},
+     {title:'Write the sentence', art:'step2', text:'Take a Sharpie and write the sentence you’re not allowed to say out loud. Full sentences, not single words. “He was choosing to abandon us” breaks better than “abandonment.”'},
+     {title:'Pick your smash zone', art:'step3', text:'Pick your smash zone. A metal trash can, a garage floor, a wall with a tarp. And find some safety glasses and closed-toe shoes. I was fine, but I was also probably being an idiot.'},
+     {title:'Say it, then throw', art:'step4', text:'Read the sentence out loud. Once. Then throw.'},
+     {title:'One sentence per plate', art:'step5', text:'One sentence per plate. Keep going until the stack is gone or something in you goes quiet.'},
+     {title:'Sweep up', art:'step6', text:'Sweep up. Don’t skip this part. The sweeping is the second half of the ritual. And throw that shit away.'}
    ],
    after:'If the rage feels bigger than a stack of plates, that’s information too.',
    scenes:[
@@ -73,6 +81,13 @@ var toastT;
 function toast(msg){
   var t = $('#toast'); t.textContent = msg; t.classList.add('on');
   clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove('on'); }, 2600);
+}
+function recipeHTML(s){
+  if(!s.kit) return '';
+  return '<div class="rc-need"><div class="rc-h"><h3>What you\u2019ll need</h3><span>'+s.kit.length+' things</span></div><ul class="rc-kit">'+
+    s.kit.map(function(k){ return '<li><div class="rk-art">'+artHTML(k.art, {fit:true})+'</div><h4>'+esc(k.name)+'</h4><p>'+esc(k.note)+'</p></li>'; }).join('')+'</ul></div>'+
+    '<div class="rc-steps"><div class="rc-h"><h3>The steps</h3><span>'+s.practices.length+' steps</span></div><ol class="rc-list">'+
+    s.practices.map(function(p, i){ return '<li class="rs"><div class="rs-art">'+artHTML(p.art, {fit:true})+'</div><div class="rs-copy"><span class="rs-n">'+(i+1)+'</span><h4>'+esc(p.title)+'</h4><p>'+esc(p.text)+'</p></div></li>'; }).join('')+'</ol></div>';
 }
 function sceneFig(sc){ return '<figure class="scene">'+artHTML(sc.art, {label:false})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>'; }
 function scrollTop(){ try{ window.scrollTo({top:0, left:0, behavior:'instant'}); }catch(e){ window.scrollTo(0,0); } }
@@ -141,7 +156,9 @@ function renderStory(id){
   $('#pTitle').textContent = s.pTitle || 'What helped.';
   $('#pIntro').textContent = s.pIntro || '';
   $('#pArt').innerHTML = artHTML(s.pArt);
-  var grid = $('#pGrid');
+  $('#pRecipe').innerHTML = recipeHTML(s);
+  $('#pRecipe').hidden = !s.kit;
+  var grid = $('#pGrid'); grid.hidden = !!s.kit;
   grid.classList.toggle('steps-only', !!s.steps || !s.practices.some(function(p){ return p.icon; }));
   grid.innerHTML = s.practices.map(function(p, i){
     return '<li><span class="p-num">'+(i<9?'0':'')+(i+1)+'</span>'+(p.icon ? '<div class="p-icon">'+artHTML(p.icon)+'</div>' : '')+(p.title ? '<h3>'+esc(p.title)+'</h3>' : '')+'<p>'+esc(p.text)+'</p></li>';
@@ -225,8 +242,14 @@ function contentsBlocks(nums){
 }
 function practiceBlocks(s){
   var b = ['<div class="pp-head"><p class="pp-label">What helped</p><h3 class="pp-title">'+esc(s.pTitle || 'What helped.')+'</h3>'+(s.pIntro ? '<p class="pp-intro">'+esc(s.pIntro)+'</p>' : '')+'</div>'];
+  if(s.kit){
+    b.push('<p class="pp-sub">What you\u2019ll need</p>');
+    b.push('<ul class="pp-kit">'+s.kit.map(function(k){ return '<li><span class="pk-art">'+artHTML(k.art, {fit:true})+'</span><span>'+esc(k.name)+'</span></li>'; }).join('')+'</ul>');
+    b.push('<p class="pp-sub">The steps</p>');
+  }
   s.practices.forEach(function(p, i){
-    if(s.steps) b.push('<div class="pp-item pp-step"><span class="pi-n">'+(i+1)+'</span>'+(p.title ? '<h4>'+esc(p.title)+'</h4>' : '')+'<p>'+esc(p.text)+'</p></div>');
+    if(s.kit) b.push('<div class="pp-rstep"><span class="pr-art">'+artHTML(p.art, {fit:true})+'</span><div><h4><b>'+(i+1)+'</b> '+esc(p.title)+'</h4><p>'+esc(p.text)+'</p></div></div>');
+    else if(s.steps) b.push('<div class="pp-item pp-step"><span class="pi-n">'+(i+1)+'</span>'+(p.title ? '<h4>'+esc(p.title)+'</h4>' : '')+'<p>'+esc(p.text)+'</p></div>');
     else b.push('<div class="pp-item'+(p.icon ? '' : ' noic')+'">'+(p.icon ? '<span class="pi-ic">'+artHTML(p.icon, {fit:true})+'</span>' : '')+'<h4>'+esc(p.title)+'</h4><p>'+esc(p.text)+'</p></div>');
   });
   if(s.after) b.push('<p class="pp-care">'+esc(s.after)+'</p>');
