@@ -105,17 +105,37 @@
     <div class="wrap pg-hero-in">
       <div class="pg-copy">
         <p class="eyebrow"><b>The stories</b>{{RULE}}</p>
-        <h1 class="pg-h1" id="stTitle"><span>The</span><span>stories.</span></h1>
-        <p class="pg-lede">Each entry pairs one person’s story with the specific thing that helped them.</p>
+        <h1 class="pg-h1" id="stTitle"><span>One story,</span><span>one zine.</span></h1>
+        <p class="pg-lede">Each entry pairs one person’s story with the specific thing that helped them. Pull one off the shelf and read it start to finish.</p>
         <div class="fp-row"><a class="btn btn--ink" href="#book">Open the book {{ARROW}}</a></div>
       </div>
       <figure class="pg-art">{{LIB:walker}}</figure>
     </div>
   </section>
-  <section class="pg-list" aria-label="All stories">
+  <section class="shelf-sec" aria-labelledby="shelfH">
     <div class="wrap">
-      <div class="legend" aria-hidden="true"><span class="lg-dark">The story</span><span class="lg-light">The practice</span></div>
-      <div class="slist" id="storyList"></div>
+      <div class="shelf-head">
+        <h2 class="hand" id="shelfH">The shelf</h2>{{RULE}}
+        <span class="shelf-count" id="shelfCount"></span>
+      </div>
+      <div class="zshelf" id="zShelf"></div>
+    </div>
+  </section>
+
+  <section class="sub band dark" id="subscribe" aria-labelledby="subH">
+    {{TEAR:171:top:var(--paper-hi):var(--night)}}
+    <div class="wrap sub-in">
+      <div class="sub-copy">
+        <p class="eyebrow"><b>Eleven more on the way</b>{{RULE}}</p>
+        <h2 class="sub-h" id="subH"><span>Get the next</span><span>zine first.</span></h2>
+        <p>Stories will start getting published once I have enough. Leave your email and you’ll hear the day a new one comes off the press. One note per zine, nothing else.</p>
+      </div>
+      <form class="sub-form" id="subForm" novalidate>
+        <label for="subEmail">Your email</label>
+        <div class="sub-row"><input type="email" id="subEmail" autocomplete="email" placeholder="you@example.com" required><button class="btn btn--paper" type="submit">Notify me {{ARROW}}</button></div>
+        <p class="sub-msg" id="subMsg" role="status"></p>
+        <p class="sub-fine">Everything lands with one person. Your email isn’t shared with anyone.</p>
+      </form>
     </div>
   </section>
 </div>
@@ -280,6 +300,18 @@
     <button class="bk-btn" type="button" id="bkNext" aria-label="Next page"><svg viewBox="0 0 20 10" aria-hidden="true"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </footer>
   <div class="bk-measure" id="bkMeasure" aria-hidden="true"></div>
+</div>
+
+<div id="zineView" class="zv" hidden>
+  <header class="zv-top">
+    <a class="bk-close" id="zvClose" href="#stories"><svg class="arr" viewBox="0 0 20 10" aria-hidden="true" style="transform:scaleX(-1)"><path d="M1 5.2h16.5M13.4 1.4 17.6 5.2l-4.2 3.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Back to the shelf</a>
+    <p class="zv-where" id="zvWhere"></p>
+    <a class="bk-toc" id="zvBook" href="#book">Read as a book</a>
+    <span class="zv-prog" aria-hidden="true"><i id="zvBar"></i></span>
+  </header>
+  <div class="zv-scroll" id="zvScroll" tabindex="-1">
+    <article class="zbook" id="zvZine"></article>
+  </div>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>

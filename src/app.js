@@ -96,25 +96,81 @@ function practiceOf(s){ return s.primary || s.practices[0]; }
 var homeV = $('#homeView'), storiesV = $('#storiesView'), aboutV = $('#aboutView'), storyV = $('#storyView'), bookV = $('#bookView');
 var topH = $('#top'), siteFoot = $('#siteFoot');
 
-/* ================= stories page ================= */
-var listBuilt = false;
-function renderStoriesPage(){
-  if(listBuilt) return; listBuilt = true;
-  $('#storyList').innerHTML = STORIES.map(function(s, i){
-    var p = practiceOf(s);
-    return '<article class="sitem'+(i === 0 ? ' feat' : '')+'">'+
-      '<a class="si-link" href="#story-'+s.id+'" aria-label="Story '+s.num+': '+esc(s.title)+'. What helped: '+esc(p.title)+'">'+
-        '<div class="si-story"><div class="si-top"><span>Story '+s.num+'</span><span aria-hidden="true">Read</span></div>'+
-          '<div class="si-art">'+artHTML(s.art, {fit:true})+'</div>'+
-          '<h2 class="si-title">'+esc(titleDot(s.title))+'</h2>'+(s.by ? '<p class="si-by">By '+esc(s.by)+'</p>' : '')+
-          '<p class="si-deck">'+esc(s.blurb)+'</p></div>'+
-        '<div class="si-prac"><small>What helped</small><b>'+esc(p.title)+'</b></div>'+
-      '</a>'+
-      '<a class="textlink si-book" href="#book-'+s.id+'">Read it in the book '+ARROW+'</a>'+
-    '</article>';
-  }).join('') + '<aside class="send"><h2>More stories<br><em>are coming.</em></h2><p>Stories will start getting published once I have enough.</p><a class="btn btn--ink" href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Tell me what got you through '+ARROW+'</a></aside>';
-  bindEyes(storiesV);
+/* ================= the shelf ================= */
+var SHELF_TOTAL = 12;
+var LOCKED_ART = ['card2','card4','featured','card3','about','stuck_hero','card1','peek','card2','card4','featured'];
+var shelfBuilt = false;
+function coverHTML(s, big){
+  return '<span class="zc-num">No. '+s.num+'</span>'+
+    '<span class="zc-art">'+artHTML(s.art, {fit:true})+'</span>'+
+    '<span class="zc-title">'+esc(titleDot(s.title))+'</span>'+
+    '<span class="zc-by">'+(s.by ? 'By '+esc(s.by) : '')+'</span>'+
+    '<span class="zc-foot"><span>No biggie, I’m fine.</span><span>'+(big ? 'A field guide' : 'Read')+'</span></span>';
 }
+function renderStoriesPage(){
+  if(shelfBuilt) return; shelfBuilt = true;
+  var items = [];
+  for(var i = 0; i < SHELF_TOTAL; i++){
+    var s = STORIES[i], n = (i < 9 ? '0' : '') + (i + 1), tilt = ((i * 37) % 7 - 3) * .55;
+    if(s){
+      items.push('<li class="zslot"><a class="zcov open" href="#zine-'+s.id+'" style="--tilt:'+tilt.toFixed(2)+'deg" aria-label="Open zine No. '+n+': '+esc(s.title)+' by '+esc(s.by || '')+'">'+coverHTML(s)+'</a><span class="z-tag">Open</span></li>');
+    } else {
+      var art = LOCKED_ART[(i - 1) % LOCKED_ART.length];
+      items.push('<li class="zslot"><button type="button" class="zcov locked" data-locked="'+n+'" style="--tilt:'+tilt.toFixed(2)+'deg" aria-label="Zine No. '+n+', coming soon. Get notified.">'+
+        '<span class="zc-num">No. '+n+'</span><span class="zc-art">'+artHTML(art, {fit:true})+'</span>'+
+        '<span class="zc-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>'+
+        '<span class="zc-title">Coming soon</span><span class="zc-foot"><span>No biggie, I’m fine.</span><span>Notify me</span></span></button><span class="z-tag">Locked</span></li>');
+    }
+  }
+  var rows = '';
+  for(var r = 0; r < items.length; r += 4) rows += '<ol class="zrow" start="'+(r+1)+'">'+items.slice(r, r + 4).join('')+'</ol>';
+  $('#zShelf').innerHTML = rows;
+  $('#shelfCount').textContent = STORIES.length + ' of ' + SHELF_TOTAL + ' ready';
+  bindEyes($('#zShelf'));
+}
+document.addEventListener('click', function(e){
+  var l = e.target.closest('[data-locked]'); if(!l) return;
+  var sub = $('#subscribe'); sub.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+  $('#subMsg').textContent = 'No. ' + l.dataset.locked + ' is still being made. Leave your email and you’ll know when it’s out.';
+  setTimeout(function(){ try{ $('#subEmail').focus({preventScroll:true}); }catch(err){} }, reduce ? 0 : 500);
+});
+$('#subForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var em = $('#subEmail').value.trim(), msg = $('#subMsg');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){ msg.textContent = 'That email doesn’t look right. Check it and try again.'; $('#subEmail').focus(); return; }
+  var href = 'mailto:brandonmkaufer@gmail.com?subject=' + encodeURIComponent('Notify me: new No Biggie zines') + '&body=' + encodeURIComponent('Please let me know when the next zine is out.\n\n' + em);
+  window.location.href = href;
+  msg.innerHTML = 'Your email app should open with a note ready to send. If it doesn’t, write to <span class="sel">brandonmkaufer@gmail.com</span> with “notify me”.';
+});
+
+/* ================= zine reader ================= */
+var zineV = $('#zineView'), zvScroll = $('#zvScroll');
+function renderZine(id){
+  var s = BY[id]; if(!s) return;
+  $('#zvWhere').textContent = 'No. ' + s.num + ' · ' + s.title;
+  $('#zvBook').setAttribute('href', '#book-' + s.id);
+  var paras = (s.paras || []).map(function(p, i){
+    var sc = (s.scenes || []).filter(function(x){ return x.after === i; })[0];
+    return '<p'+(i === 0 ? ' class="zl-first"' : '')+'>'+esc(p)+'</p>' + (sc ? '<figure class="z-scene">'+artHTML(sc.art, {fit:true})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>' : '');
+  }).join('');
+  var care = s.care ? '<p class="z-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '';
+  $('#zvZine').innerHTML =
+    '<section class="z-cover"><div class="zcov big">'+coverHTML(s, true)+'</div>'+(s.cw ? '<p class="z-cw">'+esc(s.cw)+'</p>' : '')+'<p class="z-hint">Scroll to read</p></section>'+
+    '<section class="z-story"><p class="z-kicker">The story</p><h2 class="z-h">'+esc(titleDot(s.title))+'</h2>'+paras+care+'</section>'+
+    '<section class="z-prac"><p class="z-kicker">The practice</p><h2 class="z-h">'+esc(s.pTitle || 'What helped')+'</h2>'+recipeHTML(s)+(s.after ? '<p class="z-after">'+esc(s.after)+'</p>' : '')+'</section>'+
+    '<section class="z-end"><h2 class="z-h">Eleven more<br><em>on the way.</em></h2><p>Leave your email on the shelf and you’ll hear when the next zine is out.</p>'+
+      '<div class="fp-row"><a class="btn btn--paper" href="#stories" data-tosub>Get notified '+ARROW+'</a><a class="btn btn--ghost" href="#story-'+s.id+'">Open the story page</a></div></section>';
+  zvScroll.scrollTop = 0; zvProg();
+  bindEyes(zineV);
+}
+function zvProg(){ var m = zvScroll.scrollHeight - zvScroll.clientHeight; $('#zvBar').style.transform = 'scaleX(' + (m > 0 ? Math.min(1, zvScroll.scrollTop / m) : 0) + ')'; req(); }
+zvScroll.addEventListener('scroll', zvProg, {passive:true});
+document.addEventListener('click', function(e){
+  if(!e.target.closest('[data-tosub]')) return;
+  e.preventDefault(); location.hash = '#stories';
+  setTimeout(function(){ $('#subscribe').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}); }, 80);
+});
+document.addEventListener('keydown', function(e){ if(!zineV.hidden && e.key === 'Escape') location.hash = '#stories'; });
 
 /* ================= story page ================= */
 function renderStory(id){
@@ -477,10 +533,10 @@ window.addEventListener('resize', function(){
 var current = 'home';
 function show(view){
   homeV.hidden = view !== 'home'; storiesV.hidden = view !== 'stories'; aboutV.hidden = view !== 'about';
-  storyV.hidden = view !== 'story'; bookV.hidden = view !== 'book';
+  storyV.hidden = view !== 'story'; bookV.hidden = view !== 'book'; zineV.hidden = view !== 'zine';
   var chrome = view === 'home' || view === 'stories' || view === 'about';
   topH.hidden = !(chrome || view === 'story'); siteFoot.hidden = !chrome;
-  document.body.classList.toggle('bk-open', view === 'book');
+  document.body.classList.toggle('bk-open', view === 'book' || view === 'zine');
   $$('.top .nav a, #siteFoot .nav a').forEach(function(a){
     var on = (a.getAttribute('href') === '#stories' && view === 'stories') || (a.getAttribute('href') === '#about' && view === 'about');
     if(on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
@@ -492,6 +548,7 @@ function route(){
   try{ h = decodeURIComponent(h); }catch(e){}
   if(h === 'book' || h.indexOf('book-') === 0){ if(current !== 'book') openBook(h.slice(5)); return; }
   prevNonBook = '#' + (h || 'top');
+  if(h.indexOf('zine-') === 0 && BY[h.slice(5)]){ show('zine'); renderZine(h.slice(5)); try{ zvScroll.focus({preventScroll:true}); }catch(e){} return; }
   if(h.indexOf('story-') === 0 && BY[h.slice(6)]){ show('story'); renderStory(h.slice(6)); scrollTop(); req(); return; }
   if(h === 'stories'){ var w1 = current; show('stories'); renderStoriesPage(); if(w1 !== 'stories') scrollTop(); req(); return; }
   if(h === 'about'){ var w2 = current; show('about'); bindEyes(aboutV); if(w2 !== 'about') scrollTop(); req(); return; }
