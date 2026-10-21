@@ -42,12 +42,12 @@ var STORIES = [
    ],
    after:'If the rage feels bigger than a stack of plates, that’s information too.',
    scenes:[
-     {after:0, art:'scene1', cap:'My grandma called. She couldn’t find my dad.'},
-     {after:1, art:'scene2', cap:'“He’s here.”'},
-     {after:2, art:'scene3', cap:'“No biggie, I’m fine” became my go-to response.'},
-     {after:3, art:'scene4', cap:'Go and cry in the fucking shower.'},
-     {after:4, art:'scene5', cap:'On the first plate I wrote HE WAS CHOOSING TO ABANDON US.'},
-     {after:5, art:'scene6', cap:'The dollar store knows me now.'}
+     {after:0, art:'scene1', ch:'The call', cap:'My grandma called. She couldn’t find my dad.'},
+     {after:1, art:'scene2', ch:'He’s here', cap:'“He’s here.”'},
+     {after:2, art:'scene3', ch:'No biggie', cap:'“No biggie, I’m fine” became my go-to response.'},
+     {after:3, art:'scene4', ch:'What I found was rage', cap:'Go and cry in the fucking shower.'},
+     {after:4, art:'scene5', ch:'The plates', cap:'On the first plate I wrote HE WAS CHOOSING TO ABANDON US.'},
+     {after:5, art:'scene6', ch:'The dollar store', cap:'The dollar store knows me now.'}
    ]}
 ];
 var BY = {}; STORIES.forEach(function(s){ BY[s.id] = s; });
@@ -149,21 +149,63 @@ function renderZine(id){
   var s = BY[id]; if(!s) return;
   $('#zvWhere').textContent = 'No. ' + s.num + ' · ' + s.title;
   $('#zvBook').setAttribute('href', '#book-' + s.id);
-  var paras = (s.paras || []).map(function(p, i){
-    var sc = (s.scenes || []).filter(function(x){ return x.after === i; })[0];
-    return '<p'+(i === 0 ? ' class="zl-first"' : '')+'>'+esc(p)+'</p>' + (sc ? '<figure class="z-scene">'+artHTML(sc.art, {fit:true})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>' : '');
-  }).join('');
+  var chapters = [{id:'zc-cover', name:'Cover', part:''}];
+  var scs = (s.scenes || []).slice().sort(function(a, b){ return a.after - b.after; });
+  var starts = {0: scs.length ? 'October 2016' : 'The story'};
+  scs.forEach(function(sc){ if(sc.after + 1 < (s.paras || []).length) starts[sc.after + 1] = sc.ch; });
+  var body = '';
+  (s.paras || []).forEach(function(p, i){
+    if(starts[i] !== undefined){
+      var cid = 'zc-s' + i; chapters.push({id:cid, name:starts[i], part:'The story'});
+      body += (i ? '</div>' : '') + '<div class="z-chap" id="'+cid+'">';
+    }
+    var sc = scs.filter(function(x){ return x.after === i; })[0];
+    body += '<p'+(i === 0 ? ' class="zl-first"' : '')+'>'+esc(p)+'</p>' + (sc ? '<figure class="z-scene">'+artHTML(sc.art, {fit:true})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>' : '');
+  });
+  if(body) body += '</div>';
+  chapters.push({id:'zc-need', name:'What you’ll need', part:'The practice'});
+  chapters.push({id:'zc-steps', name:'The steps', part:'The practice'});
+  chapters.push({id:'zc-end', name:'Eleven more', part:''});
   var care = s.care ? '<p class="z-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '';
   $('#zvZine').innerHTML =
-    '<section class="z-cover"><div class="zcov big">'+coverHTML(s, true)+'</div>'+(s.cw ? '<p class="z-cw">'+esc(s.cw)+'</p>' : '')+'<p class="z-hint">Scroll to read</p></section>'+
-    '<section class="z-story"><p class="z-kicker">The story</p><h2 class="z-h">'+esc(titleDot(s.title))+'</h2>'+paras+care+'</section>'+
+    '<section class="z-cover" id="zc-cover"><i class="staple s1" aria-hidden="true"></i><i class="staple s2" aria-hidden="true"></i>'+
+      '<span class="zc-num">No. '+s.num+'</span><span class="zcv-art">'+artHTML(s.art, {fit:true})+'</span>'+
+      '<h1 class="zcv-title">'+esc(titleDot(s.title))+'</h1><span class="zcv-by">'+(s.by ? 'By '+esc(s.by) : '')+'</span>'+
+      '<span class="zcv-foot"><span>No biggie, I’m fine.</span><span>A field guide</span></span>'+
+      (s.cw ? '<p class="z-cw">'+esc(s.cw)+'</p>' : '')+'<p class="z-hint">Scroll to read</p></section>'+
+    '<section class="z-story"><p class="z-kicker">The story</p>'+body+care+'</section>'+
     '<section class="z-prac"><p class="z-kicker">The practice</p><h2 class="z-h">'+esc(s.pTitle || 'What helped')+'</h2>'+recipeHTML(s)+(s.after ? '<p class="z-after">'+esc(s.after)+'</p>' : '')+'</section>'+
-    '<section class="z-end"><h2 class="z-h">Eleven more<br><em>on the way.</em></h2><p>Leave your email on the shelf and you’ll hear when the next zine is out.</p>'+
+    '<section class="z-end" id="zc-end"><h2 class="z-h">Eleven more<br><em>on the way.</em></h2><p>Leave your email on the shelf and you’ll hear when the next zine is out.</p>'+
       '<div class="fp-row"><a class="btn btn--paper" href="#stories" data-tosub>Get notified '+ARROW+'</a><a class="btn btn--ghost" href="#story-'+s.id+'">Open the story page</a></div></section>';
+  var need = $('#zvZine .rc-need'), steps = $('#zvZine .rc-steps');
+  if(need) need.id = 'zc-need'; if(steps) steps.id = 'zc-steps';
+  var last = null;
+  $('#zvToc').innerHTML = '<p class="zt-h">In this zine</p><ol>' + chapters.map(function(c, k){
+    var head = (c.part && c.part !== last) ? '<li class="zt-part">'+esc(c.part)+'</li>' : ''; last = c.part;
+    return head + '<li><a href="#'+c.id+'" data-ch="'+c.id+'"><span class="zt-n">'+(k < 10 ? '0' : '')+k+'</span>'+esc(c.name)+'</a></li>';
+  }).join('') + '</ol>';
+  ZCH = chapters.map(function(c){ return c.id; });
   zvScroll.scrollTop = 0; zvProg();
   bindEyes(zineV);
 }
-function zvProg(){ var m = zvScroll.scrollHeight - zvScroll.clientHeight; $('#zvBar').style.transform = 'scaleX(' + (m > 0 ? Math.min(1, zvScroll.scrollTop / m) : 0) + ')'; req(); }
+var ZCH = [];
+$('#zvToc').addEventListener('click', function(e){
+  var a = e.target.closest('[data-ch]'); if(!a) return;
+  e.preventDefault();
+  var el = document.getElementById(a.dataset.ch); if(!el) return;
+  var top = el.getBoundingClientRect().top - zvScroll.getBoundingClientRect().top + zvScroll.scrollTop - 16;
+  zvScroll.scrollTo({top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth'});
+});
+function zvSpy(){
+  var line = zvScroll.getBoundingClientRect().top + zvScroll.clientHeight * .35, cur = ZCH[0];
+  ZCH.forEach(function(id){ var el = document.getElementById(id); if(el && el.getBoundingClientRect().top <= line) cur = id; });
+  $$('#zvToc [data-ch]').forEach(function(a){
+    var on = a.dataset.ch === cur; a.classList.toggle('on', on);
+    if(on){ a.setAttribute('aria-current', 'true'); var t = $('#zvToc'); if(t.scrollWidth > t.clientWidth + 4) t.scrollLeft = a.offsetLeft - 20; }
+    else a.removeAttribute('aria-current');
+  });
+}
+function zvProg(){ var m = zvScroll.scrollHeight - zvScroll.clientHeight; $('#zvBar').style.transform = 'scaleX(' + (m > 0 ? Math.min(1, zvScroll.scrollTop / m) : 0) + ')'; zvSpy(); req(); }
 zvScroll.addEventListener('scroll', zvProg, {passive:true});
 document.addEventListener('click', function(e){
   if(!e.target.closest('[data-tosub]')) return;

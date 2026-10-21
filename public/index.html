@@ -734,9 +734,11 @@ a:hover .arr,button:hover .arr{transform:translateX(4px)}
 .zrow{list-style:none;margin:0;padding:0 clamp(10px,2vw,30px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.6vw,40px);align-items:end;position:relative}
 .zrow::after{content:"";position:absolute;left:0;right:0;bottom:-16px;height:14px;border-top:3px solid var(--ink);border-bottom:1.5px solid var(--ink);background:repeating-linear-gradient(90deg,transparent 0 22px,rgba(15,15,14,.18) 22px 23px);box-shadow:0 12px 18px -10px rgba(30,25,15,.45)}
 .zslot{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center}
-.zcov{--tilt:0deg;position:relative;display:flex;flex-direction:column;width:100%;aspect-ratio:5/7;max-width:100%;padding:9% 9% 7%;text-decoration:none;color:var(--paper);background:var(--night);background-image:var(--grain-night);background-size:160px 160px;border:0;cursor:pointer;text-align:left;font:inherit;transform:rotate(var(--tilt));transform-origin:50% 100%;transition:transform .3s cubic-bezier(.3,1.5,.5,1),box-shadow .3s ease;box-shadow:inset 7px 0 0 -4px rgba(241,236,224,.18),inset 9px 0 10px -6px rgba(0,0,0,.8),3px 4px 0 rgba(15,15,14,.22)}
-.zcov::before{content:"";position:absolute;left:5px;top:0;bottom:0;width:1px;background:rgba(241,236,224,.25)}
-.zcov.open:hover,.zcov.open:focus-visible{transform:rotate(0deg) translateY(-14px);box-shadow:inset 7px 0 0 -4px rgba(241,236,224,.18),inset 9px 0 10px -6px rgba(0,0,0,.8),8px 18px 22px -8px rgba(15,15,14,.5)}
+.zcov{--tilt:0deg;position:relative;display:flex;flex-direction:column;width:100%;aspect-ratio:5/7;max-width:100%;padding:9% 9% 7%;text-decoration:none;color:var(--paper);background:var(--night);background-image:var(--grain-night);background-size:160px 160px;border:0;cursor:pointer;text-align:left;font:inherit;transform:rotate(var(--tilt));transform-origin:50% 100%;transition:transform .3s cubic-bezier(.3,1.5,.5,1),box-shadow .3s ease;box-shadow:3px 4px 0 rgba(15,15,14,.22)}
+.zcov::before,.zcov::after,.staple{content:"";position:absolute;left:7px;width:4px;height:clamp(16px,9%,26px);border-radius:1px;background:linear-gradient(90deg,#8d8a82,#e6e3dc 45%,#a29f97 70%,#77746d);box-shadow:0 0 0 .5px rgba(0,0,0,.6),1px 1px 0 rgba(0,0,0,.45)}
+.zcov::before,.staple.s1{top:22%}
+.zcov::after,.staple.s2{bottom:22%}
+.zcov.open:hover,.zcov.open:focus-visible{transform:rotate(0deg) translateY(-14px);box-shadow:8px 18px 22px -8px rgba(15,15,14,.5)}
 .zc-num{font-size:clamp(9px,.75vw,11px);font-weight:500;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
 .zc-art{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;padding:6% 0}
 .zc-art .art{width:100%;height:100%}
@@ -776,7 +778,7 @@ a:hover .arr,button:hover .arr{transform:translateX(4px)}
 .zv-prog{position:absolute;left:0;right:0;bottom:-1px;height:3px}
 .zv-prog i{display:block;height:100%;background:var(--ink);transform-origin:0 50%;transform:scaleX(0)}
 .zv-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;outline:none;padding:clamp(30px,5vw,70px) 16px clamp(40px,6vw,90px);padding-bottom:calc(clamp(40px,6vw,90px) + env(safe-area-inset-bottom,0px))}
-.zbook{width:min(720px,100%);margin:0 auto;box-shadow:0 30px 60px -30px rgba(30,25,15,.6),-3px 0 0 #d4ccbc,-6px 2px 0 #c7beac}
+.zbook{width:min(720px,100%);min-width:0;box-shadow:0 30px 60px -30px rgba(30,25,15,.6)}
 .zbook section{padding:clamp(34px,6vw,80px) clamp(22px,6vw,72px)}
 .z-cover,.z-story,.z-end{background:var(--night);background-image:var(--grain-night);background-size:160px 160px;color:var(--paper)}
 .z-cover{display:grid;justify-items:center;gap:20px;padding-block:clamp(40px,6vw,80px)}
@@ -809,6 +811,39 @@ a:hover .arr,button:hover .arr{transform:translateX(4px)}
 .z-end{text-align:left}
 .z-end > p{font-size:14px;line-height:1.8;color:var(--fog);max-width:44ch}
 .z-end .fp-row{margin-top:24px}
+.zv-grid{display:grid;grid-template-columns:200px minmax(0,720px);justify-content:center;gap:clamp(24px,4vw,56px);align-items:start}
+.zv-toc{position:sticky;top:0;padding-top:8px}
+.zt-h{font-size:10.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--smoke);border-bottom:1.5px solid var(--ink);padding-bottom:10px;margin-bottom:8px}
+.zv-toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.zt-part{font-family:var(--hand);text-transform:uppercase;font-size:19px;line-height:1;margin:14px 0 4px;transform:rotate(-2deg);transform-origin:left}
+.zv-toc a{display:grid;grid-template-columns:24px 1fr;gap:6px;align-items:baseline;padding:6px 8px 6px 0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;line-height:1.35;color:var(--smoke);text-decoration:none;border-left:2px solid transparent;padding-left:8px;transition:color .15s ease,border-color .15s ease}
+.zv-toc a:hover{color:var(--ink)}
+.zv-toc a.on{color:var(--ink);border-left-color:var(--ink);font-weight:500}
+.zt-n{font-size:10px;opacity:.6;font-variant-numeric:tabular-nums}
+.z-cover{position:relative;display:flex!important;flex-direction:column;align-items:flex-start;min-height:calc(100vh - 150px);min-height:calc(100dvh - 150px);gap:0!important;padding:clamp(34px,6vw,64px) clamp(30px,7vw,72px) clamp(26px,4vw,40px)!important;box-shadow:inset 0 -1px 0 rgba(241,236,224,.2)}
+.z-cover .staple{left:10px}
+.z-cover .zc-num{font-size:12px}
+.zcv-art{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;padding:4% 0}
+.zcv-art .art{width:100%;height:100%;max-height:min(420px,34vh)}
+.zcv-title{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(60px,10vw,108px);line-height:.88;letter-spacing:-.03em}
+.zcv-by{margin-top:14px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.8}
+.zcv-foot{align-self:stretch;display:flex;justify-content:space-between;gap:12px;margin-top:18px;padding-top:12px;border-top:1px solid rgba(241,236,224,.3);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.7}
+.z-cover .z-cw{margin-top:22px;align-self:flex-start}
+.z-cover .z-hint{align-self:center;margin-top:18px}
+.z-chap{scroll-margin-top:16px}
+.z-chap > p{font-size:clamp(14.5px,1.25vw,16px);line-height:1.9;letter-spacing:.02em;margin:0 0 1.3em}
+.z-story > .z-kicker{margin-bottom:22px}
+@media (max-width:1000px){
+  .zv-grid{grid-template-columns:minmax(0,720px);gap:16px}
+  .zv-toc{top:-1px;z-index:2;margin:0 -16px;padding:8px 16px;background:#E3DCCD;border-bottom:1px solid rgba(15,15,14,.2);overflow-x:auto;scrollbar-width:none}
+  .zv-toc::-webkit-scrollbar{display:none}
+  .zt-h,.zt-part{display:none}
+  .zv-toc ol{display:flex;gap:4px;white-space:nowrap}
+  .zv-toc a{border-left:0;border-bottom:2px solid transparent;padding:6px 8px;grid-template-columns:auto auto}
+  .zv-toc a.on{border-bottom-color:var(--ink)}
+  .zv-scroll{padding-top:0}
+  .z-cover{aspect-ratio:auto;min-height:calc(100vh - 140px)}
+}
 @media (max-width:640px){.zv-top{grid-template-columns:auto 1fr auto}.zv-where{max-width:none}.z-prac .rc-kit{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){.z-hint::after{animation:none}.zcov{transition:none}}
 
@@ -1374,7 +1409,10 @@ body.bk-open{overflow:hidden}
     <span class="zv-prog" aria-hidden="true"><i id="zvBar"></i></span>
   </header>
   <div class="zv-scroll" id="zvScroll" tabindex="-1">
-    <article class="zbook" id="zvZine"></article>
+    <div class="zv-grid">
+      <nav class="zv-toc" id="zvToc" aria-label="Chapters"></nav>
+      <article class="zbook" id="zvZine"></article>
+    </div>
   </div>
 </div>
 
@@ -1425,12 +1463,12 @@ var STORIES = [
    ],
    after:'If the rage feels bigger than a stack of plates, that’s information too.',
    scenes:[
-     {after:0, art:'scene1', cap:'My grandma called. She couldn’t find my dad.'},
-     {after:1, art:'scene2', cap:'“He’s here.”'},
-     {after:2, art:'scene3', cap:'“No biggie, I’m fine” became my go-to response.'},
-     {after:3, art:'scene4', cap:'Go and cry in the fucking shower.'},
-     {after:4, art:'scene5', cap:'On the first plate I wrote HE WAS CHOOSING TO ABANDON US.'},
-     {after:5, art:'scene6', cap:'The dollar store knows me now.'}
+     {after:0, art:'scene1', ch:'The call', cap:'My grandma called. She couldn’t find my dad.'},
+     {after:1, art:'scene2', ch:'He’s here', cap:'“He’s here.”'},
+     {after:2, art:'scene3', ch:'No biggie', cap:'“No biggie, I’m fine” became my go-to response.'},
+     {after:3, art:'scene4', ch:'What I found was rage', cap:'Go and cry in the fucking shower.'},
+     {after:4, art:'scene5', ch:'The plates', cap:'On the first plate I wrote HE WAS CHOOSING TO ABANDON US.'},
+     {after:5, art:'scene6', ch:'The dollar store', cap:'The dollar store knows me now.'}
    ]}
 ];
 var BY = {}; STORIES.forEach(function(s){ BY[s.id] = s; });
@@ -1532,21 +1570,63 @@ function renderZine(id){
   var s = BY[id]; if(!s) return;
   $('#zvWhere').textContent = 'No. ' + s.num + ' · ' + s.title;
   $('#zvBook').setAttribute('href', '#book-' + s.id);
-  var paras = (s.paras || []).map(function(p, i){
-    var sc = (s.scenes || []).filter(function(x){ return x.after === i; })[0];
-    return '<p'+(i === 0 ? ' class="zl-first"' : '')+'>'+esc(p)+'</p>' + (sc ? '<figure class="z-scene">'+artHTML(sc.art, {fit:true})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>' : '');
-  }).join('');
+  var chapters = [{id:'zc-cover', name:'Cover', part:''}];
+  var scs = (s.scenes || []).slice().sort(function(a, b){ return a.after - b.after; });
+  var starts = {0: scs.length ? 'October 2016' : 'The story'};
+  scs.forEach(function(sc){ if(sc.after + 1 < (s.paras || []).length) starts[sc.after + 1] = sc.ch; });
+  var body = '';
+  (s.paras || []).forEach(function(p, i){
+    if(starts[i] !== undefined){
+      var cid = 'zc-s' + i; chapters.push({id:cid, name:starts[i], part:'The story'});
+      body += (i ? '</div>' : '') + '<div class="z-chap" id="'+cid+'">';
+    }
+    var sc = scs.filter(function(x){ return x.after === i; })[0];
+    body += '<p'+(i === 0 ? ' class="zl-first"' : '')+'>'+esc(p)+'</p>' + (sc ? '<figure class="z-scene">'+artHTML(sc.art, {fit:true})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>' : '');
+  });
+  if(body) body += '</div>';
+  chapters.push({id:'zc-need', name:'What you’ll need', part:'The practice'});
+  chapters.push({id:'zc-steps', name:'The steps', part:'The practice'});
+  chapters.push({id:'zc-end', name:'Eleven more', part:''});
   var care = s.care ? '<p class="z-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '';
   $('#zvZine').innerHTML =
-    '<section class="z-cover"><div class="zcov big">'+coverHTML(s, true)+'</div>'+(s.cw ? '<p class="z-cw">'+esc(s.cw)+'</p>' : '')+'<p class="z-hint">Scroll to read</p></section>'+
-    '<section class="z-story"><p class="z-kicker">The story</p><h2 class="z-h">'+esc(titleDot(s.title))+'</h2>'+paras+care+'</section>'+
+    '<section class="z-cover" id="zc-cover"><i class="staple s1" aria-hidden="true"></i><i class="staple s2" aria-hidden="true"></i>'+
+      '<span class="zc-num">No. '+s.num+'</span><span class="zcv-art">'+artHTML(s.art, {fit:true})+'</span>'+
+      '<h1 class="zcv-title">'+esc(titleDot(s.title))+'</h1><span class="zcv-by">'+(s.by ? 'By '+esc(s.by) : '')+'</span>'+
+      '<span class="zcv-foot"><span>No biggie, I’m fine.</span><span>A field guide</span></span>'+
+      (s.cw ? '<p class="z-cw">'+esc(s.cw)+'</p>' : '')+'<p class="z-hint">Scroll to read</p></section>'+
+    '<section class="z-story"><p class="z-kicker">The story</p>'+body+care+'</section>'+
     '<section class="z-prac"><p class="z-kicker">The practice</p><h2 class="z-h">'+esc(s.pTitle || 'What helped')+'</h2>'+recipeHTML(s)+(s.after ? '<p class="z-after">'+esc(s.after)+'</p>' : '')+'</section>'+
-    '<section class="z-end"><h2 class="z-h">Eleven more<br><em>on the way.</em></h2><p>Leave your email on the shelf and you’ll hear when the next zine is out.</p>'+
+    '<section class="z-end" id="zc-end"><h2 class="z-h">Eleven more<br><em>on the way.</em></h2><p>Leave your email on the shelf and you’ll hear when the next zine is out.</p>'+
       '<div class="fp-row"><a class="btn btn--paper" href="#stories" data-tosub>Get notified '+ARROW+'</a><a class="btn btn--ghost" href="#story-'+s.id+'">Open the story page</a></div></section>';
+  var need = $('#zvZine .rc-need'), steps = $('#zvZine .rc-steps');
+  if(need) need.id = 'zc-need'; if(steps) steps.id = 'zc-steps';
+  var last = null;
+  $('#zvToc').innerHTML = '<p class="zt-h">In this zine</p><ol>' + chapters.map(function(c, k){
+    var head = (c.part && c.part !== last) ? '<li class="zt-part">'+esc(c.part)+'</li>' : ''; last = c.part;
+    return head + '<li><a href="#'+c.id+'" data-ch="'+c.id+'"><span class="zt-n">'+(k < 10 ? '0' : '')+k+'</span>'+esc(c.name)+'</a></li>';
+  }).join('') + '</ol>';
+  ZCH = chapters.map(function(c){ return c.id; });
   zvScroll.scrollTop = 0; zvProg();
   bindEyes(zineV);
 }
-function zvProg(){ var m = zvScroll.scrollHeight - zvScroll.clientHeight; $('#zvBar').style.transform = 'scaleX(' + (m > 0 ? Math.min(1, zvScroll.scrollTop / m) : 0) + ')'; req(); }
+var ZCH = [];
+$('#zvToc').addEventListener('click', function(e){
+  var a = e.target.closest('[data-ch]'); if(!a) return;
+  e.preventDefault();
+  var el = document.getElementById(a.dataset.ch); if(!el) return;
+  var top = el.getBoundingClientRect().top - zvScroll.getBoundingClientRect().top + zvScroll.scrollTop - 16;
+  zvScroll.scrollTo({top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth'});
+});
+function zvSpy(){
+  var line = zvScroll.getBoundingClientRect().top + zvScroll.clientHeight * .35, cur = ZCH[0];
+  ZCH.forEach(function(id){ var el = document.getElementById(id); if(el && el.getBoundingClientRect().top <= line) cur = id; });
+  $$('#zvToc [data-ch]').forEach(function(a){
+    var on = a.dataset.ch === cur; a.classList.toggle('on', on);
+    if(on){ a.setAttribute('aria-current', 'true'); var t = $('#zvToc'); if(t.scrollWidth > t.clientWidth + 4) t.scrollLeft = a.offsetLeft - 20; }
+    else a.removeAttribute('aria-current');
+  });
+}
+function zvProg(){ var m = zvScroll.scrollHeight - zvScroll.clientHeight; $('#zvBar').style.transform = 'scaleX(' + (m > 0 ? Math.min(1, zvScroll.scrollTop / m) : 0) + ')'; zvSpy(); req(); }
 zvScroll.addEventListener('scroll', zvProg, {passive:true});
 document.addEventListener('click', function(e){
   if(!e.target.closest('[data-tosub]')) return;
