@@ -93,7 +93,7 @@ function sceneFig(sc){ return '<figure class="scene">'+artHTML(sc.art, {label:fa
 function scrollTop(){ try{ window.scrollTo({top:0, left:0, behavior:'instant'}); }catch(e){ window.scrollTo(0,0); } }
 function practiceOf(s){ return s.primary || s.practices[0]; }
 
-var homeV = $('#homeView'), storiesV = $('#storiesView'), aboutV = $('#aboutView'), storyV = $('#storyView'), bookV = $('#bookView');
+var homeV = $('#homeView'), storiesV = $('#storiesView'), aboutV = $('#aboutView'), storyV = $('#storyView'), bookV = $('#bookView'), submitV = $('#submitView');
 var topH = $('#top'), siteFoot = $('#siteFoot');
 
 /* ================= the shelf ================= */
@@ -147,6 +147,215 @@ document.addEventListener('click', function(e){
   if(!e.target.closest('[data-tosub]')) return;
   e.preventDefault(); location.hash = '#stories';
   setTimeout(function(){ $('#subscribe').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}); }, 80);
+});
+
+/* ================= submit a story ================= */
+var mine = null, draft = freshDraft();
+function freshDraft(){ return {name:'', title:'', story:'', practices:[{name:'', how:''}], ok:false}; }
+var STARTERS = ['It started when','The hardest part was','What nobody saw was','The first thing that helped was','These days'];
+var DRAFT_KEY = 'nbif.draft.v1';
+var shStep = 1, shDone = false, pvFlipped = false, pvT = 0, saveT = 0;
+(function loadDraft(){
+  try{
+    var d = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+    if(d && typeof d === 'object'){
+      draft.name = String(d.name || ''); draft.title = String(d.title || ''); draft.story = String(d.story || '');
+      if(Array.isArray(d.practices) && d.practices.length) draft.practices = d.practices.slice(0,6).map(function(p){ return {name:String((p&&p.name)||''), how:String((p&&p.how)||'')}; });
+    }
+  }catch(e){}
+})();
+function hasDraft(){ return !!(draft.name || draft.title || draft.story || draft.practices.some(function(p){ return p.name || p.how; })); }
+function saveDraft(){
+  clearTimeout(saveT);
+  saveT = setTimeout(function(){
+    var st = $('#dStat');
+    try{ localStorage.setItem(DRAFT_KEY, JSON.stringify({name:draft.name, title:draft.title, story:draft.story, practices:draft.practices})); if(st) st.textContent = 'Draft saved on this device'; }
+    catch(e){ if(st) st.textContent = ''; }
+  }, 400);
+}
+function clearDraft(){ try{ localStorage.removeItem(DRAFT_KEY); }catch(e){} }
+function stepsHTML(n){
+  return '<ol class="steps" aria-label="Progress">'+
+    '<li class="'+(n===1?'on':'done')+'"'+(n===1?' aria-current="step"':'')+'><b>1</b>Your story</li>'+
+    '<li class="'+(n===2?'on':'')+'"'+(n===2?' aria-current="step"':'')+'><b>2</b>What helped</li></ol>';
+}
+function words(t){ var m = t.trim().match(/\S+/g); return m ? m.length : 0; }
+function wcText(){
+  var n = words(draft.story);
+  if(!n) return '0 words · aim for 150 to 600';
+  if(n < 150) return n + ' word' + (n===1?'':'s') + ' · aim for 150 to 600';
+  if(n <= 600) return n + ' words · right in the zone';
+  return n + ' words · that’s fine, we may trim for length';
+}
+function step1HTML(){
+  return '<div class="fpanel is-dark"><p class="fp-kicker">Step 1 of 2 · Your story</p><h3 class="fp-h">What were you carrying?</h3>'+stepsHTML(1)+
+    '<form id="stepForm" novalidate>'+
+    '<div class="field"><label for="fName">Name to show (or leave blank for anonymous)</label><input type="text" id="fName" autocomplete="given-name" placeholder="Anonymous" value="'+esc(draft.name)+'"></div>'+
+    '<div class="field"><label for="fTitle">Give it a title</label><input type="text" id="fTitle" placeholder="The plates" value="'+esc(draft.title)+'"></div>'+
+    '<div class="field"><label for="fStory">Your story</label><textarea id="fStory" placeholder="Where you were, what it felt like, what you did, where you are now. Messy is fine.">'+esc(draft.story)+'</textarea></div>'+
+    '<div class="fmeta"><span id="wc">'+wcText()+'</span><span id="dStat">'+(hasDraft()?'Draft saved on this device':'')+'</span></div>'+
+    '<div class="starters"><span class="flabel" id="startLbl">Stuck? Start a paragraph with</span><div class="chips" role="group" aria-labelledby="startLbl">'+
+      STARTERS.map(function(s){ return '<button type="button" class="chip" data-insert="'+esc(s)+'">'+esc(s)+'…</button>'; }).join('')+'</div></div>'+
+    '<p class="err" id="sErr" role="alert"></p>'+
+    '<div class="fp-row"><button class="btn btn--paper" type="submit">Next: what helped '+ARROW+'</button></div>'+
+    '</form><p class="fp-fine">Your draft stays on this device until you send it.</p></div>';
+}
+function pblockHTML(p, i){
+  var chips = '';
+  return '<div class="pblock" data-i="'+i+'">'+(i>0?'<h3>Practice '+(i+1)+'</h3><button type="button" class="rm" data-rm="'+i+'">Remove</button>':'')+chips+
+    '<div class="field"><label for="pName'+i+'">Name your practice</label><input type="text" id="pName'+i+'" class="pname" placeholder="'+(i===0?'Smash a stack of dollar store plates':'Another thing that helped')+'" value="'+esc(p.name)+'"></div>'+
+    '<div class="field"><label for="pHow'+i+'">How do you do it, and what did it change?</label><textarea id="pHow'+i+'" class="phow" placeholder="When, where, how long. Write it so a stranger could try it tomorrow.">'+esc(p.how)+'</textarea></div></div>';
+}
+function step2HTML(){
+  return '<div class="fpanel fp-paper"><p class="fp-kicker">Step 2 of 2 · What helped</p><h3 class="fp-h">What got you through it?</h3>'+stepsHTML(2)+
+    '<p class="fp-lede">Share the practice that helped with what you just wrote about. Name it like an action, keep it small, and say how you do it.</p>'+
+    '<form id="stepForm" novalidate><div id="pblocks">'+draft.practices.map(pblockHTML).join('')+'</div>'+
+    (draft.practices.length < 6 ? '<button type="button" class="addp" id="addP">+ Add another practice</button>' : '')+
+    '<label class="check" for="sOk"><input type="checkbox" id="sOk"'+(draft.ok?' checked':'')+'> <span>It’s okay to share my story and practices on the site. You may trim for length, never for meaning.</span></label>'+
+    '<p class="err" id="sErr" role="alert"></p>'+
+    '<div class="fp-row"><button class="btn btn--line btn--back" type="button" id="backBtn">'+ARROW+' Back to my story</button><button class="btn btn--ink" type="submit">Send it '+ARROW+'</button></div>'+
+    '</form><p class="fp-fine">Sending opens your email app with everything filled in. It goes to one person, and nothing gets published without your yes.</p></div>';
+}
+function thanksHTML(){
+  return '<div class="fpanel fp-paper fp-thanks"><p class="fp-kicker">Almost there</p><h3 class="fp-h">Thank you'+(mine.by === 'Anonymous' ? '' : ', '+esc(mine.by))+'.</h3>'+
+    '<p class="fp-lede">Your email app should be open with your story and what helped already in it. Hit send there and it lands with me. A human reads everything.</p>'+
+    '<div class="fp-row"><a class="btn btn--ink" id="mailAgain" href="'+mailHref()+'">Open the email again '+ARROW+'</a><button class="btn btn--line" type="button" id="copyIt">Copy it instead</button></div>'+
+    '<p class="fp-copy">Nothing opened? Paste it into an email to <b>'+MAILTO+'</b></p>'+
+    '<div class="fp-row" style="margin-top:12px"><button class="textlink" type="button" id="writeAgain">Write another story '+ARROW+'</button></div>'+
+    '<p class="fp-fine">Nothing is stored on this site. Nothing gets published, quoted, or shared without your explicit yes.</p></div>';
+}
+function keep(b){
+  var n = $('#fName', b); if(n) draft.name = n.value;
+  var t = $('#fTitle', b); if(t) draft.title = t.value;
+  var x = $('#fStory', b); if(x) draft.story = x.value;
+  var blocks = $$('.pblock', b);
+  if(blocks.length) draft.practices = blocks.map(function(bl){ return {name: $('.pname', bl).value, how: $('.phow', bl).value}; });
+  var ok = $('#sOk', b); if(ok) draft.ok = ok.checked;
+}
+function firstSentence(t){
+  var p = (t || '').trim().split(/\n/)[0] || '';
+  var m = p.match(/^.*?[.!?](?=\s|$)/); var f = m ? m[0] : p;
+  if(f.length > 110) f = f.slice(0, 107).replace(/\s+\S*$/,'') + '…';
+  return f;
+}
+function previewStory(){
+  if(shDone && mine) return mine;
+  var ps = draft.practices.filter(function(p){ return p.name.trim() || p.how.trim(); });
+  if(!ps.length) ps = [{name:'', how:''}];
+  return {title: draft.title.trim() || 'Your title', by: draft.name.trim() || 'Anonymous', blurb: firstSentence(draft.story) || 'Your first line shows up here.',
+    practices: ps.map(function(p){ return {title: p.name.trim() || 'Your practice', text: p.how.trim() || 'How you do it, and what it changed, shows up here.'}; })};
+}
+function pvLabel(){ return 'Card preview, showing the '+(pvFlipped?'practice':'story')+' side. Press to flip.'; }
+function updatePreview(){
+  var holder = $('#pvCard'); if(!holder) return;
+  var s = previewStory();
+  holder.innerHTML = '<button type="button" class="pvc'+(pvFlipped?' flipped':'')+'" aria-label="'+pvLabel()+'"><span class="pvc-in">'+
+    '<span class="pvc-face pvc-front"><span class="pvc-k"><span>No. Yours</span><span>The story</span></span><span class="pvc-art">'+artHTML('peek', {fit:true})+'</span>'+
+      '<span class="pvc-t">'+esc(titleDot(s.title))+'</span><span class="pvc-by">By '+esc(s.by)+'</span><span class="pvc-l">'+esc(s.blurb)+'</span></span>'+
+    '<span class="pvc-face pvc-back"><span class="pvc-k"><span>No. Yours</span><span>The practice</span></span><span class="pvc-t">What helped.</span>'+
+      '<span class="pvc-ps">'+s.practices.slice(0,3).map(function(p){ return '<span style="display:block" class="li"><b>'+esc(p.title)+'</b><span>'+esc(p.text)+'</span></span>'; }).join('')+'</span></span>'+
+    '</span></button>';
+  var c = $('.pvc', holder);
+  c.addEventListener('click', function(){ pvFlipped = !pvFlipped; c.classList.toggle('flipped', pvFlipped); c.setAttribute('aria-label', pvLabel()); });
+  bindEyes(holder);
+}
+function queuePreview(){ clearTimeout(pvT); pvT = setTimeout(updatePreview, 160); }
+function toForm(focusSel){
+  var m = $('#shMain');
+  var r = m.getBoundingClientRect();
+  if(r.top < 0 || r.top > window.innerHeight * .6) m.scrollIntoView({behavior: reduce?'auto':'smooth', block:'start'});
+  if(focusSel) setTimeout(function(){ var f = $(focusSel, m); if(f) f.focus({preventScroll:true}); }, reduce ? 0 : 380);
+}
+function insertStarter(text){
+  var ta = $('#fStory'); if(!ta) return;
+  var v = ta.value, start = ta.selectionStart == null ? v.length : ta.selectionStart, end = ta.selectionEnd == null ? v.length : ta.selectionEnd;
+  if(document.activeElement !== ta){ start = end = v.length; }
+  var before = v.slice(0, start), after = v.slice(end);
+  var pre = before.trim() ? (/\n\s*$/.test(before) ? (/\n\s*\n\s*$/.test(before) ? '' : '\n') : '\n\n') : '';
+  var ins = pre + text + ' ';
+  ta.value = before + ins + after;
+  var pos = (before + ins).length;
+  ta.focus({preventScroll:true}); ta.setSelectionRange(pos, pos);
+  ta.dispatchEvent(new Event('input', {bubbles:true}));
+}
+function renderShare(focusSel){
+  var m = $('#shMain');
+  if(shDone){ m.innerHTML = thanksHTML(); pvFlipped = false; updatePreview(); wireThanks(m); return; }
+  m.innerHTML = shStep === 1 ? step1HTML() : step2HTML();
+  pvFlipped = shStep === 2;
+  updatePreview();
+  if(shStep === 1) wireStep1(m); else wireStep2(m, focusSel);
+}
+function wireStep1(m){
+  var f = $('#stepForm', m);
+  f.addEventListener('input', function(){ keep(m); $('#wc', m).textContent = wcText(); saveDraft(); queuePreview(); });
+  $$('[data-insert]', m).forEach(function(b){ b.addEventListener('click', function(){ insertStarter(b.dataset.insert); }); });
+  f.addEventListener('submit', function(e){
+    e.preventDefault(); keep(m);
+    if(draft.story.trim().length < 40){ $('#sErr', m).textContent = 'Add a little more. A few sentences is plenty.'; $('#fStory', m).focus(); return; }
+    shStep = 2; renderShare(); toForm(draft.practices[0].name ? '#pHow0' : '#pName0');
+  });
+}
+function wireStep2(m, focusSel){
+  var f = $('#stepForm', m), first = $('#pName0', m), chips = [];
+  function sync(){ chips.forEach(function(c){ c.setAttribute('aria-pressed', String(c.textContent === first.value.trim())); }); }
+  f.addEventListener('input', function(){ keep(m); sync(); saveDraft(); queuePreview(); });
+  f.addEventListener('change', function(){ keep(m); });
+  chips.forEach(function(c){ c.addEventListener('click', function(){ first.value = c.textContent; keep(m); sync(); saveDraft(); queuePreview(); $('#pHow0', m).focus(); }); });
+  var add = $('#addP', m);
+  if(add) add.addEventListener('click', function(){ keep(m); draft.practices.push({name:'', how:''}); saveDraft(); renderShare(); var ins = $$('.pname', $('#shMain')); ins[ins.length-1].focus(); });
+  $$('[data-rm]', m).forEach(function(r){ r.addEventListener('click', function(){ keep(m); draft.practices.splice(+r.dataset.rm, 1); saveDraft(); renderShare(); }); });
+  $('#backBtn', m).addEventListener('click', function(){ keep(m); shStep = 1; renderShare(); toForm('#fStory'); });
+  f.addEventListener('submit', function(e){
+    e.preventDefault(); keep(m);
+    var err = $('#sErr', m);
+    var filled = draft.practices.filter(function(p){ return p.name.trim() || p.how.trim(); });
+    if(!filled.length || !filled[0].name.trim()){ err.textContent = 'Give the practice a name, even a short one.'; first.focus(); return; }
+    for(var i=0;i<filled.length;i++){
+      if(!filled[i].name.trim()){ err.textContent = 'Practice '+(i+1)+' needs a name.'; return; }
+      if(filled[i].how.trim().length < 20){ err.textContent = 'Tell us a little more about how you do '+(filled.length>1?'practice '+(i+1):'it')+'.'; return; }
+    }
+    if(!draft.ok){ err.textContent = 'Tick the box so we know it’s okay to share.'; $('#sOk', m).focus(); return; }
+    draft.practices = filled;
+    send();
+  });
+  if(focusSel){ var el = $(focusSel, m); if(el) el.focus({preventScroll:true}); }
+}
+var MAILTO = 'brandonmkaufer@gmail.com';
+function mailBody(){
+  var out = 'TITLE: ' + mine.title + '\nNAME TO SHOW: ' + mine.by + '\n\nMY STORY\n\n' + mine.story + '\n\nWHAT HELPED\n';
+  mine.practices.forEach(function(p, i){ out += '\n' + (i + 1) + '. ' + p.title + '\n' + p.text + '\n'; });
+  return out + '\nIt’s okay to share my story and practices on the site. You may trim for length, never for meaning.\n';
+}
+function mailHref(){ return 'mailto:' + MAILTO + '?subject=' + encodeURIComponent('No biggie, here’s my story: ' + mine.title) + '&body=' + encodeURIComponent(mailBody()); }
+function send(){
+  mine = {title: draft.title.trim() || 'Untitled', by: draft.name.trim() || 'Anonymous', story: draft.story.trim(), blurb: firstSentence(draft.story),
+    practices: draft.practices.map(function(p){ return {title:p.name.trim(), text:p.how.trim()}; })};
+  draft = freshDraft(); clearDraft();
+  shDone = true; shStep = 1;
+  renderShare(); toForm('.fp-h');
+  location.href = mailHref();
+}
+function wireThanks(m){
+  $('#writeAgain', m).addEventListener('click', function(){ shDone = false; shStep = 1; renderShare(); toForm('#fName'); });
+  $('#copyIt', m).addEventListener('click', function(){
+    var txt = 'To: ' + MAILTO + '\n\n' + mailBody();
+    function done(){ toast('Copied. Paste it into an email to ' + MAILTO); }
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fallback); else fallback();
+    function fallback(){ var ta = document.createElement('textarea'); ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){ toast('Couldn’t copy. Select the text and copy it by hand.'); } document.body.removeChild(ta); }
+  });
+}
+/* guide prompts drop a starter straight into the story box */
+document.addEventListener('click', function(e){
+  var s = e.target.closest('[data-start]'); if(!s) return;
+  if(shDone){ shDone = false; }
+  if(shStep !== 1){ keep($('#shMain')); shStep = 1; }
+  renderShare(); toForm(); insertStarter(s.dataset.start);
+});
+document.addEventListener('click', function(e){
+  var j = e.target.closest('[data-jump]'); if(!j) return;
+  var el = document.getElementById(j.dataset.jump); if(!el) return;
+  el.scrollIntoView({behavior: reduce?'auto':'smooth', block:'start'});
 });
 
 /* ================= story page ================= */
@@ -578,8 +787,8 @@ window.addEventListener('resize', function(){
 var current = 'home';
 function show(view){
   homeV.hidden = view !== 'home'; storiesV.hidden = view !== 'stories'; aboutV.hidden = view !== 'about';
-  storyV.hidden = view !== 'story'; bookV.hidden = view !== 'book';
-  var chrome = view === 'home' || view === 'stories' || view === 'about';
+  storyV.hidden = view !== 'story'; bookV.hidden = view !== 'book'; submitV.hidden = view !== 'submit';
+  var chrome = view === 'home' || view === 'stories' || view === 'about' || view === 'submit';
   topH.hidden = !(chrome || view === 'story'); siteFoot.hidden = !chrome;
   document.body.classList.toggle('bk-open', view === 'book');
   $$('.top .nav a, #siteFoot .nav a').forEach(function(a){
@@ -596,6 +805,7 @@ function route(){
   prevNonBook = '#' + (h || 'top');
   if(h.indexOf('story-') === 0 && BY[h.slice(6)]){ show('story'); renderStory(h.slice(6)); scrollTop(); req(); return; }
   if(h === 'stories'){ var w1 = current; show('stories'); renderStoriesPage(); if(w1 !== 'stories') scrollTop(); req(); return; }
+  if(h === 'submit'){ var w3 = current; show('submit'); if(w3 !== 'submit'){ renderShare(); scrollTop(); } bindEyes(submitV); req(); return; }
   if(h === 'about'){ var w2 = current; show('about'); bindEyes(aboutV); if(w2 !== 'about') scrollTop(); req(); return; }
   var wasHome = current === 'home';
   show('home');

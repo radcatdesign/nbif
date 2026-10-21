@@ -72,7 +72,7 @@
   </div>
 </section>
 
-<section class="yt band dark" id="submit" aria-labelledby="ytTitleH">
+<section class="yt band dark" id="your-turn" aria-labelledby="ytTitleH">
   {{TEAR:61:top:var(--paper-hi):var(--night)}}
   <div class="wrap">
     <div class="sec-head"><h2 class="hand" id="ytTitleH">Your turn</h2>{{RULE}}</div>
@@ -80,7 +80,7 @@
       <article class="yt-card">
         <h3>Got through something?</h3>
         <p>Tell me about the hard thing and the thing you did to get through it. Voice memo or text, 60 seconds is plenty, no name needed. A human reads everything. Some will get published, only ever with your say-so.</p>
-        <a class="btn btn--paper" href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Leave it here {{ARROW}}</a>
+        <a class="btn btn--paper" href="#submit">Leave it here {{ARROW}}</a>
       </article>
       <article class="yt-card">
         <h3>In it right now?</h3>
@@ -89,7 +89,7 @@
       </article>
     </div>
     <div class="yt-mail">
-      <p>The form is coming. Until it's here, email works the way email always has.</p>
+      <p>Rather just email? That works too.</p>
       <a class="textlink" href="mailto:brandonmkaufer@gmail.com?subject=No%20biggie%2C%20here%27s%20my%20story">Email me your story {{ARROW}}</a>
       <p class="yt-small">Button not opening anything? Write to <span class="sel">brandonmkaufer@gmail.com</span></p>
       <p class="yt-small">Everything lands with one person. Nothing gets published, quoted, or shared without your explicit yes.</p>
@@ -160,6 +160,117 @@
       <p class="ab-last">Stories will start getting published once I have enough.</p>
     </div>
   </section>
+</div>
+
+<div id="submitView" class="shv" hidden>
+  <section class="sh-hero dark" aria-labelledby="shTitle">
+    <div class="wrap">
+      <div class="sh-hero-copy">
+        <p class="eyebrow"><b>Share your story</b>{{RULE}}</p>
+        <h1 class="hand" id="shTitle"><span>Share your</span><span>story.</span></h1>
+        <p class="sh-lede">We all carry something. Your story might help someone else feel a little more normal. Here's how to think about it, how to write it, and where to put it.</p>
+        <div class="sh-two">
+          <div class="sh-tile sh-tile--story"><b>1</b><h2>Your story</h2><p>What you carried, how it felt, where you are now.</p></div>
+          <div class="sh-tile sh-tile--prac"><b>2</b><h2>What helped</h2><p>One practice someone else could try tomorrow.</p></div>
+        </div>
+        <div class="sh-cta">
+          <button class="btn btn--paper" type="button" data-jump="shForm">Start writing {{ARROW}}</button>
+          <button class="btn btn--ghost" type="button" data-jump="shThink">Read the guide first</button>
+        </div>
+      </div>
+      <figure class="sh-hero-art">
+        {{ART:card3 dup}}
+        <p class="note" aria-hidden="true">Take your<br>time.{{SCRIB}}</p>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sh-think band dark" id="shThink" aria-labelledby="thinkH">
+    {{TEAR:101:top:#252524:var(--night-2)}}
+    <div class="wrap">
+      <div class="sec-head"><h2 class="hand" id="thinkH">How to think about it</h2>{{RULE}}</div>
+      <p class="sh-sub">Before you write a word.</p>
+      <div class="think-grid">
+        <article class="think"><h3>Small is enough.</h3><p>It doesn't have to be the worst thing that ever happened to you. A hard month, a weird Tuesday, a loop you couldn't get out of. If it was heavy for you, it counts.</p></article>
+        <article class="think"><h3>You can still be in it.</h3><p>No bow on top required. "I'm still figuring this out" is an honest ending, and it's often the one people most need to hear.</p></article>
+        <article class="think"><h3>Write to one person.</h3><p>Picture someone a few steps behind you. What would you want them to know? Write to them, not to the internet.</p></article>
+        <article class="think"><h3>Tell the truth, not everything.</h3><p>You decide what goes in. Skip the parts that aren't yours to tell. Leave out last names, workplaces, and anything that could point to someone else.</p></article>
+        <article class="think"><h3>Messy is fine.</h3><p>Don't polish it into something you'd say in a job interview. Write it the way you'd tell a friend. We edit for length, never for meaning.</p></article>
+        <article class="think"><h3>Look after yourself.</h3><p>Writing about hard stuff can stir it back up. Take breaks, and stop whenever you need to. If you're in crisis, call or text 988 in the US, or your local emergency number.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sh-write band dark" aria-labelledby="writeH">
+    {{TEAR:107:top:#2A2A29:var(--night)}}
+    <div class="wrap">
+      <div class="sec-head"><h2 class="hand" id="writeH">How to write it</h2>{{RULE}}</div>
+      <p class="sh-sub">Four parts. Not a formula, just a place to start.</p>
+      <div class="write-grid">
+        <ol class="beats">
+          <li class="beat"><span class="beat-n" aria-hidden="true">1</span><div><h3>Where you were</h3><p>Set the scene in a sentence or two. When was it? What did a normal day look like back then?</p><div class="starts"><button type="button" class="start" data-start="It started when">"It started when…"</button><button type="button" class="start" data-start="Back then, a normal day was">"Back then, a normal day was…"</button></div></div></li>
+          <li class="beat"><span class="beat-n" aria-hidden="true">2</span><div><h3>What it felt like</h3><p>Be specific. Specific is what makes a stranger say "same." Instead of "I was sad," say what sad looked like in your kitchen at 7am.</p><div class="starts"><button type="button" class="start" data-start="The hardest part was">"The hardest part was…"</button><button type="button" class="start" data-start="What nobody saw was">"What nobody saw was…"</button></div></div></li>
+          <li class="beat"><span class="beat-n" aria-hidden="true">3</span><div><h3>What you did</h3><p>Not what fixed it. What you actually did, even if it was small or didn't work at first.</p><div class="starts"><button type="button" class="start" data-start="The first thing that helped was">"The first thing that helped was…"</button><button type="button" class="start" data-start="So I started">"So I started…"</button></div></div></li>
+          <li class="beat"><span class="beat-n" aria-hidden="true">4</span><div><h3>Where you are now</h3><p>Not where you think you should be. Still in it is fine. Better is fine. Somewhere in between is most people.</p><div class="starts"><button type="button" class="start" data-start="These days">"These days…"</button><button type="button" class="start" data-start="I'm still">"I'm still…"</button></div></div></li>
+        </ol>
+        <figure class="annot">
+          <figcaption class="annot-h">How “The plates” does it</figcaption>
+          <div class="an-row"><p class="an-text">“October 2016. My grandma called. She couldn’t find my dad.”</p><p class="an-note"><b>1</b>Where he was</p></div>
+          <div class="an-row"><p class="an-text">“I looked everywhere for sad. What I found was rage.”</p><p class="an-note"><b>2</b>What it felt like</p></div>
+          <div class="an-row"><p class="an-text">“I drove to a dollar store and bought a stack of ugly plates for six bucks and a Sharpie.”</p><p class="an-note"><b>3</b>What he did</p></div>
+          <div class="an-row"><p class="an-text">“But the dollar store knows me now, and I always have a few extra plates on hand.”</p><p class="an-note"><b>4</b>Where he is now</p></div>
+          <a class="textlink" href="#story-plates">Read the full story {{ARROW}}</a>
+        </figure>
+      </div>
+      <div class="sh-tips">
+        <div class="sh-tip"><h4>150 to 600 words</h4><p>Long enough to feel real, short enough to read on a bus.</p></div>
+        <div class="sh-tip"><h4>Write like you talk</h4><p>If you wouldn't say it out loud, you don't have to write it.</p></div>
+        <div class="sh-tip"><h4>Use "I"</h4><p>Your story, your view. You don't have to speak for anyone else.</p></div>
+        <div class="sh-tip"><h4>Steal your title</h4><p>The best titles are usually a line already in your story.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sh-prac band paperband" aria-labelledby="pracH">
+    {{TEAR:113:top:var(--paper-hi):var(--paper)}}
+    <div class="wrap">
+      <div class="sec-head"><h2 class="hand">Then, what helped</h2>{{RULE}}</div>
+      <div class="sh-prac-hero">
+        <div>
+          <h2 class="hand" id="pracH"><span>A practice</span><span>someone could</span><span>try tomorrow.</span></h2>
+          <p class="sh-prac-lede">Your practice is the part people take with them. Make it something a stranger could do without having to ask you a question.</p>
+        </div>
+        <figure class="sh-prac-art">{{LIB:walker}}</figure>
+      </div>
+      <div class="ptips">
+        <div class="ptip"><h3>Name it like an action</h3><p>"Brain dump" beats "journaling more." Start with a verb if you can.</p></div>
+        <div class="ptip"><h3>Make it small</h3><p>If it takes more than twenty minutes, cut it down until it doesn't.</p></div>
+        <div class="ptip"><h3>Say how</h3><p>When, where, how long. The details are the practice.</p></div>
+        <div class="ptip"><h3>Say what it changed</h3><p>Even if it only took the edge off. That's worth knowing.</p></div>
+      </div>
+      <div class="pairs">
+        <div class="pair pair--head" aria-hidden="true"><span>Instead of</span><span>Try</span></div>
+        <div class="pair"><span class="no">Self care</span><span class="yes">Ten quiet minutes before I look at my phone.</span></div>
+        <div class="pair"><span class="no">Exercise more</span><span class="yes">A lap around the block when I catch myself in a loop.</span></div>
+        <div class="pair"><span class="no">Talk to people</span><span class="yes">Text one friend one sentence about my day, every night.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sh-form paperband" id="shForm" aria-labelledby="formH">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="hand" id="formH">Write yours</h2>{{RULE}}</div>
+      <div class="sh-form-grid">
+        <div class="sh-form-main" id="shMain"></div>
+        <aside class="sh-prev" aria-label="Card preview">
+          <p class="flabel">Your card</p>
+          <div class="mycard" id="pvCard"></div>
+          <p class="pv-note">Tap to flip. Your story on the front, what helped on the back.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <footer class="foot" id="siteFoot">
@@ -242,7 +353,7 @@
       <article class="yt-card">
         <h3>Got through something?</h3>
         <p>Tell me about the hard thing and the thing you did to get through it. Voice memo or text, 60 seconds is plenty, no name needed. A human reads everything. Some will get published, only ever with your say-so.</p>
-        <a class="btn btn--paper" href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Leave it here {{ARROW}}</a>
+        <a class="btn btn--paper" href="#submit">Leave it here {{ARROW}}</a>
       </article>
       <article class="yt-card">
         <h3>In it right now?</h3>
@@ -251,7 +362,7 @@
       </article>
     </div>
     <div class="yt-mail">
-      <p>The form is coming. Until it's here, email works the way email always has.</p>
+      <p>Rather just email? That works too.</p>
       <a class="textlink" href="mailto:brandonmkaufer@gmail.com?subject=No%20biggie%2C%20here%27s%20my%20story">Email me your story {{ARROW}}</a>
       <p class="yt-small">Button not opening anything? Write to <span class="sel">brandonmkaufer@gmail.com</span></p>
       <p class="yt-small">Everything lands with one person. Nothing gets published, quoted, or shared without your explicit yes.</p>
