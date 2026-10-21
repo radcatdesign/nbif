@@ -143,76 +143,11 @@ $('#subForm').addEventListener('submit', function(e){
   msg.innerHTML = 'Your email app should open with a note ready to send. If it doesn’t, write to <span class="sel">brandonmkaufer@gmail.com</span> with “notify me”.';
 });
 
-/* ================= zine reader ================= */
-var zineV = $('#zineView'), zvScroll = $('#zvScroll');
-function renderZine(id){
-  var s = BY[id]; if(!s) return;
-  $('#zvWhere').textContent = 'No. ' + s.num + ' · ' + s.title;
-  $('#zvBook').setAttribute('href', '#book-' + s.id);
-  var chapters = [{id:'zc-cover', name:'Cover', part:''}];
-  var scs = (s.scenes || []).slice().sort(function(a, b){ return a.after - b.after; });
-  var starts = {0: scs.length ? 'October 2016' : 'The story'};
-  scs.forEach(function(sc){ if(sc.after + 1 < (s.paras || []).length) starts[sc.after + 1] = sc.ch; });
-  var body = '';
-  (s.paras || []).forEach(function(p, i){
-    if(starts[i] !== undefined){
-      var cid = 'zc-s' + i; chapters.push({id:cid, name:starts[i], part:'The story'});
-      body += (i ? '</div>' : '') + '<div class="z-chap" id="'+cid+'">';
-    }
-    var sc = scs.filter(function(x){ return x.after === i; })[0];
-    body += '<p'+(i === 0 ? ' class="zl-first"' : '')+'>'+esc(p)+'</p>' + (sc ? '<figure class="z-scene">'+artHTML(sc.art, {fit:true})+'<figcaption>'+esc(sc.cap)+'</figcaption></figure>' : '');
-  });
-  if(body) body += '</div>';
-  chapters.push({id:'zc-need', name:'What you’ll need', part:'The practice'});
-  chapters.push({id:'zc-steps', name:'The steps', part:'The practice'});
-  chapters.push({id:'zc-end', name:'Eleven more', part:''});
-  var care = s.care ? '<p class="z-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '';
-  $('#zvZine').innerHTML =
-    '<section class="z-cover" id="zc-cover"><i class="staple s1" aria-hidden="true"></i><i class="staple s2" aria-hidden="true"></i>'+
-      '<span class="zc-num">No. '+s.num+'</span><span class="zcv-art">'+artHTML(s.art, {fit:true})+'</span>'+
-      '<h1 class="zcv-title">'+esc(titleDot(s.title))+'</h1><span class="zcv-by">'+(s.by ? 'By '+esc(s.by) : '')+'</span>'+
-      '<span class="zcv-foot"><span>No biggie, I’m fine.</span><span>A field guide</span></span>'+
-      (s.cw ? '<p class="z-cw">'+esc(s.cw)+'</p>' : '')+'<p class="z-hint">Scroll to read</p></section>'+
-    '<section class="z-story"><p class="z-kicker">The story</p>'+body+care+'</section>'+
-    '<section class="z-prac"><p class="z-kicker">The practice</p><h2 class="z-h">'+esc(s.pTitle || 'What helped')+'</h2>'+recipeHTML(s)+(s.after ? '<p class="z-after">'+esc(s.after)+'</p>' : '')+'</section>'+
-    '<section class="z-end" id="zc-end"><h2 class="z-h">Eleven more<br><em>on the way.</em></h2><p>Leave your email on the shelf and you’ll hear when the next zine is out.</p>'+
-      '<div class="fp-row"><a class="btn btn--paper" href="#stories" data-tosub>Get notified '+ARROW+'</a><a class="btn btn--ghost" href="#story-'+s.id+'">Open the story page</a></div></section>';
-  var need = $('#zvZine .rc-need'), steps = $('#zvZine .rc-steps');
-  if(need) need.id = 'zc-need'; if(steps) steps.id = 'zc-steps';
-  var last = null;
-  $('#zvToc').innerHTML = '<p class="zt-h">In this zine</p><ol>' + chapters.map(function(c, k){
-    var head = (c.part && c.part !== last) ? '<li class="zt-part">'+esc(c.part)+'</li>' : ''; last = c.part;
-    return head + '<li><a href="#'+c.id+'" data-ch="'+c.id+'"><span class="zt-n">'+(k < 10 ? '0' : '')+k+'</span>'+esc(c.name)+'</a></li>';
-  }).join('') + '</ol>';
-  ZCH = chapters.map(function(c){ return c.id; });
-  zvScroll.scrollTop = 0; zvProg();
-  bindEyes(zineV);
-}
-var ZCH = [];
-$('#zvToc').addEventListener('click', function(e){
-  var a = e.target.closest('[data-ch]'); if(!a) return;
-  e.preventDefault();
-  var el = document.getElementById(a.dataset.ch); if(!el) return;
-  var top = el.getBoundingClientRect().top - zvScroll.getBoundingClientRect().top + zvScroll.scrollTop - 16;
-  zvScroll.scrollTo({top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth'});
-});
-function zvSpy(){
-  var line = zvScroll.getBoundingClientRect().top + zvScroll.clientHeight * .35, cur = ZCH[0];
-  ZCH.forEach(function(id){ var el = document.getElementById(id); if(el && el.getBoundingClientRect().top <= line) cur = id; });
-  $$('#zvToc [data-ch]').forEach(function(a){
-    var on = a.dataset.ch === cur; a.classList.toggle('on', on);
-    if(on){ a.setAttribute('aria-current', 'true'); var t = $('#zvToc'); if(t.scrollWidth > t.clientWidth + 4) t.scrollLeft = a.offsetLeft - 20; }
-    else a.removeAttribute('aria-current');
-  });
-}
-function zvProg(){ var m = zvScroll.scrollHeight - zvScroll.clientHeight; $('#zvBar').style.transform = 'scaleX(' + (m > 0 ? Math.min(1, zvScroll.scrollTop / m) : 0) + ')'; zvSpy(); req(); }
-zvScroll.addEventListener('scroll', zvProg, {passive:true});
 document.addEventListener('click', function(e){
   if(!e.target.closest('[data-tosub]')) return;
   e.preventDefault(); location.hash = '#stories';
   setTimeout(function(){ $('#subscribe').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}); }, 80);
 });
-document.addEventListener('keydown', function(e){ if(!zineV.hidden && e.key === 'Escape') location.hash = '#stories'; });
 
 /* ================= story page ================= */
 function renderStory(id){
@@ -270,7 +205,7 @@ function renderStory(id){
 
 /* ================= story mode: the book ================= */
 var bookEl = $('#book'), bkL = $('#bkL'), bkR = $('#bkR'), stage = $('#bkStage'), measure = $('#bkMeasure');
-var BK = {pages:[], spreads:[], si:0, mode:'spread', busy:false, sig:'', anchor:null};
+var BK = {pages:[], spreads:[], si:0, mode:'spread', busy:false, sig:'', anchor:null, zine:null};
 
 function bkLayout(){
   var vw = stage.clientWidth, vh = stage.clientHeight, ratio = 0.7, w, h;
@@ -354,27 +289,67 @@ function practiceBlocks(s){
   b.push('<p class="pp-link"><a href="#story-'+s.id+'">Open this story’s page '+ARROW+'</a></p>');
   return b;
 }
+function buildZine(L, s){
+  var pages = [], spread = L.mode === 'spread';
+  function add(p){ pages.push(p); return p; }
+  function blank(){ add({kind:'blank', cls:'bwhite bblank', key:'blank'+pages.length, html:'<p class="blank-note">This page is blank on purpose.<br>Take a breath.</p>'}); }
+  add({kind:'cover', cls:'bdark zcover', key:s.id+':zcover', ch:'Cover', html:
+    '<i class="staple s1" aria-hidden="true"></i><i class="staple s2" aria-hidden="true"></i>'+
+    '<div class="zcp"><p class="zcp-num">No. '+s.num+'</p><div class="zcp-art">'+artHTML(s.art, {fit:true})+'</div>'+
+    '<h2 class="zcp-title">'+esc(titleDot(s.title))+'</h2><p class="zcp-by">'+(s.by ? 'By '+esc(s.by) : '')+'</p>'+
+    '<p class="zcp-foot"><span>No biggie, I’m fine.</span><span>A field guide</span></p>'+(s.cw ? '<p class="bo-cw">'+esc(s.cw)+'</p>' : '')+'</div>'});
+  var scs = (s.scenes || []).slice().sort(function(a, b){ return a.after - b.after; });
+  var segs = [], start = 0;
+  scs.forEach(function(sc){ segs.push({from:start, to:sc.after, scene:sc, name: start === 0 ? 'October 2016' : (scs.filter(function(x){ return x.after === start - 1; })[0] || {}).ch}); start = sc.after + 1; });
+  if(start < (s.paras || []).length) segs.push({from:start, to:s.paras.length - 1, scene:null, name:(scs[scs.length - 1] || {}).ch || 'The story'});
+  segs.forEach(function(sg, k){
+    paginateParas(s.paras.slice(sg.from, sg.to + 1), 'bdark btext').forEach(function(h, i){
+      add({kind:'text', cls:'bdark btext', story:s, key:s.id+':z'+sg.from+'-'+i, ch: i === 0 ? sg.name : null, part: i === 0 && k === 0 ? 'The story' : null, html:h});
+    });
+    if(sg.scene) add({kind:'scene', cls:'bdark bscene', story:s, key:s.id+':z'+sg.scene.art, html:'<figure class="bsc">'+artHTML(sg.scene.art, {fit:true})+'<figcaption>'+esc(sg.scene.cap)+'</figcaption></figure>'});
+  });
+  if(spread && pages.length % 2 === 0) blank();
+  paginateBlocks(practiceBlocks(s), 'bwhite bprac').forEach(function(h, i){
+    var p = add({kind:'practice', cls:'bwhite bprac', story:s, key:s.id+':zprac'+i, html:h});
+    if(i === 0){ p.ch = 'What you’ll need'; p.part = 'The practice'; }
+    else if(h.indexOf('>The steps<') > -1) p.ch = 'The steps';
+  });
+  add({kind:'end', cls:'bdark zend', key:s.id+':zend', ch:'Eleven more', html:
+    '<div class="endc"><h3 class="end-h">Eleven more<br><em>on the way.</em></h3><p>Stories will start getting published once I have enough.</p><p>Leave your email on the shelf and you’ll hear when the next zine is out.</p>'+
+    '<p class="end-links"><a href="#stories" data-tosub>Get notified '+ARROW+'</a><a href="#stories">Back to the shelf '+ARROW+'</a></p>'+
+    (s.care ? '<p class="end-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US). This project is a book, not a substitute for a human who can actually be there.</p>' : '')+'</div>'});
+  if(spread && pages.length % 2 === 0) blank();
+  add({kind:'back', cls:'bdark backc zback', key:s.id+':zback', html:
+    '<i class="staple s1" aria-hidden="true"></i><i class="staple s2" aria-hidden="true"></i>'+
+    '<div class="bc"><div class="bc-art">'+artHTML('card4', {fit:true})+'</div><p class="bc-logo">No biggie,<br>I’m fine.</p><p class="bc-sub">No. '+s.num+' of 12<br>A project by Brandon Kaufer<br>Popsy Wolf Studios © 2026</p></div>'});
+  var spreads = [];
+  if(spread){ spreads.push([-1, 0]); for(var i = 1; i < pages.length; i += 2) spreads.push([i, i + 1 < pages.length ? i + 1 : -1]); }
+  else pages.forEach(function(_, i){ spreads.push([-1, i]); });
+  BK.pages = pages; BK.spreads = spreads; BK.mode = L.mode;
+  measure.innerHTML = '';
+}
 function buildBook(L){
+  if(BK.zine && BY[BK.zine]) return buildZine(L, BY[BK.zine]);
   var pages = [], spread = L.mode === 'spread';
   function add(p){ pages.push(p); return p; }
   function blank(){ add({kind:'blank', cls:'bwhite bblank', key:'blank'+pages.length, html:'<p class="blank-note">This page is blank on purpose.<br>Take a breath.</p>'}); }
 
-  add({kind:'cover', cls:'bdark cover', key:'cover', html:
+  add({kind:'cover', cls:'bdark cover', key:'cover', ch:'Cover', html:
     '<div class="cv"><p class="cv-top">Volume one</p><div class="cv-art">'+artHTML('peek', {fit:true})+'</div>'+
     '<h2 class="cv-title">No Biggie,<br><em>I’m Fine.</em></h2><p class="cv-sub">A field guide for people who push it down and power through.</p></div>'});
 
   var fw = paginateBlocks(['<p class="tp-logo">No biggie,<br>I’m fine.</p>', '<p class="tp-label">A note before you start</p>'].concat(FOREWORD.map(function(t){ return '<p class="tp-p">'+esc(t)+'</p>'; })), 'bwhite front');
-  fw.forEach(function(h, i){ add({kind:'title', cls:'bwhite front', key:'title'+i, html:h}); });
+  fw.forEach(function(h, i){ add({kind:'title', cls:'bwhite front', key:'title'+i, ch: i ? null : 'A note before you start', html:h}); });
 
   var ctPages = paginateBlocks(contentsBlocks(null), 'bwhite front');
   var ctStart = pages.length;
-  ctPages.forEach(function(h, i){ add({kind:'contents', cls:'bwhite front', key:'contents'+i, html:h}); });
+  ctPages.forEach(function(h, i){ add({kind:'contents', cls:'bwhite front', key:'contents'+i, ch: i ? null : 'Contents', html:h}); });
 
   var openers = [];
   STORIES.forEach(function(s){
     if(spread && pages.length % 2 === 1) blank();
     openers.push(pages.length);
-    add({kind:'opener', cls:'bdark opener', story:s, key:s.id+':open', html:
+    add({kind:'opener', cls:'bdark opener', story:s, key:s.id+':open', ch:'Story '+s.num+' \u00b7 '+s.title, html:
       '<div class="bo"><p class="bo-kicker">Story '+s.num+'</p><div class="bo-art">'+artHTML(s.art, {fit:true})+'</div>'+
       '<h2 class="bo-title">'+esc(titleDot(s.title))+'</h2>'+(s.by ? '<p class="bo-by">By '+esc(s.by)+'</p>' : '')+
       '<p class="bo-deck">'+esc(s.deck || s.blurb)+'</p>'+(s.cw ? '<p class="bo-cw">'+esc(s.cw)+'</p>' : '')+'</div>'});
@@ -396,10 +371,10 @@ function buildBook(L){
         return '<figure class="panel">'+artHTML(p.art)+'<span class="pnote" style="left:'+p.x+'%;top:'+p.y+'%">'+esc(p.note)+'</span></figure>';
       }).join('')+'</div>'});
     }
-    paginateBlocks(practiceBlocks(s), 'bwhite bprac').forEach(function(h, i){ add({kind:'practice', cls:'bwhite bprac', story:s, key:s.id+':prac'+i, html:h}); });
+    paginateBlocks(practiceBlocks(s), 'bwhite bprac').forEach(function(h, i){ add({kind:'practice', cls:'bwhite bprac', story:s, key:s.id+':prac'+i, ch: i ? null : 'The practice', html:h}); });
   });
 
-  add({kind:'end', cls:'bwhite front endp', key:'end', html:
+  add({kind:'end', cls:'bwhite front endp', key:'end', ch:'Your turn', html:
     '<div class="endc"><h3 class="end-h">Your turn.</h3><p>Got through something? Tell me about the hard thing and the thing you did to get through it.</p><p>Stories will start getting published once I have enough.</p>'+
     '<p class="end-links"><a href="https://nobiggieimfine.com/#form" target="_blank" rel="noopener">Leave it here '+ARROW+'</a><a href="#top">Back to home '+ARROW+'</a></p>'+
     '<p class="end-care">If today is heavier than a website can help with, call or text 988 (Suicide and Crisis Lifeline, US).</p></div>'});
@@ -450,9 +425,12 @@ function afterRender(){
   $('#bkNext').disabled = $('#bkNextSide').disabled = BK.si === BK.spreads.length - 1;
   var story = null;
   shown.forEach(function(i){ if(BK.pages[i].story && !story) story = BK.pages[i].story; });
-  $('#bkWhere').textContent = story ? 'Story ' + story.num + ' · ' + story.title : 'No Biggie, I’m Fine';
+  var zs = BK.zine && BY[BK.zine];
+  $('#bkWhere').textContent = zs ? 'No. ' + zs.num + ' \u00b7 ' + zs.title : (story ? 'Story ' + story.num + ' · ' + story.title : 'No Biggie, I’m Fine');
   BK.anchor = BK.pages[shown[shown.length - 1]] ? BK.pages[shown[shown.length - 1]].key : null;
-  var want = story ? '#book-' + story.id : '#book';
+  var want = zs ? '#zine-' + zs.id : (story ? '#book-' + story.id : '#book');
+  var cur = 0; for(var q = 0; q <= shown[shown.length - 1]; q++){ if(BK.pages[q] && BK.pages[q].ch) cur = q; }
+  $$('#bkIndex [data-goto]').forEach(function(a){ var on = +a.dataset.goto === cur; a.classList.toggle('on', on); if(on) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); });
   if(location.hash !== want){ try{ history.replaceState(null, '', want); }catch(e){} }
 }
 function spreadOf(i){ for(var k = 0; k < BK.spreads.length; k++){ if(BK.spreads[k][0] === i || BK.spreads[k][1] === i) return k; } return 0; }
@@ -500,20 +478,41 @@ function turn(dir){
 
 function ensureBook(){
   var L = bkLayout();
-  var sig = L.mode + ':' + L.pw + 'x' + L.ph;
+  var sig = L.mode + ':' + L.pw + 'x' + L.ph + ':' + (BK.zine || 'book');
   if(sig === BK.sig) return false;
   var keep = BK.anchor;
   applyLayout(L);
   buildBook(L);
+  buildIndex();
   BK.sig = sig;
   BK.si = 0;
   if(keep){ for(var i = 0; i < BK.pages.length; i++){ if(BK.pages[i].key === keep){ BK.si = spreadOf(i); break; } } }
   return true;
 }
 var prevNonBook = '#top', bookOpen = false;
-function openBook(storyId){
+function buildIndex(){
+  var last = null;
+  $('#bkIndexList').innerHTML = BK.pages.map(function(p, i){
+    if(!p.ch) return '';
+    var head = (p.part && p.part !== last) ? '<li class="bki-part">'+esc(p.part)+'</li>' : ''; if(p.part) last = p.part;
+    return head + '<li><button type="button" data-goto="'+i+'"><span>'+esc(p.ch)+'</span><span class="bki-pg">'+(i ? i : '')+'</span></button></li>';
+  }).join('');
+  $('#bkIndexTitle').textContent = BK.zine ? 'In this zine' : 'In this book';
+}
+function toggleIndex(open){
+  var p = $('#bkIndex'), btn = $('#bkToc');
+  if(open === undefined) open = p.hidden;
+  p.hidden = !open; btn.setAttribute('aria-expanded', String(open));
+  if(open){ var on = $('#bkIndex .on') || $('#bkIndex [data-goto]'); if(on) on.focus(); }
+}
+function openBook(storyId, zineId){
   show('book');
-  $('#bkClose').setAttribute('href', prevNonBook);
+  var z = zineId && BY[zineId] ? zineId : null;
+  if(z !== BK.zine){ BK.zine = z; BK.sig = ''; BK.anchor = null; bookOpen = false; }
+  bookV.classList.toggle('is-zine', !!z);
+  $('#bkClose').setAttribute('href', z ? '#stories' : prevNonBook);
+  $('#bkClose').lastChild.nodeValue = z ? ' Back to the shelf' : ' Close the book';
+  toggleIndex(false);
   var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
   ready.then(function(){
     requestAnimationFrame(function(){
@@ -527,16 +526,20 @@ function openBook(storyId){
     });
   });
 }
-function closeBook(){ location.hash = prevNonBook; }
+function closeBook(){ location.hash = BK.zine ? '#stories' : prevNonBook; }
 
 $('#bkPrev').addEventListener('click', function(){ turn(-1); });
 $('#bkNext').addEventListener('click', function(){ turn(1); });
 $('#bkPrevSide').addEventListener('click', function(){ turn(-1); });
 $('#bkNextSide').addEventListener('click', function(){ turn(1); });
 $('#bkScrub').addEventListener('input', function(){ if(BK.busy) return; BK.si = +this.value; renderBook(); });
-$('#bkToc').addEventListener('click', function(){
-  for(var i = 0; i < BK.pages.length; i++){ if(BK.pages[i].kind === 'contents'){ goToPage(i); return; } }
+$('#bkToc').addEventListener('click', function(e){ e.stopPropagation(); toggleIndex(); });
+$('#bkIndex').addEventListener('click', function(e){
+  var g = e.target.closest('[data-goto]');
+  if(g){ goToPage(+g.dataset.goto); toggleIndex(false); try{ bookEl.focus({preventScroll:true}); }catch(err){} }
+  else if(e.target.closest('.bki-x')) toggleIndex(false);
 });
+document.addEventListener('click', function(e){ if(!$('#bkIndex').hidden && !e.target.closest('#bkIndex,#bkToc')) toggleIndex(false); });
 var sw = {x:0, y:0, on:false, used:false};
 stage.addEventListener('pointerdown', function(e){ sw.on = true; sw.used = false; sw.x = e.clientX; sw.y = e.clientY; });
 stage.addEventListener('pointerup', function(e){
@@ -562,7 +565,7 @@ document.addEventListener('keydown', function(e){
   else if(e.key === ' ' && e.target === bookEl){ e.preventDefault(); turn(e.shiftKey ? -1 : 1); }
   else if(e.key === 'Home'){ e.preventDefault(); BK.si = 0; renderBook(); }
   else if(e.key === 'End'){ e.preventDefault(); BK.si = BK.spreads.length - 1; renderBook(); }
-  else if(e.key === 'Escape'){ closeBook(); }
+  else if(e.key === 'Escape'){ if(!$('#bkIndex').hidden){ toggleIndex(false); $('#bkToc').focus(); } else closeBook(); }
 });
 var rzT = 0;
 window.addEventListener('resize', function(){
@@ -575,10 +578,10 @@ window.addEventListener('resize', function(){
 var current = 'home';
 function show(view){
   homeV.hidden = view !== 'home'; storiesV.hidden = view !== 'stories'; aboutV.hidden = view !== 'about';
-  storyV.hidden = view !== 'story'; bookV.hidden = view !== 'book'; zineV.hidden = view !== 'zine';
+  storyV.hidden = view !== 'story'; bookV.hidden = view !== 'book';
   var chrome = view === 'home' || view === 'stories' || view === 'about';
   topH.hidden = !(chrome || view === 'story'); siteFoot.hidden = !chrome;
-  document.body.classList.toggle('bk-open', view === 'book' || view === 'zine');
+  document.body.classList.toggle('bk-open', view === 'book');
   $$('.top .nav a, #siteFoot .nav a').forEach(function(a){
     var on = (a.getAttribute('href') === '#stories' && view === 'stories') || (a.getAttribute('href') === '#about' && view === 'about');
     if(on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
@@ -588,9 +591,9 @@ function show(view){
 function route(){
   var h = location.hash.replace(/^#/, '');
   try{ h = decodeURIComponent(h); }catch(e){}
-  if(h === 'book' || h.indexOf('book-') === 0){ if(current !== 'book') openBook(h.slice(5)); return; }
+  if(h.indexOf('zine-') === 0 && BY[h.slice(5)]){ if(current !== 'book' || BK.zine !== h.slice(5)) openBook(null, h.slice(5)); return; }
+  if(h === 'book' || h.indexOf('book-') === 0){ if(current !== 'book' || BK.zine) openBook(h.slice(5)); return; }
   prevNonBook = '#' + (h || 'top');
-  if(h.indexOf('zine-') === 0 && BY[h.slice(5)]){ show('zine'); renderZine(h.slice(5)); try{ zvScroll.focus({preventScroll:true}); }catch(e){} return; }
   if(h.indexOf('story-') === 0 && BY[h.slice(6)]){ show('story'); renderStory(h.slice(6)); scrollTop(); req(); return; }
   if(h === 'stories'){ var w1 = current; show('stories'); renderStoriesPage(); if(w1 !== 'stories') scrollTop(); req(); return; }
   if(h === 'about'){ var w2 = current; show('about'); bindEyes(aboutV); if(w2 !== 'about') scrollTop(); req(); return; }
@@ -673,4 +676,5 @@ bindEyes(homeV);
 $$('.yr').forEach(function(y){ try{ y.textContent = new Date().getFullYear(); }catch(e){} });
 route();
 if(!reduce && current === 'home'){ var hc = creatures[0]; if(hc){ setTimeout(function(){ hc.svg.classList.add('blink'); setTimeout(function(){ hc.svg.classList.remove('blink'); },140); }, 900); } }
+window.__nbif = {BK:BK, renderBook:renderBook};
 })();
